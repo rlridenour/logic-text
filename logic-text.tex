@@ -1,9 +1,13 @@
 % arara: lualatex: { interaction: nonstopmode, synctex: yes }
+% arara: biber
+% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+
 
 \documentclass[letterpaper,12pt,oneside,onecolumn]{memoir}
 
 \usepackage{graphicx,epstopdf,amsmath,amssymb,url,booktabs}
-\usepackage{microtype,todonotes}
+\usepackage{microtype}
 \usepackage[american]{babel}
 \usepackage[sf,sc]{titlesec}
 \usepackage{tikz}
@@ -50,8 +54,8 @@
 
 \mainmatter
 
-\subfile{intro}
-\subfile{categorical}
+\subfile{introduction/intro}
+\subfile{categorical-logic/categorical}
 
 % \printbibliography
 
