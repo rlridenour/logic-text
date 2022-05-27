@@ -1,0 +1,305 @@
+% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+
+\documentclass[../logic-text.tex]{subfiles}
+
+\begin{document}
+\chapter{Basic Concepts}
+\label{chap:intro}
+
+\section{What is Logic?}
+\label{sec:what-logic}
+
+I don't know that there is any accepted definition of logic. Here are four that I've heard:
+
+\begin{enumerate}
+\item The study of reasoning
+\item The analysis and evaluation of arguments
+\item The study of formal languages
+\item The study of patterns of truth
+\end{enumerate}
+
+Although I don't think that any of the four are successful definitions, it is certainly the case that they each represent some important part of the study of logic.
+We will see all four of these topics, in various forms, in later chapters.
+This chapter introduces some important concepts that are fundamental to the study of logic.
+The first is truth preservation.
+
+The study of logic provides a set of tools for reasoning.
+As you continue in the study of logic, you will find that there are different systems of logic, each system being a different tool that can be used.
+There are two obvious, but important, things to note --- first, the particular tool that should be used is relative to the context or task at hand.
+Hammers and saws are both tools used in carpentry.
+Which one should you use?
+Is your goal to drive a nail or cut a board?
+We'll see that the system of logic that should be used depends on the context in which one is reasoning.
+A good rule of thumb is that one should use the simplest tool that is adequate for the task.
+For example, a doctor shouldn't use an electrocardiogram or MRI when a stethoscope will do.
+Systems of logic also differ in degrees of complexity, and we should use the simplest system that will be effective in the circumstances.
+
+Second, a tool that leaves you in a worse situation than you were in before you used it is certainly \emph{not} good.
+The purpose of a toaster is to make a nicely toasted piece of bread.
+A toaster that produces a smoldering, inedible, piece of charcoal is not a good toaster.
+You were better off just eating the non-toasted bread.
+A central purpose of a logic system is to preserve truth.
+When the tools of logic are applied to truths, the results should still be true.
+A system of logic that turns truth into falsehoods is a failure as a tool of reasoning.
+Another way to state this is that the rules of our logic systems should be truth-preserving.
+
+\section{Arguments}
+\label{sec:arguments}
+
+One fundamental concept in logic is that of the argument. For a good example of what we are not talking about, consider a bit from a famous sketch by \emph{Monty Python's Flying Circus} \autocite{Cleese:1980aa}:
+
+\begin{quote}
+Man: (Knock)\\
+Mr. Vibrating: Come in.\\
+Man: Ah, Is this the right room for an argument?\\
+Mr. Vibrating: I told you once.\\
+Man: No you haven't.\\
+Mr. Vibrating: Yes I have.\\
+Man: When?\\
+Mr. Vibrating: Just now.\\
+Man: No you didn't.\\
+Mr. Vibrating: Yes I did.\\
+Man: You didn't!\\
+Mr. Vibrating: I did!\\
+Man: You didn't!\\
+Mr. Vibrating: I'm telling you I did!\\
+Man: You did not!!\\
+Mr. Vibrating: Oh, I'm sorry, just one moment. Is this a five minute argument or the full half hour?\\
+\end{quote}
+
+People often use "argument" to refer to a dispute or quarrel between people.
+For our purposes, an argument is defined as
+
+\begin{description}
+\item[Argument] A set of statements, one of which is taken to be supported by the remaining sentences.
+\item[Conclusion] The statement in the argument that is being supported.
+\item[Premises] The statements in the argument that provide the support for the conclusion.
+\end{description}
+
+There are three important things to remember here:
+
+\begin{enumerate}
+\item Arguments contain statements.
+\item They have a conclusion.
+\item They have at least one premise
+\end{enumerate}
+
+This might get more complicated later, but for now, think of a statement as a sentence that has a truth-value.
+Also, for now, we will assume that there are only two truth values: true and false, which we will abbreviate with \textbf{T} and \textbf{F}.
+Think of a statement as an attempt to describe the world; when it gets it right, the statement is true, otherwise, it is false.
+Since George Washington was in fact the first President of the United States, the statement \enquote*{George Washington was the first President of the United States} has the truth value of \textbf{T}. 
+Likewise, the statement \enquote*{John Adams was the first President of the United States} has the truth value of \textbf{F}.
+
+Some sentences don't have truth values, that is to say that they are neither true or false.
+Examples are questions (\enquote*{What did you do last summer?}) and commands (\enquote*{Please take a seat.}).
+Such sentences can be neither premises nor conclusions of arguments. 
+It is important to note that, even though a statement has a truth value, we may not necessarily know what that truth value is.
+The rules of logic will still apply, though. 
+
+An inference is the process of reasoning from the premises to the conclusion. That is, inference is the psychological process by which one draws a conclusion from some given premises. The argument just is the premises and conclusion.
+
+A distinction needs to be made between deductive arguments and inductive arguments.
+It's very hard to make this distinction precise, but it's not hard to have an informal understanding of the difference.
+Think of the difference in terms of what the argument is intended to establish.
+If the argument is only intended to establish the probable truth of the conclusion, then it is inductive.
+If the argument is intended to guarantee the truth of the conclusion, then it is deductive.
+
+Every argument has exactly one conclusion.
+Very complex arguments may have sub-conclusions, which are themselves inferred from premises.
+These sub-conclusions then serve as premises for the main conclusion of the argument. Let's keep things simple for now. Consider this argument:
+
+\begin{quote}
+Calculus II will be no harder than Calculus I. Susan did well in
+Calculus I. So, Susan should do well in Calculus II.
+\end{quote}
+
+Here the conclusion is that Susan should do well in Calculus II.
+The other two sentences are premises.
+These premises are the reasons offered for believing that Susan should do well in the course..
+
+
+Now, to make the argument easier to evaluate, we will put it into what is called "standard form." To put an argument in standard form, write each premise on a separate, numbered line. Draw a line underneath the last premise, the write the conclusion underneath the line.
+
+
+\begin{enumerate}
+  % \tightlist
+\item Calculus II will be no harder than Calculus I.
+\item \underline{Susan did well in Calculus I.}
+\item [$\therefore$] Susan will do well in Calculus II.
+\end{enumerate}
+
+Now that we have the argument in standard form, we can talk about premise 1, premise 2, and all clearly be referring to the same statement.
+
+Unfortunately, when people present arguments, they rarely put them in standard form. So, we have to decide which statement is intended to be the conclusion, and which are the premises. Don't make the mistake of assuming that the conclusion comes at the end. The conclusion is often at the beginning of the passage, but could even be in the middle. A better way to identify premises and conclusions is to look for indicator words. Indicator words are words that signal that statement following the indicator is a premise or conclusion. The example above used a common indicator word for a conclusion, 'so.' The other common conclusion indicator, as you can probably guess, is 'therefore.' This table lists the indicator words you might encounter.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\begin{tabular}{@{}ll@{}}
+Conclusion      & Premise             \\
+Therefore       & Since               \\
+So              & Because             \\
+Thus            & For                 \\
+Hence           & Is implied by       \\
+Consequently    & For the reason that \\
+Implies that    &                     \\
+It follows that &                    
+\end{tabular}
+\end{table}
+
+Each argument will likely use only one indicator word or phrase. When the conlusion is at the end, it will generally be preceded by a conclusion indicator. Everything else, then, is a premise. When the conclusion comes at the beginning, the next sentence will usually be introduced by a premise indicator. All of the following sentences will also be premises.
+
+For example, here's our previous argument rewritten to use a premise indicator:
+
+\begin{quote}
+Susan should do well in Calculus II, because Calculus II will be no harder than Calculus I, and Susan did well in Calculus I.
+\end{quote}
+
+Sometimes, an argument will contain no indicator words at all. In that case, the best thing to do is to determine which of the premises would logically follow from the others. If there is one, then it is the conclusion. Here is an example:
+
+\begin{quote}
+Spot is a mammal. All dogs are mammals, and Spot is a dog.
+\end{quote}
+
+The first sentence logically follows from the others, so it is the conclusion. When using this method, we are forced to assume that the person giving the argument is rational and logical, which might not be true.
+
+One thing that complicates our task of identifying arguments is that there are many passages that, although they look like arguments, are not arguments. The most common types are:
+
+\begin{enumerate}
+\item Explanations
+\item Mere asssertions
+\item Conditional statements
+\item Loosely connected statements
+\end{enumerate}
+
+Explanations can be tricky, because they often use one of our indicator words. Consider this passage:
+
+\begin{quote}
+Abraham Lincoln died because he was shot.
+\end{quote}
+
+If this were an argument, then the conclusion would be that Abraham Lincoln died, since the other statement is introduced by a premise indicator. If this is an argument, though, it's a strange one. Do you really think that someone would be trying to prove that Abraham Lincoln died? Surely everyone knows that he is dead. On the other hand, there might be people who don't know how he died. This passage does not attempt to prove that something is true, but instead attempts to explain why it is true. To determine if a passage is an explanation or an argument, first find the statement that looks like the conclusion. Next, ask yourself if everyone likely already believes that statement to be true. If the answer to that question is yes, then the passage is an explanation.
+
+Mere assertions are obviously not arguments. If a professor tells you simply that you will not get an A in her course this semester, she has not given you an argument. This is because she hasn't given you any reasons to believe that the statement is true. If there are no premises, then there is no argument.
+
+Conditional statements are sentences that have the form \enquote{If\ldots, then\ldots} A conditional statement asserts that \emph{if} something is true, then something else would be true also. For example, imagine you are told, \enquote{If you have the winning lottery ticket, then you will win ten million dollars.} What is being claimed to be true, that you have the winning lottery ticket, or that you will win ten million dollars? Neither. The only thing claimed is the entire conditional. Conditionals can be premises, and they can be conclusions. They can be parts of arguments, but that cannot, on their own, be arguments themselves.
+
+Finally, consider this passage:
+
+\begin{quote}
+I woke up this morning, then took a shower and got dressed. After breakfast, I worked on chapter 1 of the logic text. I then took a break and drank some more coffee\ldots.
+\end{quote}
+
+This might be a good description of my day, but it's not an argument. There's nothing in the passage that plays the role of a premise or a conclusion. The passage doesn't attempt to prove anything. Remember that arguments need a conclusion, there must be something that is the statement to be proved. Lacking that, it simply isn't an argument, no matter how much it looks like one.
+
+
+\section{Deductive Validity}
+\label{sec:deductive-validity}
+
+Deductive arguments are intended to be fully truth-preserving. A deductively valid argument is one that is in fact completely truth-preserving. That is, a deductively valid argument will never have all true premises and a false conclusion. It is important to understand how strong this claim is. It is not merely the case a valid argument happens to have true premises and a true conclusion. The relationship between the premises and the conclusion is so strong that it is not possible for the premises to be true and the conclusion false.
+
+\begin{description}
+  \item[Deductive validity] An argument is deductively valid if and only if it is not possible for the premises to be true and the conclusion to be false.
+  \item[Deductive invalidity] An argument is deductively invalid if and only if it is not deductively valid. 
+\end{description}
+
+
+Here is an example of a deductively valid argument:
+
+\begin{enumerate}
+  % \tightlist
+	\item All dogs are mammals.
+	\item \underline{Lucy is a dog.}
+	\item [$\therefore$] Lucy is a mammal.
+\end{enumerate}
+
+
+Since the first premise is true, being a dog is enough to guarantee that the animal is a mammal. So, the only way that the conclusion could be false is if Lucy is not a dog. It is impossible that the premises be true and the conclusion false.
+
+Compare the previous argument to this one:
+
+\begin{enumerate}
+  % \tightlist
+	\item All dogs are mammals.
+	\item \underline{Lucy is a mammal.}
+	\item [$\therefore$] Lucy is a dog.
+\end{enumerate}
+
+Since Lucy is the name of my dog, both the premises and the conclusion are in fact true. Note, though, that the premises are not enough to guarantee the truth of the conclusion. Lucy could have been the name of a cat. If so, the premises would have been true and the conclusion false. This argument is therefore invalid.
+
+If we know that an argument is invalid, then we know that there is a special logical relationship between the premises and the conclusion such that, if the premises are true, then the conclusion must also be true. It is important to understand that validity alone does not mean that the premises and conclusion are true. If I know only that an argument is valid, I know that the \emph{if} the premises are true, \emph{then} the conclusion must also be true. Valid arguments cannot have a combination of true premises and false conclusion, but they can have any other combination. It can be reasonable to doubt that a conclusion is true, even if the argument is valid. What is not reasonable is to grant the argument is valid and has true premises and still doubt that the conclusion is true. This means that validity alone is not enough to guarantee that a conclusion is true. What guarantees that a conclusion is true is deductive validity along with true premises. This is called deductive soundness.
+
+\begin{description}
+  \item[Deductive soundness] An argument is deductively sound if and only if it is deductively valid and has all true premises.  
+\end{description}
+
+
+\section{Inductive Arguments}
+\label{sec:inductive-arguments}
+
+Later chapters will cover inductive arguments. For now it is enough to say that inductive arguments are not intended to be deductive valid. That is, inductive arguments are those whose premises do not guarantee the truth of the conclusion. For inductive arguments, it is always possible that the premises be true and the conclusion false. Here is an example of an inductive argument:
+
+\begin{enumerate}
+  % \tightlist
+	\item A random sample of 100 students at the university unanimously reported \underline{preferring traditional classes to online instruction.} 
+	\item [$\therefore$] The majority of all students at the university prefer traditional classes to online instruction.
+\end{enumerate}
+
+The truth of the premise does not guarantee the truth of the conclusion. It is certainly possible that the sample managed to include the only students that don't prefer online courses. Still, though, it seems that, if the premise is in fact true, then the conclusion should be highly likely to be true. So, this is a good inductive argument, one that we call inductively strong.
+
+\begin{description}
+  \item[Inductive strength] An argument is inductively strong to the extent that the conclusion is probably true given the truth of the premises.
+\end{description}
+
+Another difference between inductive and deductive arguments is that inductive strength is a matter of degree. The argument above is inductively strong, but doubling the sample size would make it even stronger.
+
+
+\section{Logical Consistency and Logical Truth}
+\label{sec:logic-cons-truth}
+
+Consistency is a property of sets of statements:
+
+\begin{description}
+  \item[Logical consistency] A set is logically consistent if and only if it is possible for all of the members of the set to be true at the same time.
+  \item[Logical inconsistency] A set is logically inconsistent if and only if it is not logically consistent. 
+\end{description}
+
+It is not necessary for all of the statements to be true in order for the set to be consistent. Here is an example:
+
+{Oklahoma is south of Texas. There are 125 members of the U.S. Senate.}
+
+Neither of the statements in this set are true. The set is consistent, though, because there is nothing about either sentence that prevents the other from possibly being true. Here is an example of an inconsistent set:
+
+{No student will make an A in Logic this semester. At least one student will make an A in Logic this semester.}
+
+The truth of one of those statements is incompatible with the truth of the other.
+So, the set containing both is inconsistent.
+Logical consistency is a very important concept, because, once defined, other logical concepts can be defined in terms of consistency.
+We'll do this in a later chapter.
+
+For the most part, logic alone is not enough to determine if a statement is true. It is not logic that makes it true that Topeka is the capital of Kansas. What makes that true is something about the political structure and history of Kansas. There are two important exceptions to this, though. There are some statements that are true simply because of their logical structure. An important example is something like this: Either Susan will pass logic this semester or Susan will not pass logic this semester. No matter how well Susan does in the class, it must be true that she either passes or not. Sentences like these are called logical truths, or tautologies. Logical truths {\em must} be true. On the other hand, there are sentences that {\em cannot} be true. For example, Susan will both pass logic this semester and not pass logic this semester. Sentences like these are called logical falsehoods, or contradictions. Most statements are neither logical truths nor logical falsehoods. Such statements are logically indeterminate.
+
+\begin{description}
+  \item[Logical truth] A statement is logically true if and only if it is not possible for the statement to be false.
+  \item[Logical falsity] A statement is logically false if and only if it is not possible for the statement to be true.
+  \item[Logical indeterminacy] A statement is logically indeterminate if and only if it is neither logicall true nor logically false.
+\end{description}
+
+Finally, there are sentences that are related in such a way so that, if one is true, the second must also be true, and vice versa. These sentences are called logically equivalent. Here is a simple example:
+
+\medskip
+
+\noindent Susan will pass.\\
+Susan will not fail.
+
+\medskip
+
+Since failing is just not passing, then any situation in which Susan passes is a situation in which she does not fail. So, the two statements are true in exactly the same situations, and false in exactly the same situations. They always have the same truth values.
+
+\begin{description}
+  \item[Logical equivalence]  Two sentences are logically equivalent if and only if it is impossible for one to be true and the other to be false.
+\end{description}
+
+
+
+\end{document}

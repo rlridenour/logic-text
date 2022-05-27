@@ -15,6 +15,9 @@
 \usepackage[autostyle]{csquotes}
 \clubpenalty = 10000 % Reduce orphans and widows
 \widowpenalty = 10000
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep} % Comment out for wider separation in lists.
+\setlist[enumerate]{noitemsep}
 
 \usepackage[authordate,url=false,isbn=false,backend=biber]{biblatex-chicago} %Change authordate to notes if desired.
 \addbibresource{/Users/rlridenour/Dropbox/bibtex/rlr.bib}
@@ -54,9 +57,11 @@
 
 \mainmatter
 
-\subfile{introduction/intro}
+\subfile{concepts/concepts}
 \subfile{categorical-logic/categorical}
+\subfile{sl-syntax/sl-syntax}
+\subfile{pl-syntax/pl-syntax}
 
-% \printbibliography
+\printbibliography
 
 \end{document}
