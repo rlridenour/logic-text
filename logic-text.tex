@@ -1,10 +1,10 @@
-% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
 % arara: biber
-% arara: lualatex: { interaction: nonstopmode, synctex: yes }
-% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
+% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
 
 
-\documentclass[letterpaper,12pt,oneside,onecolumn]{memoir}
+\documentclass[letterpaper,11pt,oneside,onecolumn]{memoir}
 
 \usepackage{graphicx,epstopdf,amsmath,amssymb,url,booktabs}
 \usepackage{microtype}
@@ -23,9 +23,16 @@
 \addbibresource{/Users/rlridenour/Dropbox/bibtex/rlr.bib}
 
 
-\usepackage{lualatex-math,luatextra}
-\usepackage{libertinus}
-\usepackage{unicode-math}
+% \usepackage{lualatex-math,luatextra}
+% \usepackage{libertinus}
+% \usepackage{unicode-math}
+
+
+\usepackage{libertinus-type1}
+\usepackage[frenchmath]{libertinust1math}
+\usepackage[T1]{fontenc}
+
+
 \usepackage[unicode=true]{hyperref}
 
 \usepackage{xcolor}
@@ -35,6 +42,11 @@
     citecolor={blue!50!black},
     urlcolor={blue!80!black}
 }
+
+\newcommand{\lneg}{\neg}
+\renewcommand{\land}{\mathbin{\&}}
+\newcommand{\lif}{\supset}
+\newcommand{\liff}{\leftrightarrow}
 
 \usepackage{subfiles}
 

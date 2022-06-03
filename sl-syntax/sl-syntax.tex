@@ -1,4 +1,4 @@
-% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
 
 \documentclass[../logic-text.tex]{subfiles}
 
@@ -8,14 +8,616 @@
 \chapter{Sentential Logic: Syntax}
 \label{cha:sent-logic:-synt}
 
-Sentential logic ({\em SL}) is a system of logic that treats statements, or propositions, as fundamental units.
-\footnote{Informally, we use `proposition' and `statement' interchangeably.
+Sentential logic ({\em SL}) is a system of logic that treats statements, or propositions, as fundamental units.\footnote{Informally, we use `proposition' and `statement' interchangeably.
   Strictly speaking, the proposition is the content, or meaning, that the statement expresses.
   When different sentences in different languages mean the same thing, it is because they express the same proposition.
   Sentential logic is also called \enquote*{propositional logic.}}
-\emph{SL} is not just a system of logic, however, it is also a language. There are two very general types of languages, natural and formal. Natural languages are the languages that we ordinarily use to communicate with each other. Examples of natural languages include English, French, German, Mandarin, etc. 
+\emph{SL} is not just a system of logic, however, it is also a language. There are two very general types of languages, natural and formal.
+Natural languages are the languages that we ordinarily use to communicate with each other.
+Examples of natural languages include English, French, German, Mandarin, etc.
+Computer programming languages like Python and Java, on the other hand, are formal languages.
 
-\emph{SL} is a language, and, like any other language, it has a syntax and semantics. 
+There are certain features that every language, natural or formal, must have.
+Those features govern how expressions are formed in the language, and determine what those expressions mean.
+Let's see how those features work in the English language.
+It begins with a character set, which includes the twenty-six characters of the Latin alphabet and various punctuation marks. The characters are put together to form words; the meaning of a word is determined by its definition. These words are combined in various ways to form sentences. Not just any string of English words can be a meaningful sentence in English. There are certain rules that must be followed---articles must precede nouns, for instance. The characters and the formation rules are the syntax of the language, the rules that determine meaning are the semantics.
+\emph{SL} is a language, and, like any other language, it has a syntax and semantics. This chapter will focus on the syntax; the semantics of \emph{SL} will be the subject of the next chapter.
+
+Natural languages have many advantages over formal languages, the greatest of which is their expressive power.
+This expressive power, however, can also be a disadvantage. 
+It is possible to express more than one thought with exactly the same sentence using a natural language. For example, consider the following English sentence:
+
+\begin{quote}
+\enquote{I don't beat my dog.} 
+\end{quote}
+
+Now, imagine that same sentence uttered several times, stressing a different word each time.
+\enquote{I don't beat my \emph{dog}} means something very different from \enquote{I don't beat \emph{my} dog.}
+This is an example of ambiguity, a word or an expression having more than one meaning.
+Another feature of natural languages is vagueness; an expression is vague when it doesn't have a precise meaning.
+Think of vague expressions as those having fuzzy boundaries that make it impossible to draw a precise line between the times that the expression is true of something and the times when it is not.
+Examples of vague terms are rich, bald, and young.
+Formal languages eliminate, as much as possible, ambiguity and vagueness.
+Every term in a formal language should have exactly one meaning and that meaning should be precise. 
+
+Every language has ways of using sentences in the language to create other sentences in the language.
+This is done by applying sentence formation operators or connectives.
+One way to do this is by joining two sentences with terms like \enquote*{and}, \enquote*{or}, \enquote*{but}, \enquote*{however}, or \enquote*{unless}.
+So, we can make the sentence
+
+\begin{quote}
+All of Plato's know works are dialogues, but none of Aristotle's known works are dialogues.
+\end{quote}
+
+by putting \enquote*{but} between \enquote*{All of Plato's know works are dialogues} and \enquote*{None of Aristotle's known works are dialogues.}  
+
+Although we call these sentence-forming operators \enquote{connectives,} it is important to understand that some of them don't actually connect different sentences.
+Some of them apply to just one sentence.
+Examples of these are \enquote*{it is not the case that}, and \enquote*{it is possible that}.
+
+All of the connectives in \emph{SL} will be truth-functional connectives.
+A connective is truth-functional if the truth value of the resulting sentence is determined completely by the truth values of the connected sentences and the definition of the connective. So, if we know the truth values of the connected sentences and the operator used to connect them, we will always be able to determine the truth value of the resulting sentence.
+
+Formal languages are used for many things, but an important use in logic is analyzing the logical relationships between sentences and sets of sentences in natural languages, in our case, English. Doing this with \emph{SL} will require translating sentences from English into \emph{SL} and vice versa. Later, I'll state the syntax of \emph{SL} in a very precise way. For now, let me introduce the language by discussing how English is translated into \emph{SL}.
+
+\section{\emph{SL} Translations}
+\label{sec:sl-translations}
+
+Upper-case letters of the Latin alphabet are used to symbolize simple, or atomic, English sentences. Remember that a simple sentence is one that contains no other sentence as a component. So, \enquote*{Socrates is a philosopher} is a simple sentence, but \enquote*{Socrates is a philosopher, but Cicero is an orator} is not, since it contains two sentences as components.
+
+Any letter can be used to symbolize a sentence, but we should pick one that will help us to remember the English sentence that is translated. For example, the English sentence
+
+\begin{quote}
+Socrates is a philosopher
+\end{quote}
+
+could be symbolized with
+
+\begin{quote}
+S
+\end{quote}
+
+Of course, we only have twenty-six upper-case letters, but we need a potentially infinite supply. So, we'll allow letters with positive integer subscripts to be used as sentences in \emph{SL}. So, these are all simple sentences in \emph{SL}:
+
+\begin{quote}
+A, B, C, P, Q, Z, D\(_{1}\), F\(_{412}\)
+\end{quote}
+
+One could use a sentence letter to symbolize a complex, or molecular, sentence of English, but it's not a good idea. By doing so, we would be hiding some of the logical structure of the sentence, run the risk of translating a valid argument into an invalid argument in \emph{SL}. So, be sure to only use letters for the simple sentences.
+
+\subsection{Conjunctions}
+\label{sec:conjunctions}
+
+Our first kind of complex sentence is the conjunction. Conjunctions are sentences formed by combining two sentences with a conjunction connective. The sentences that are joined are called \enquote*{conjuncts}. Conjunctions are true whenever both of the conjuncts are true. Although the most common conjunction operator in English is \enquote*{and}, any operator that implies that both of the connected sentences are true is a conjunction operator. The list of English conjunction operators includes
+
+\begin{quote}
+
+  and
+
+  but
+
+  also
+
+  however
+
+  yet
+
+  still
+
+  moreover
+
+  although
+
+  nevertheless
+
+  both
+\end{quote}
+
+The two most common ways of symbolizing a conjunction operator are  \enquote*{\(\mathbin{\&}\)} (ampersand),  \enquote*{\(\cdot\)} (dot), and \enquote*{\(\wedge\)} (wedge). We'll use \enquote*{\(\land\)}. 
+
+Now, we can translate our sentence
+
+\begin{quote}
+Socrates is a philosopher, but Cicero is an orator
+\end{quote}
+
+as
+
+\begin{quote}
+  S \(\land\) C
+\end{quote}
+
+and
+
+
+\begin{quote}
+  Plato is from Athens and Aristotle is from Macedonia
+\end{quote}
+
+can be translated as
+
+\begin{quote}
+  A \(\land\) M
+\end{quote}
+
+Most of the time, these translations are simple. Unfortunately, the complexity of natural languages can sometimes result in some trick translation issues. There are times when the conjunction operator doesn't appear to be joining two sentences. Here is an example:
+
+\begin{quote}
+   Plato and Aristotle are philosophers.
+\end{quote}
+
+The best thing to do in these cases is to paraphrase the English sentence into a sentence that joins two statements with the conjunction operator. If the resulting paraphrase is true under exactly the same conditions as the original, then they are equivalent. If so, then simply translate the paraphrase into \emph{SL}.
+
+The paraphrase of the preceding sentence would be
+
+\begin{quote}
+   Plato is a philosopher and Aristotle is a philosopher.
+\end{quote}
+
+and the \emph{SL} translation is
+
+\begin{quote}
+P \(\land\) A
+\end{quote}
+
+On the other hand, consider this sentence:
+
+\begin{quote}
+Abbot and Costello made a good team.
+\end{quote}
+
+Paraphrasing this results in
+
+\begin{quote}
+  Abbot made a good team and Costello made a good team.
+\end{quote}
+
+This can't be right though. Neither one, individually, made a team at all. So, this sentence, even though it contains the word \enquote*{and}, is a simple sentence.
+
+The list of English words that gets translated as a conjunction shows that the \emph{SL} translations often fail to capture the full sense of the original English sentences. When I say, \enquote{Although John studied hard for his logic exam, he failed}, I don't just mean to say that John studied hard \emph{and} he failed, which is how we would paraphrase it before symbolizing the sentence in \emph{SL}. Instead, I mean to say that \emph{in spite} of his studying, he failed. Some nuance is lost in the translation. That nuance is not important however, for our purposes. The conjunction captures everything that is important for logical analysis.
+
+
+\subsection{Disjunctions}
+\label{sec:disjunctions}
+
+Another type of complex sentence is the disjunction, commonly expressed in English with \enquote*{or}, as in this sentence:
+
+\begin{quote}
+  Either the Democrat will win the election or the Republican will win.
+\end{quote}
+
+Disjuncts are true whenever at least one of the connected sentences, called disjuncts, are true. They are only false when both disjuncts are false. The  symbol \enquote*{\(\lor\)} (wedge) is used for disjunctions in \emph{SL}. So, the sentence above is translated
+
+\begin{quote}
+  D \(\lor\) R
+\end{quote}
+
+
+As was the case with the conjunction, disjunctions in English are not always two complete sentences joined with an \enquote*{or}.
+The example above is more likely to be stated, \enquote{Either the Democrat or the Republican will win.}
+Sometimes, disjunctions in English don't use \enquote*{or} at all. Here's an example:
+
+\begin{quote}
+  Alice and Bob are running a race tomorrow. At least one of them will finish.
+\end{quote}
+
+\noindent That second sentence can be paraphrased
+
+\begin{quote}
+  Alice will finish the race, or Bob will finish the race.
+\end{quote}
+
+
+\noindent It can then be symbolized
+
+\begin{quote}
+  A \(\lor\) B
+\end{quote}
+
+A very important thing to remember when translating disjunctions into \emph{SL}, is that the English word \enquote*{unless} express a disjunction. The sentence,
+
+\begin{quote}
+  Charlie will fail logic unless he drops the course before the deadline 
+\end{quote}
+
+\noindent is equivalent to
+
+\begin{quote}
+  Either Charlie will fail logic or he drops the course before the deadline
+\end{quote}
+
+\noindent and symbolized as
+
+\begin{quote}
+  F \(\lor\) D
+\end{quote}
+
+One thing that is tricky about disjunctions is distinguishing inclusive disjunctions from exclusive disjunctions. An inclusive disjunction is true when \emph{at least one} of the disjuncts is true. An exclusive disjunction is true when one, \emph{and only one}, of the disjuncts is true. The \emph{SL} symbol \enquote*{\(\lor\)} is always an inclusive disjunction. In English, however, the word \enquote*{or} is often used to express exclusive disjunctions. For example, you might see this in a menu:
+
+\begin{quote}
+  Your meal comes with either baked potato or french fries.
+\end{quote}
+
+
+The probably don't mean \enquote{Your meal comes with either baked potato, french fries, or both.} So, this sentence should \emph{not} be translated as
+
+\begin{quote}
+  P \(\lor\) F
+\end{quote}
+
+
+Later, we will see how to translate exclusive disjunctions in \emph{SL}. 
+
+
+
+\subsection{Negations}
+\label{sec:negations}
+
+The English phrase \enquote*{it is not the case that} generates a kind of complex sentence called a negation. Negations are true if the negated sentences are false. For example,
+
+\begin{quote}
+  It is not the case that Aristotle was from Athens.
+\end{quote}
+
+This sentence is true just in case it is false that Aristotle was from Athens, and it would be true if it were the case that Aristotle was not from Athens.
+
+The symbol for negations is \enquote*{\(\lneg\)}. A sentence is negated by placing the negation operator in front of the sentence. This is the one logical connective that doesn't connect two sentences. The phrase \enquote*{it is not the case at} is convenient to use when paraphrasing because it preceds the negated sentence in the same way that the negation symbol in \emph{SL} does. Most of the time, though, \enquote*{not} will be somewhere in the English sentence, like this:
+
+Aristotle was not from Athens.
+
+This is naturally equivalent to \enquote*{It is not the case that Aristotle was from Athens} and is translated in \emph{SL} as
+
+
+
+\begin{quote}
+  \(\lneg\)A
+\end{quote}
+
+Other ways that negations are expressed in English besides \enquote*{it is not the case that} and \enquote*{not} are prefixes like \enquote*{non}, \enquote*{in}, and \enquote*{un}. These, however, require some care. The sentence
+
+
+\begin{quote}
+  John is unmarried
+\end{quote}
+
+\noindent is equivalent to
+
+\begin{quote}
+  It is not the case that John is married
+\end{quote}
+
+\noindent and is symbolized as \enquote*{\(\lneg\)J}.
+On the other hand,
+
+\begin{quote}
+  Some students are unmarried
+\end{quote}
+
+\noindent is \emph{not} equivalent to
+
+\begin{quote}
+  It is not the case that some students are married.
+\end{quote}
+
+\noindent Instead, it is equivalent to
+
+\begin{quote}
+  It is not the case that \emph{all} students are married.
+\end{quote}
+
+
+\subsection{Combining Logical Connectives}
+\label{sec:comb-logic-conn}
+
+Before I introduce the last two connectives in \emph{SL}, let's look at how the connectives are combined to form more complex sentences. Imagine that I want to symbolize this sentence:
+
+\begin{quote}
+  Either I will stay home tonight, or I will both go out for dinner and go to the movie theater.
+\end{quote}
+
+Let's start with this:
+
+\begin{quote}
+  \(H \lor D \land M\)
+\end{quote}
+
+There's a problem, though. Remember that a goal of formal languages is to eliminate ambiguity, and this sentence is definitely ambiguous. Is it a disjunction that has a conjunction as one of its disjuncts, or is a conjunction with a disjunction as one of its conjuncts? It it's a disjunction, then my staying home would be enough to make it true. If it's a conjunction, then it's being true requires that I go to the movies. In \emph{SL}, the ambiguity is cleared up with parentheses. If we decide that the English sentence is a conjunction, then we'll symbolize it like this:
+
+\begin{quote}
+  \((H \lor D) \land M\)
+\end{quote}
+
+\noindent And if it is a disjunction, we'll symbolize it like this:
+
+\begin{quote}
+    \(H \lor (D \land M)\)
+\end{quote}
+
+In \emph{SL}, and all of the other systems that we will encounter, every sentence has a main connective. The main connective of a sentence determines what kind of sentence it is, and will always be outside of the parentheses---in this case, should we make the main connective the \enquote*{\(\lor\)} or the \enquote*{\(\land\)}?
+
+There are two things to look for when trying to determine the main logical operator in an English sentence:
+
+\begin{enumerate}
+  \item Puncation, such as commas and semicolons.
+  \item Words like \enquote*{either... or}, \enquote*{both... and}, and \enquote*{if... then}.
+\end{enumerate}
+
+The first strategy is to group things together that are on the same side of a punctuation mark. Since \enquote*{I will go out for dinner} and \enquote*{I will go to the movie theater} are both on the right side of the comma, we should group them together with parentheses, like this:  
+
+\begin{quote}
+    \(H \lor (D \land M)\)
+\end{quote}
+
+The second strategy is that anything that is grouped together with parentheses should read naturally as a complete English sentence. If we translated the sentence as
+
+\begin{quote}
+  \((H \lor D) \land M\)
+\end{quote}
+
+\noindent then \enquote*{Either I will stay home tonight, or I will both go out for dinner} should make sense as a stand-alone sentence, but it doesn't because of the \enquote*{both} that is missing an \enquote*{and}. \enquote*{I will both go out for dinner and go to the movie theater} does make sense, though. So this strategy also requires us to translate the sentence as
+
+\begin{quote}
+  \(H \lor (D \land M)\)
+\end{quote}
+
+These two strategies should be enough to help us correctly translate any well-formed, well-punctuated English sentence. Unfortunately, natural languages are often simply ambiguous, and, in those cases, you must simply do your best. Here are some more examples.
+
+
+\begin{quote}
+  It's not the case that both Plato and Aristotle are from Athens.
+\end{quote}
+
+
+First, we'll paraphrase the sentence to make the connected sentences clear:
+
+\begin{quote}
+  It's not the case that both Plato is from Athens and Aristotle is from Athens.
+\end{quote}
+
+
+
+\noindent Since we need to keep the \enquote*{both... and} together, we should symbolize this as
+
+\begin{quote}
+  \(\lneg (P \land A)\)
+\end{quote}
+
+\noindent Since the only connective that is outside the parentheses is the \enquote*{\(\lneg\)}, it is the main operator and the sentence is a negation.
+
+
+
+\begin{quote}
+  Plato is from Athens, but Aristotle is not.
+\end{quote}
+
+The \enquote*{but} is a conjunction, so paraphrasing this results in
+
+\begin{quote}
+  Plato is from Athens, and it is not the case that Aristotle is from Athens
+\end{quote}
+
+and is symbolized like this:
+
+\begin{quote}
+  \(P \land \lneg A\)
+\end{quote}
+
+Parentheses are not needed here, since there's no ambiguity. The \enquote*{\(\lneg\)} modifies what it immediate precedes, which in this case is the simple sentence \enquote*{A}. The qtt\(\land\) joins the sentence is immediately before it with the one that is immediately after it, which in this case are \enquote*{P} and \enquote*{\(\lneg A\)}. Intuitively, the main connective is the \enquote*{\(\land\)}, and the sentence is a conjunction.
+
+Here is a rule for determining the main connective of a sentence in symbolic logic:
+The main connective is the one outside the parentheses, unless there is more than one connective outside the parentheses, then the main connective is not a negation. Just keep in mind that the only time that there can be more than one connective outside the parentheses is when negations are involved, and in that case, the main connective will never be a negation. The main connective can be a negation only when it is the only one outside the parentheses.
+
+
+Here's one a bit more complex:
+
+\begin{quote}
+  Both either Plato was the greatest metaphysician or Aristotle was the greatest logician, and either Plato was the greatest epistemologist or Aristotle was the greatest moral philosopher.
+\end{quote}
+
+\noindent I don't think there's any need for paraphrasing here. The comma tells us that the \enquote*{and} is the main connective, and it joins two disjunctions. So, the translation is
+
+\begin{quote}
+  \((M \lor L) \land (E \lor P)\)
+\end{quote}
+
+
+Now, here's something that can be a little trick:
+
+\begin{quote}
+  Neither Aristotle nor Epictetus were from Athens.
+\end{quote}
+
+\noindent This can be paraphased as Both it is not the case that Aristotle is from Athens and it is not the case that Epictetus is from Athens. So, the translation would be
+
+\begin{quote}
+ \(\lneg A \land \lneg E\)
+\end{quote}
+
+
+An equally acceptable paraphase is this:
+
+\begin{quote}
+  It is not the case that either Aristotle is from Athens or Epictetus is from Athens.
+\end{quote}
+
+
+\noindent This would naturally be translated as
+
+\begin{quote}
+  \(\lneg (A \lor E)\)
+\end{quote}
+
+\noindent It should be easy to see that these are equivalent. The first says that both of the sentences represented by \enquote*{A} and \enquote*{E} are false. The second says that it is not the case that either one is true. We'll prove that they are equivalent in the next chapter.
+
+
+\subsection{Material Conditionals}
+\label{sec:mater-cond}
+
+
+A conditional is an \enquote*{if... then} sentence. There are many ways to express conditionals in English, including
+
+\begin{quote}
+
+
+  if
+
+  if\ldots{} then
+
+  only if
+
+  whenever
+
+  when
+
+  only when
+
+  implies
+
+  provided that
+
+  means
+
+  entails
+
+  is a sufficient condition for
+
+  is a necessary condition for
+
+  given that
+
+  on the condition that
+
+  in case
+\end{quote}
+
+A conditional claims that something is true, if something else is also. Examples of conditionals are
+
+\begin{quote}
+  ``If Sarah makes an A on the final, then she will get an A for the course.''
+
+  ``Your car will last many years, provided you perform the required maintenance.''
+
+  ``You can light that match only if it is not wet.''
+\end{quote}
+
+
+The symbol that we will use in \emph{SL} for conditionals is called a horseshoe, \enquote*{\(\lif\)}. Another commonly used symbol is the right arrow, \enquote*{\(\rightarrow\)}.
+We can translate the above examples like this:
+
+\begin{quote}
+
+
+  \(F \lif C\)
+
+  \(M \lif L\)
+
+  \(L \lif \neg W\)
+\end{quote}
+
+
+
+One big difference between conditionals and other sentences, like conjunctions and disjunctions, is that order matters. Notice that there is no logical difference between the following two sentences:
+
+\begin{quote}
+
+
+  Albany is the capital of New York and Austin is the capital of Texas.
+
+  Austin is the capital of Texas and Albany is the capital of New York.
+\end{quote}
+
+They essentially assert exactly the same thing, that both of those conjuncts are true. So, changing order of the conjuncts or disjuncts does not change the meaning of the sentence, and if meaning doesn't change, then truth value doesn't change either.
+That's not true of conditionals. Note the difference between these two sentences:
+
+\begin{quote}
+
+
+  If you drew a diamond, then you drew a red card.
+
+  If you drew a red card, then you drew a diamond.
+\end{quote}
+
+The first sentence \emph{must} be true. if you drew a diamond, then that guarantees that it's a red card. The second sentence, though, could be false. Your drawing a red card doesn't guarantee that you drew a diamond, you could have drawn a heart instead. So, we need to be able to specify which sentence goes before the arrow and which sentence goes after. The sentence before the arrow is called the antecedent, and the sentence after the arrow is called the consequent.
+
+Look at those three examples again:
+
+\begin{quote}
+
+
+  If Sarah makes an A on the final, then she will get an A for the course.
+
+  Your car will last many years, provided you perform the required maintenance.
+
+  You can light that match only if it is not wet.
+\end{quote}
+
+The antecedent for the first sentence is \enquote*{Sarah makes an A on the final}. The consequent is \enquote*{She will get an A for the course}. Note that the \enquote*{if} and the \enquote*{then} are not parts of the antecedent and consequent.
+
+In the second sentence, the antecedent is \enquote*{You perform the required maintenance}. The consequent is \enquote*{Your car will last many years}. This tells us that the antecedent won't always come first in the English sentence.
+
+The third sentence is tricky. The antecedent is \enquote*{You can light that match}. Why? The explanation involves understanding the difference between necessary and sufficient conditions.
+
+A sufficient condition is something that is enough to guarantee the truth of something else. For example, getting a 95 on an exam is sufficient for making an A on the exam, assuming the usual grading scale and that exam is worth 100 points. A necessary condition is something that must be true in order for something else to be true. Making a 95 on an exam is not necessary for making an A---a 94 would have still been an A. Taking the exam is necessary for making an A, though. You can't make an A if you don't take the exam, or, in other words, you can make an A only if you enroll in the course.
+
+Here are some important rules to keep in mind:
+
+\begin{quote}
+
+
+  `If' introduces an antecedent, but \enquote*{only if} introduces a consequent.
+
+  If A is a sufficient condition for B, then \(A \rightarrow B\).
+
+  If A is a necessary condition for B, then \(B \rightarrow A\).
+\end{quote}
+
+
+All of the connectives in \emph{SL} are truth-functional. That is, the truth value of the complex sentence is a function solely of the simple sentences and the logical connectives contained in the sentence. The truth-functional conditional is called the material conditional, and it has some puzzling consequences. Consider this sentence again:
+
+\begin{quote}
+  If Sarah makes an A on the final, then she will get an A for the course.
+\end{quote}
+
+\noindent Intuitively, this sentence is false when Sarah makes an A on the final, but does \emph{not} get an A for the course, and true when Sarah makes an A on the final and also makes an A for the course. What if Sarah does not get an A on the final? In that case, the material conditional is true no matter whether she gets an A for the course or not. So far, this doesn't seem to be a problem. Let's change the consequent of the conditional, however.
+
+
+\begin{quote}
+  If Sarah makes an A on the final, then she will get an F for the course.
+\end{quote}
+
+If this is a material conditional, it will be false only when the antecedent is true and the consequent is false, true whenever either the antecedent is false or the consequent is true. In any case in which Sarah does not make an A on the final, the sentence is true. Now, imagine that the final is worth 100 of the 1,000 points possible in the course. Also, imagine that Sarah has made a perfect score on everything in the course before the final. Sarah then takes the final and makes a score of 85. That lowers her perfect average of 100 to an almost perfect 98.5, which is surely still deserving of an A for the course. Since she didn't make an A on the final, however, the material conditonal \enquote*{If Sarah makes an A on the final, then she will get an F for the course} is still true. This is called the paradox of the material conditional, something that we will revisit in later chapters.
+
+Most of the time, when we assert a conditional in English, we don't intend it to be a material conditional. Unfortunately, incorporating other kinds of conditionals would complicate our logic. The good news, though, is that when it comes to analyzing logical relations between sentences, we can usually just pretend that every conditional is a material conditional. For now, that just what we'll do.
+
+
+\subsection{Biconditional}\label{biconditional}
+
+We won't spend much time on biconditionals. There are times when something is both a necessary and a sufficient condition for something else. For example, making at least a 90 and getting an A (assuming a standard scale, no curve, and no rounding up). If you make at least a 90, then you will get an A. If you got an A, then you made at least a 90. We can use a double arrow to translate a biconditional, like this:
+
+\begin{quote}
+
+
+  \(N \rightarrow A\)
+\end{quote}
+
+For biconditionals, as for conjunctions and disjunctions, order doesn't matter.
+
+Here are some English phrases that signify biconditionals:
+
+\begin{quote}
+
+
+  it and only if
+
+  when and only when
+
+  just in case
+
+  is a necessary and sufficient condition for
+\end{quote}
+
+
+
 
 
 \end{document}
