@@ -585,36 +585,41 @@ All of the connectives in \emph{SL} are truth-functional. That is, the truth val
   If Sarah makes an A on the final, then she will get an F for the course.
 \end{quote}
 
-If this is a material conditional, it will be false only when the antecedent is true and the consequent is false, true whenever either the antecedent is false or the consequent is true. In any case in which Sarah does not make an A on the final, the sentence is true. Now, imagine that the final is worth 100 of the 1,000 points possible in the course. Also, imagine that Sarah has made a perfect score on everything in the course before the final. Sarah then takes the final and makes a score of 85. That lowers her perfect average of 100 to an almost perfect 98.5, which is surely still deserving of an A for the course. Since she didn't make an A on the final, however, the material conditonal \enquote*{If Sarah makes an A on the final, then she will get an F for the course} is still true. This is called the paradox of the material conditional, something that we will revisit in later chapters.
+If this is a material conditional, it will be false only when the antecedent is true and the consequent is false, true whenever either the antecedent is false or the consequent is true. In any case in which Sarah does not make an A on the final, the sentence is true. Now, imagine that the final is worth 100 of the 1,000 points possible in the course. Also, imagine that Sarah has made a perfect score on everything in the course before the final. Sarah then takes the final and makes a score of 85. That lowers her perfect average of 100 to an almost perfect 98.5, which is surely still deserving of an A for the course. Since she didn't make an A on the final, however, the material conditional \enquote*{If Sarah makes an A on the final, then she will get an F for the course} is still true. This is called the paradox of the material conditional, something that we will revisit in later chapters.
 
 Most of the time, when we assert a conditional in English, we don't intend it to be a material conditional. Unfortunately, incorporating other kinds of conditionals would complicate our logic. The good news, though, is that when it comes to analyzing logical relations between sentences, we can usually just pretend that every conditional is a material conditional. For now, that just what we'll do.
 
 
-\subsection{Biconditional}\label{biconditional}
+\subsection{Material Biconditionals}\label{biconditional}
 
-We won't spend much time on biconditionals. There are times when something is both a necessary and a sufficient condition for something else. For example, making at least a 90 and getting an A (assuming a standard scale, no curve, and no rounding up). If you make at least a 90, then you will get an A. If you got an A, then you made at least a 90. We can use a double arrow to translate a biconditional, like this:
-
-\begin{quote}
-
-
-  \(N \rightarrow A\)
-\end{quote}
-
-For biconditionals, as for conjunctions and disjunctions, order doesn't matter.
-
-Here are some English phrases that signify biconditionals:
+Our final connective is expressed by the English phrases \enquote*{if and only if}, \enquote*{when and only when}, and \enquote*{just in case}. These are used to express conditions that are both necessary and sufficient, such as making at least a 90 and getting an A. So this sentence,
 
 \begin{quote}
-
-
-  it and only if
-
-  when and only when
-
-  just in case
-
-  is a necessary and sufficient condition for
+  Students make an A if and only if they average at least 90\% on all work
 \end{quote}
+
+\noindent can be paraphrased as
+
+\begin{quote}
+If students make an A, then they average at least 90\% on all work; and students average at least 90\% on all work only if they make an A
+\end{quote}
+
+\noindent and symbolized as a conjunction of two conditionals like this:
+
+\begin{quote}
+  \((A \lif W) \land (W \lif A)\)
+\end{quote}
+
+Although we could certainly translate biconditionals this way, they occur often enough that it is useful to have a symbol dedicated for that purpose. It's common to use either  \enquote*{\(\equiv\)} (triple bar) or \enquote*{\(\leftrightarrow\)} (double arrow). We'll use the triple bar, and translate the previous example like this:
+
+\begin{quote}
+  \(A \liff W\)
+\end{quote}
+
+Material biconditionals are true whenever the two sentences joined by the biconditional operator have the same truth value, and false whenever they have different truth values. For biconditionals, as for conjunctions and disjunctions, the order of the connected sentences doesn't matter.
+
+\subsection{Complex Symbolizations}
+\label{sec:compl-symb}
 
 
 
