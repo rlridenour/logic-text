@@ -22,6 +22,7 @@
 \usepackage[authordate,url=false,isbn=false,backend=biber]{biblatex-chicago} %Change authordate to notes if desired.
 \addbibresource{/Users/rlridenour/Dropbox/bibtex/rlr.bib}
 
+\usepackage{todonotes}
 
 % \usepackage{lualatex-math,luatextra}
 % \usepackage{libertinus}
@@ -49,6 +50,21 @@
 \newcommand{\liff}{\equiv} % For a double arrow, use \leftrightarrow instead of \equiv.
 
 \usepackage{subfiles}
+
+% This is for producing corner quotes.
+
+\newbox\gnBoxA
+\newdimen\gnCornerHgt
+\setbox\gnBoxA=\hbox{$\ulcorner$}
+\global\gnCornerHgt=\ht\gnBoxA
+\newdimen\gnArgHgt
+\def\cquote #1{%
+\setbox\gnBoxA=\hbox{$#1$}%
+\gnArgHgt=\ht\gnBoxA%
+\ifnum     \gnArgHgt<\gnCornerHgt \gnArgHgt=0pt%
+\else \advance \gnArgHgt by -\gnCornerHgt%
+\fi \raise\gnArgHgt\hbox{$\ulcorner$} \box\gnBoxA %
+\raise\gnArgHgt\hbox{$\urcorner$}}
 
 \title{Symbolic Logic: Theory and Applications}
 \author{Randy Ridenour}

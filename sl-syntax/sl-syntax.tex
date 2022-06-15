@@ -261,7 +261,7 @@ The English phrase \enquote*{it is not the case that} generates a kind of comple
 
 This sentence is true just in case it is false that Aristotle was from Athens, and it would be true if it were the case that Aristotle was not from Athens.
 
-The symbol for negations is \enquote*{\(\lneg\)}. A sentence is negated by placing the negation operator in front of the sentence. This is the one logical connective that doesn't connect two sentences. The phrase \enquote*{it is not the case at} is convenient to use when paraphrasing because it preceds the negated sentence in the same way that the negation symbol in \emph{SL} does. Most of the time, though, \enquote*{not} will be somewhere in the English sentence, like this:
+The symbol for negations is \enquote*{\(\lneg\)}. A sentence is negated by placing the negation operator in front of the sentence. This is the one logical connective that doesn't connect two sentences. So, the negation is known as a \enquote{unary connective}, and the others are called \enquote{binary connectives.}   The phrase \enquote*{it is not the case at} is convenient to use when paraphrasing negations because it precedes negated sentences in the same way that the negation symbol in \emph{SL} does. Most of the time, though, \enquote*{not} will be somewhere in the English sentence, like this:
 
 Aristotle was not from Athens.
 
@@ -621,8 +621,293 @@ Material biconditionals are true whenever the two sentences joined by the bicond
 \subsection{Complex Symbolizations}
 \label{sec:compl-symb}
 
+Now that we've introduced the five truth-functional connectives, let's practice some more complex translations into \emph{SL}.
+We'll use these simple sentences:
+
+\begin{quote}
+  F: The Federal Reserve will raise interest rates.\\
+  C: Congress will increase spending.\\
+  I: The inflation rate goes up.\\
+  U: There is increased unemployment.\\
+  P: Prices of consumer goods increase.
+\end{quote}
+
+Here's the first one:
+
+\begin{quote}
+  If the inflation rate goes up, then either the Federal Reserve will raise interest rates or Congress will increase spending.
+\end{quote}
+
+We start by putting in the sentence letters and the connective symbols.
+
+\begin{quote}
+  \(I \lif F \lor C\)
+\end{quote}
+
+Then, we put in the parentheses, making sure to keep the sentences on the same side of the comma together.
+
+\begin{quote}
+  \(I \lif (F \lor C)\)
+\end{quote}
+
+The second example is
+
+\begin{quote}
+  Both the Federal Reserve will raise interest rates and Congress will increase spending if and only if either prices of consumer goods increase or there is increased unemployment.
+\end{quote}
+
+
+Filling in the sentence letters and connectives gives us this:
+
+\begin{quote}
+  \(F \land C \liff P \lor U\)
+\end{quote}
+
+We don't have any punctuation to help us here, but we do have a \enquote*{both... and} and an \enquote*{either... or} that will guide our punctuation, resulting in this:
+
+\begin{quote}
+  \((F \land C) \liff (P \lor U)\)
+\end{quote}
+
+
+One more:
+
+\begin{quote}
+  Congress will not increase spending, unless neither prices of consumer goods increase nor there is increased unemployment; but if the inflation rate goes up, then the Federal Reserve will raise interest rates.
+\end{quote}
+
+The semicolon tells us that the \enquote*{but} is the main connective, and the second conjunct is pretty simple:
+
+\begin{quote}
+  \(I \lif F) \)
+\end{quote}
+
+The first conjunct is a disjunction. The first disjunct is
+
+\begin{quote}
+\(\lneg C\)
+\end{quote}
+
+The second disjunct, is a \enquote*{neither, nor} sentence, which is best translated as a negation of a disjunction. Putting the two disjuncts together, we have
+
+
+\begin{quote}
+  \(\lneg C \lor \lneg (P \lor U)\)
+\end{quote}
+
+So, we just need to put those two conjuncts together with an \enquote*{\(\land\)}, being sure to put brackets around the first to avoid any ambiguity:
+
+\begin{quote}
+\( [\lneg C \lor \lneg (P \lor U)] \land (I \lif F)\)
+
+\end{quote}
+
+\section{Rules of Syntax}
+\label{sec:rules-syntax}
 
 
 
+\subsection{Use and Mention}
+\label{sec:use-mention}
 
+We use words to talk about other things. For instance, in the sentence, \enquote*{The 46th President of the United States is from Delaware}, the phrase \enquote*{The 46th President of the United States} refers to Joe Biden. In the sentence \enquote*{Red is the color at the long wavelength end of the visible spectrum}, the word \enquote*{red} refers, unsurprisingly to the color red. When we use the word \enquote*{red}, we refer to the color red. When we use the name \enquote*{Joe Biden}, we refer to President Biden.
+
+Sometimes, though, we want to talk about the words themselves. What should we do then? Just as we use names of persons to talk about the persons, we need names for words and expressions to be able to talk about those words and expressions. 
+We form the names of expressions by placing those expressions in single quotes. Without the quotes, we are using the expresion. When the expression is enclosed in quotes, it is being mentioned, not used. For example,
+
+\begin{quote}
+  \enquote*{Red} has three letters.
+\end{quote}
+
+\noindent In this case, the word \enquote*{red} is being mentioned, not used. In the sentence,
+
+\begin{quote}
+  Red is often used to signify passion.
+\end{quote}
+
+\noindent the word \enquote*{red} is being used. The use-mention fallacy is committed whenever a word is used when it should have been mentioned, or vice versa. An example is the sentence,
+
+\begin{quote}
+  Red has three letters.
+\end{quote}
+
+\noindent This sentence asserts that the color red has three letters, but colors aren't the kind of things that can have letters. Instead it should be
+
+\begin{quote}
+  \enquote*{Red} has three letters.
+\end{quote}
+
+\noindent The first is nonsense, the second is a perfectly meaningful, and true, English sentence. When we use a word, we are referring to the thing that the word stands for, when we mention a word, we are referring to the word itself.
+
+
+\subsection{Object Language and Metalanguage}
+\label{sec:object-lang-metal}
+
+The ability to form names of expressions by enclosing them in single quotes enables us to talk about the expressions of on language while using another language. Here is an example:
+
+\begin{quote}
+  \enquote*{Ich} is the German first-person singular pronoun. 
+\end{quote}
+
+This is a sentence in English, so all of its components must be in English. By enclosing the German word in single quotes, we have formed the English name for that German expression. So, we are using English to talk about an expression in German. The language that is being discussed is called the \emph{object language}. The language that is being used to talk about the object language is called the \emph{metalanguage}. In this case, the object language is German, and the metalanguage is English. As we formulate the rules for \emph{SL}, the metalanguage will be English, but the object language will be \emph{SL}.
+
+\subsubsection{Metalinguistic Variables}
+\label{sec:metal-vari}
+
+
+
+To refer to specific expressions of \emph{SL}, we can simply enclose them in single quotes, as we have been doing. The sentence
+
+\begin{quote}
+  \enquote*{\(A \land B\)} is a conjunction.
+\end{quote}
+
+\noindent claims that a particular expression of \emph{SL} is a conjunction. It is an English sentence using the English name for an expression of \emph{SL}. To formulate the rules of \emph{SL}, however, we will need to be able to discuss general types of expressions of \emph{SL}, not just particular expressions of \emph{SL}. We do this using \emph{metalinguistic variables}, or \emph{metavariables}, for short.
+
+A metalinguistic variable is an expression in the metalanguage that stands for \emph{any} expression in the object language. We will use lowercase Greek letters, such as \enquote*{\(\alpha\)}, \enquote*{\(\beta\)}, and \enquote*{\(\gamma\)}, for metavariables. The preceding sentence encloses the metavariables in single quotes because it is talking about the metavariables. When the metavariables are being used, they won't need to be enclosed in quotes since they are expressions in the metalanguage.
+
+\subsection{The Syntax of \emph{SL}}
+\label{sec:syntax-sl}
+
+We now have everything we need to carefully define the rules of syntax of \emph{SL}. These rules will tell us what counts as a proper expression of \emph{SL}. Not every string of English words will be a proper English sentence. For instance \enquote*{ball the red is blue and} is composed of perfectly good English words, but any English speaker will know that the sentence is nonsense because it violates the conventions for making proper English expressions. We need to formulate rules for making proper expressions of \emph{SL} that are rigorous and precise, such that, for any string of symbols of \emph{SL}, will be able to determine if that string forms a proper expression of \emph{SL}. We'll call a proper expression a \enquote*{well-formed formula}, or \enquote*{wff} for short.   
+
+Here are our rules of syntax for \emph{SL}:
+
+\begin{enumerate}
+  \item Every uppercase letter of the Latin alphabet, with or without a numerical subscript, is a well-formed formula.
+  \item If \(\alpha\) is a well-formed formula, then \(\lneg \alpha\) is a well-formed formula.
+  \item If \(\alpha\) and \(\beta\) are well-formed formulas, then so is \((\alpha \land \beta)\).
+  \item If \(\alpha\) and \(\beta\) are well-formed formulas, then so is \((\alpha \lor \beta)\).
+  \item If \(\alpha\) and \(\beta\) are well-formed formulas, then so is \((\alpha \lif \beta)\).
+  \item If \(\alpha\) and \(\beta\) are well-formed formulas, then so is \((\alpha \liff \beta)\).
+  \item Nothing is well-formed formula unless it can be formed by repeated application of 1--6.
+\end{enumerate}
+
+These are \emph{recursive} rules. That is, they specify what counts as the simplest type of well-formed formula in \emph{SL}, then show how increasingly more complex formulas are generated by applying the same rules again and again.
+
+If you have paid close attention to the previous sections, you might have recognized a problem with the rules. Consider the expression formed with the negation symbol and a metalinguistic variable: 
+\begin{quote}
+\(\lneg\alpha\)
+\end{quote}
+
+It consists of a metalinguistic variable and a symbol of \emph{SL}. Thus, it's a mixture of the object language and the  metalanguage. That means it is a well-formed formula of neither language. We're committing the use-mention fallacy---the \enquote*{\(\lneg\)} is being used, when instead it should be merely mentioned. So, we need to enclose it in single quotes, but where should the quotes go? It looks like we have two options, but neither are good. The first is to enclose the whole formula, including the metavariable, in quotes:
+
+\begin{quote}
+\enquote*{\(\lneg\alpha\)}.    
+\end{quote}
+
+If we do that, then, we are no longer using qtt\(\alpha\) as a metavariable. Instead, we would be treating it as a symbol in \emph{SL}, but it's not a symbol in \emph{SL}. So, we haven't avoided the use-mention fallacy; we've merely committed another instance of the use-mention fallacy.
+
+Another option is to enclose only the negation symbol in single quotes, like this:
+
+\begin{quote}
+ \enquote*{\(\lneg\)}\(\alpha\) 
+ 
+\end{quote}
+
+This is better, but it's not clear what it means. A precise way to state rule 2 without committing the use-mention fallacy is this:
+
+\begin{quote}
+  2*: If \(\alpha\) is a well-formed formula, then the formula expressed by concatenating \enquote*{\(\lneg\)} and \(\alpha\) is a well-formed formula.
+\end{quote}
+
+That's not bad, but fixing rules 3--7 in the same way would be somewhat awkward. The solution is to use something called \enquote{quasi-quotation}.\footnote{This is also sometimes called \enquote{Quine-quotation}, because it was first introduced by W.V.O. Quine in his book \emph{Mathematical Logic}. } Quasi-quotation encloses the string formed by the symbols of the object-language and the metavariables in corner-quotes:
+
+\begin{quote}
+  \(\cquote{\lneg\alpha}\)
+\end{quote}
+
+Quasi-quotation is just shorthand for a statement about the concatenation of symbols and formulas. So \(\cquote{\lneg\alpha}\) is shorthand for
+
+\begin{quote}
+The formula expressed by concatenating \enquote*{\(\lneg\)} and \(\alpha\).
+\end{quote}
+
+To make things simpler, we will adopt this as a convention: whenever we use expressions that consist of both metavariables and formulas of an object language, we will understand the entire expression as being enclosed in corner-quotes. So, if we were to write this,
+
+\begin{quote}
+  \((\alpha \land (\lneg\beta \lor \gamma))\)
+\end{quote}
+
+\noindent
+
+we would understand it as expressing this:
+
+\begin{quote}
+  \(\cquote{(\alpha \land (\lneg \beta \lor \gamma))}\)
+\end{quote}
+
+\noindent and when we quote an expression consisting of a mixture of object language symbols and metavariables, we will understand that quotation to be quasi-quotation. So, when we write \enquote*{\(\alpha \land \beta\)}, we will understand it as \(\cquote{\alpha \land \beta}\).
+
+There are two more conventions regarding the use of parentheses in \emph{SL}. First, notice that the only punctuation defined in the rules of syntax are parentheses; there are no brackets or braces. This is because we need to be able to form indefinitely large expressions of \emph{SL}, which requires nested expressions. If we demanded a different punctuation character at each level, we would quickly run out of punctuation symbols. This can, though, make things difficult to read. Since we will never, in this book, encounter nesting of more than three levels, we will use braces and brackets for levels two and three. So,  instead of writing
+
+\begin{quote}
+  \(\lneg ((\alpha \lif (\beta \land \gamma)) \liff ( (\alpha \lor \delta) \lor (\gamma \lif \epsilon) )) \)
+
+\end{quote}
+
+\noindent we will write
+
+\begin{quote}
+  \(\lneg \{[\alpha \lif (\beta \land \gamma)] \liff [ (\alpha \lor \delta) \lor (\gamma \lif \epsilon) ]\} \)
+\end{quote}
+
+\noindent which should be easier to read.
+
+The second convention is that we will drop the outermost set of parentheses that encloses the entire complex formula, since those parentheses aren't needed to avoid ambiguities. So, instead of 
+
+\begin{quote}
+
+  \(( \alpha \land \beta )\)
+\end{quote}
+
+we'll simply write
+
+\begin{quote}
+  \(\alpha \land \beta\)
+\end{quote}
+
+and instead of
+
+\begin{quote}
+  \([\alpha \land (\lneg\beta \lor \gamma)]\)
+\end{quote}
+
+we can write
+
+\begin{quote}
+  \(\alpha \land (\lneg\beta \lor \gamma)\)
+\end{quote}
+
+Now, we'll use the rules to determine if an expression of \emph{SL} is a well-formed formula. We start with the sentence letters used in the expression, then show, by using repeated instances of the rules of syntax, that the expression can be generated. Here's a simple example:
+
+\begin{quote}
+  Show that \enquote*{\(\lneg (A \land B) \lif C\)} is a well-formed formula, or sentence, in \emph{SL}.
+\end{quote}
+
+
+First, by rule 1, both \enquote*{A} and \enquote*{B} are wff's. By rule 3, \enquote*{\(A \land B\)} is a wff. By rule 2, \enquote*{\(\lneg (A \land B)\)} is a wff. Finally, by rule 5, \enquote*{\(\lneg (A \land B) \lif C\)} is a wff.  
+
+Finally, here are some expression that are \emph{not} well-formed formulas of \emph{SL}. See if you can determine what is wrong with each one.
+
+\begin{quote}
+  \(A \land B \lor C\)
+
+  \((P \lif Q)R\)
+
+  \(\lneg \liff Z\)
+
+  \(\lneg[(E \land F) \lif D\)
+  
+\end{quote}
+
+% Here are some general rules for forming proper sentences in \emph{SL}:
+
+% \begin{quote}
+%   If an expression contains two or more binary connectives, it must have parentheses. So, \enquote*{\(A \land B \lor C\)} is not a wff of \emph{SL}.
+
+%   No expression can have two sentences with no binary connective between them. So, \enquote*{\(AB\)} is not a wff.
+
+%   No wff can begin or end with a binary connective. So, \enquote*{\((A \lif B) \lor\)} is not a wff. 
+\end{quote}
 \end{document}
