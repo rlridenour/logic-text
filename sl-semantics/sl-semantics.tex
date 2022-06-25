@@ -7,4 +7,1409 @@
 \chapter{Sentential Logic: Semantics}
 \label{cha:sent-logic:-semant}
 
+The syntax for a language is concerned with the vocabulary and the rules for what counts as a well-formed expression of the language.
+The semantics is concerned with the meaning and truth conditions of the expressions of the language.
+The meanings of sentences in \emph{SL} are always truth values, and every sentence has one, and only one, of two truth values, either \textbf{T} (true) or \textbf{F} (false).
+
+\section{Truth Tables for Connectives}
+\label{sec:truth-tabl-conn}
+
+Sentences of \emph{SL} can be analyzed using truth-tables.
+Truth-tables are extremely powerful tools---they provide a foolproof test for all those concepts introduced in chapter \ref{chap:intro}, like validity, consistency, and logical truth.
+We'll start with the most basic truth-tables, which are the \emph{characteristic truth-tables} for the logical connectives of \emph{SL}.
+
+
+The simplest is the negation.
+A negation is true whenever the negated sentence is false, and false whenever the negated sentence is true.
+
+\[
+\begin{array}{c|c}
+  \alpha & \lneg \alpha \\ \midrule
+  \true  & \false  \\
+  \false  & \true
+\end{array}
+\]
+
+Conjunctions are true when and only when both conjuncts are true.
+So, the characteristic truth table for the conjunction looks like this:
+
+
+\[
+\begin{array}{cc|c}
+  \alpha & \beta & \alpha  \land   \beta \\ \midrule
+  \true & \true &  \true  \\
+  \true & \false &  \false  \\
+  \false & \true &  \false  \\
+  \false & \false &  \false
+\end{array}
+\]
+
+
+Disjunctions are true whenever at least one of the disjuncts are true:
+
+
+\[
+\begin{array}{cc|c}
+  \alpha & \beta & \alpha  \lor   \beta \\ \midrule
+  \true & \true &  \true  \\
+  \true & \false &  \true  \\
+  \false & \true &  \true  \\
+  \false & \false &  \false
+\end{array}
+\]
+
+
+A conditional is false only when the antecedent is true and the consequent is false.
+
+\[
+\begin{array}{cc|c}
+  \alpha & \beta & \alpha  \lif   \beta \\ \midrule
+  \true & \true &  \true  \\
+  \true & \false &  \false  \\
+  \false & \true &  \true  \\
+  \false & \false &  \true
+\end{array}
+\]
+
+
+Finally, biconditionals are true whenever the sentences joined by the biconditional operator have the same truth value, and false when they have different truth values.
+
+
+\[
+\begin{array}{cc|c}
+  \alpha & \beta & \alpha  \liff \beta \\ \midrule
+  \true & \true &  \true  \\
+  \true & \false &  \false  \\
+  \false & \true &  \false  \\
+  \false & \false &  \true
+\end{array}
+\]
+
+\section{Truth Tables for Complex Sentences}
+\label{sec:truth-tables-complex}
+
+
+The characteristic truth-tables for the logical connectives show us how to determine the truth value for any complex sentence, given the truth values of its constituent simple sentences.
+The truth values of those simple sentences are provided by an interpretation, also called a valuation or \emph{model}.
+A model contains all of the information that is required to determine the truth values of every formula in a language.
+How complex a model needs to be depends on the language; models in \emph{SL} are very simple.
+Remember that the logical connectives are truth-functional, which means that the truth-values of the complex sentences formed using those connectives are completely determined by the truth-values of the constituent simple sentences.
+So, to determine the truth-values of all of the formulas, however complex, of \emph{SL}, we only need to assign truth-values to all of the simple sentences of \emph{SL}.\footnote{Models in \emph{SL} are often called \enquote{truth-value assignments.}}
+
+A model is a function that maps atomic formulas of \emph{SL} to truth-values.
+Thus, a model determines the truth-values of every sentence in \emph{SL}, not just the simple sentences.
+A partial model assigns truth-values to only some of the sentences in \emph{SL}.
+Whenever we use the term \enquote*{model}, we will almost always mean a partial model.
+We aren't generally concerned about the truth values of all of the sentences in \emph{SL}, but only those that are contained in the sentence or argument that we are analyzing.
+
+A truth-table for a sentence shows its truth-value for every model.
+Let's begin by constructing a very simple truth table for a sentence containing one simple sentence, \enquote*{\(A \lif A\)}.
+Begin simply by writing down the sentence.
+
+\[
+  \begin{array}{cccc}
+    \phantom{A} & A & \lif & A \\
+    \phantom{A}&&&\\
+    \phantom{A}&&&\\
+  \end{array}
+\]
+
+Then, to the left of the sentence, write all of the simple sentence letters in alphabetical order, like this:
+
+\[
+  \begin{array}{cccc}
+    A & A & \lif & A \\
+    \phantom{A}&&&\\
+    \phantom{A}&&&\\
+  \end{array}
+\]
+
+Now draw a line underneath all of that.
+
+\[
+  \begin{array}{cccc}
+    A & A & \lif & A \\ \midrule
+    \phantom{A}&&&\\
+    \phantom{A}&&&\\
+  \end{array}
+\]
+
+
+
+
+
+The next thing to do is to determine how many rows are needed.
+We need one row for each partial model.
+In this case, since we only have one simple sentence, there are only two models; one in which \enquote*{A} is true and another in which it is false.
+
+Now that we know we will need two rows, we draw a vertical line between the complex sentence and the simple sentence letters.
+The line should extend down for however many rows are needed.
+
+\[
+  \begin{array}{c|ccc}
+    A & A & \lif & A \\ \midrule
+    \phantom{A}&&&\\
+    \phantom{A}&&&\\
+  \end{array}
+\]
+
+Now, we list our truth value assignments for the simple sentences.
+In this case, underneath the \enquote*{A}  that is to the left of the vertical line, we'll write \enquote*{\true } and \enquote*{\false}, like  this:
+
+\[
+  \begin{array}{c|ccc}
+    A & A & \lif & A \\ \midrule
+    \true&&&\\
+    \false&&&\\
+  \end{array}
+\]
+
+Next, copy the column under each sentence letter at the left to every occurrence of that sentence letter in the complex sentence.
+That's simple in this case, since we only have one simple sentence.
+
+\[
+  \begin{array}{c|ccc}
+    A & A & \lif & A \\ \midrule
+    \true & \true & & \true\\
+    \false & \false & & \false\\
+  \end{array}
+\]
+
+
+Now, beginning with the lowest level of parentheses, determine the value of the complex sentences.
+On the top row, we have a conditional with a true antecedent and a true consequent.
+So, the conditional is true.
+
+\[
+  \begin{array}{c|ccc}
+    A & A & \lif & A \\ \midrule
+    \true & \true & \true & \true\\
+    \false & \false & & \false\\
+  \end{array}
+\]
+
+On the second row, we have a conditional with a false antecedent and a false consequent, which still results in a true conditional.
+
+\[
+  \begin{array}{c|ccc}
+    A & A & \lif & A \\ \midrule
+    \true & \true & \true & \true\\
+    \false & \false & \true & \false\\
+  \end{array}
+\]
+
+
+When everything is filled in, the truth-table is complete.
+
+Now, let's do one containing two simple sentences, \enquote*{\((P \lor Q) \land \lneg P\)}.
+
+First, write the complex sentence, then, to the left, write the simple simple sentence letters found in that complex sentence in alphabetical order.
+
+\[
+  \begin{array}{cccccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P
+
+\end{array}
+\]
+
+
+Before we draw the lines, we need to determine how many rows are needed.
+Now, there are four partial models, one in which \enquote*{P} and \enquote*{Q} are both true, one in which they are both false, one where \enquote*{P} is true and \enquote*{Q} is false, and one in which  \enquote*{Q} is true and \enquote*{P} is false.
+The general rule is that, if there are \(n\) simple sentences, the truth-table will have \(2^{n}\) rows.
+So, draw the lines, leaving room for four rows.
+
+\[
+  \begin{array}{cc|cccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P \\ \midrule
+    \phantom{x}&&&&&&&\\
+    \phantom{x}&&&&&&&\\
+    \phantom{x}&&&&&&&\\
+    \phantom{x}&&&&&&&\\
+\end{array}
+\]
+
+Now, we need to fill in the partial models.
+We'll do this systematically so that we will be sure to get every one.
+The best thing to do is to start with the rightmost simple sentence, in this case, \enquote*{Q}.
+Underneath that, alternate \enquote*{T} and \enquote*{F} until you reach the bottom of the truth table.
+
+
+\[
+  \begin{array}{cc|cccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P \\ \midrule
+    & \true &&&&&&\\
+    & \false &&&&&&\\
+    & \true &&&&&&\\
+    &\false &&&&&&\\
+\end{array}
+\]
+
+Then, under the next sentence to the left, write \enquote*{\true} twice, then \enquote*{\false} twice.
+If there were another column, it would have \enquote*{\true} four times, followed by \enquote*{\false} four times, and so on.
+The top row will always be all \true's, and the bottom row will always contain all \false's.
+The rightmost column will always alternate \true\ and \false, and the leftmost column will have all \true's in the top half and \false's in the bottome half.
+Our table should look lie this:
+
+\[
+  \begin{array}{cc|cccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P \\ \midrule
+    \true & \true &&&&&&\\
+    \true & \false &&&&&&\\
+    \false & \true &&&&&&\\
+    \false &\false &&&&&&\\
+\end{array}
+\]
+
+
+Now, copy those columns to their respective letters in the complex sentence.
+
+
+\[
+  \begin{array}{cc|cccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P \\ \midrule
+    \true & \true & \true&& \true &&& \true \\
+    \true & \false & \true && \false &&& \true \\
+    \false & \true & \false && \true &&& \false \\
+    \false &\false & \false && \false &&& \false \\
+\end{array}
+\]
+
+
+Next, we have to determine the truth-values of \enquote*{\(P \lor Q\)} and \enquote*{\(\lneg P\)} for each model.
+Let's start with \enquote*{\(\lneg P\)}.
+It's true whenever \enquote*{P} is false and false whenever \enquote*{P} is true.
+
+
+\[
+  \begin{array}{cc|cccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P \\ \midrule
+    \true & \true & \true&& \true && \false & \true \\
+    \true & \false & \true && \false && \false & \true \\
+    \false & \true & \false && \true && \true & \false \\
+    \false &\false & \false && \false && \true & \false \\
+\end{array}
+\]
+
+Now, \enquote*{\(P \lor Q\)} is false only when both \enquote*{P} and \enquote*{Q} are false.
+So, the column under the disjunction symbol looks like this:
+
+\[
+  \begin{array}{cc|cccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P \\ \midrule
+    \true & \true & \true& \true & \true && \false & \true \\
+    \true & \false & \true & \true & \false && \false & \true \\
+    \false & \true & \false & \true & \true && \true & \false \\
+    \false &\false & \false & \false & \false && \true & \false \\
+\end{array}
+\]
+
+Now, we're ready to do the column under the main connective of the sentence.
+This sentence is a conjunction of two sentences, one is a disjunction and the other is a negation.
+So, we're only concerned about the columns under the \enquote{\(\lor\)} and the \enquote*{\(\lneg\)}.
+Remember, conjunctions are true only when both conjuncts are true.
+On the first two rows, the second conjunct is false, so
+
+\[
+  \begin{array}{cc|cccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P \\ \midrule
+    \true & \true & \true& \true & \true & \false & \false & \true \\
+    \true & \false & \true & \true & \false & \false & \false & \true \\
+    \false & \true & \false & \true & \true && \true & \false \\
+    \false &\false & \false & \false & \false && \true & \false \\
+\end{array}
+\]
+
+Both conjuncts are true on the third row:
+
+\[
+  \begin{array}{cc|cccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P \\ \midrule
+    \true & \true & \true& \true & \true & \false & \false & \true \\
+    \true & \false & \true & \true & \false & \false & \false & \true \\
+    \false & \true & \false & \true & \true & \true & \true & \false \\
+    \false &\false & \false & \false & \false && \true & \false \\
+\end{array}
+\]
+
+Finally, the first conjunct is false on the fourth row.
+So, the completed truth table looks like this:
+
+\[
+  \begin{array}{cc|cccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg & P \\ \midrule
+    \true & \true & \true& \true & \true & \false & \false & \true \\
+    \true & \false & \true & \true & \false & \false & \false & \true \\
+    \false & \true & \false & \true & \true & \true & \true & \false \\
+    \false &\false & \false & \false & \false & \false & \true & \false \\
+\end{array}
+\]
+
+
+Now, let's try one with three simple sentences.
+So, we'll need eight rows.
+
+
+\[
+\begin{array}{ccc|cccccc}
+  F & G & H & \lneg & [(H & \land & F) & \liff & G] \\ \midrule
+  \phantom{x}&&&&&&&& \\
+  \phantom{x} &&&&&&&\\
+  \phantom{x} &&&&&&&\\
+  \phantom{x} &&&&&&&\\
+  \phantom{x} &&&&&&&\\
+  \phantom{x} &&&&&&&\\
+  \phantom{x} &&&&&&&\\
+  \phantom{x} &&&&&&&\\
+
+
+\end{array}
+\]
+
+Filling in the models gets us this:
+
+\[
+  \begin{array}{ccc|cccccc}
+    F & G & H & \lneg & [(H & \land & F) & \liff & G] \\ \midrule
+    \true & \true & \true&&&&&&\\
+    \true & \true & \false&&&&&&\\
+    \true & \false & \true&&&&&&\\
+    \true & \false & \false&&&&&&\\
+    \false & \true & \true&&&&&&\\
+    \false & \true & \false&&&&&&\\
+    \false & \false & \true&&&&&&\\
+    \false & \false & \false&&&&&&\\
+  \end{array}
+\]
+
+Copying those columns over produces this:
+
+\[
+  \begin{array}{ccc|cccccc}
+    F & G & H & \lneg & [(H & \land & F) & \liff & G] \\ \midrule
+    \true & \true & \true && \true && \true && \true \\
+    \true & \true & \false && \false && \true && \true \\
+    \true & \false & \true && \true && \true && \false \\
+    \true & \false & \false && \false && \true && \false \\
+    \false & \true & \true && \true && \false && \true \\
+    \false & \true & \false && \false&& \false && \true \\
+    \false & \false & \true && \true && \false && \false \\
+    \false & \false & \false && \false && \false && \false \\
+  \end{array}
+\]
+
+Now, we start with the conjunction.
+It's true on any TVA in which both \enquote*{H} and \enquote*{F} are true.
+
+\[
+  \begin{array}{ccc|cccccc}
+    F & G & H & \lneg & [(H & \land & F) & \liff & G] \\ \midrule
+    \true & \true & \true && \true & \true & \true && \true \\
+    \true & \true & \false && \false & \false & \true && \true \\
+    \true & \false & \true && \true & \true & \true && \false \\
+    \true & \false & \false && \false & \false & \true && \false \\
+    \false & \true & \true && \true & \false & \false && \true \\
+    \false & \true & \false && \false& \false & \false && \true \\
+    \false & \false & \true && \true & \false & \false && \false \\
+    \false & \false & \false && \false & \false & \false && \false \\
+  \end{array}
+\]
+
+
+Now, biconditionals are true whenever the two connected sentences have the same truth value.
+So, we just need to compare the truth value of the conjunction that we just completed with the truth-value of \enquote*{G}
+
+\[
+  \begin{array}{ccc|cccccc}
+    F & G & H & \lneg & [(H & \land & F) & \liff & G] \\ \midrule
+    \true & \true & \true && \true & \true & \true & \true & \true \\
+    \true & \true & \false && \false & \false & \true & \false & \true \\
+    \true & \false & \true && \true & \true & \true & \false & \false \\
+    \true & \false & \false && \false & \false & \true & \true & \true \\
+    \false & \true & \true && \true & \false & \false & \false & \true \\
+    \false & \true & \false && \false& \false & \false & \false & \true \\
+    \false & \false & \true && \true & \false & \false & \true & \false \\
+    \false & \false & \false && \false & \false & \false & \true & \false \\
+  \end{array}
+\]
+
+
+
+Finally, the negation will flip the truth-value of the biconditional.
+
+\[
+  \begin{array}{ccc|cccccc}
+    F & G & H & \lneg & [(H & \land & F) & \liff & G] \\ \midrule
+    \true & \true & \true & \false & \true & \true & \true & \true & \true \\
+    \true & \true & \false & \true & \false & \false & \true & \false & \true \\
+    \true & \false & \true & \true & \true & \true & \true & \false & \false \\
+    \true & \false & \false & \false & \false & \false & \true & \true & \true \\
+    \false & \true & \true & \true & \true & \false & \false & \false & \true \\
+    \false & \true & \false & \true & \false& \false & \false & \false & \true \\
+    \false & \false & \true & \false & \true & \false & \false & \true & \false \\
+    \false & \false & \false & \false & \false & \false & \false & \true & \false \\
+  \end{array}
+\]
+
+\section{Truth Table Shortcuts}
+\label{sec:truth-table-shortc}
+
+If you understand the characteristic truth-tables for the logical connectives, you can complete the most complex truth-table.
+There is one major problem with truth-tables, however, they get very big very quickly.
+With every additional simple sentence letter, the truth-table doubles in size.
+A truth-table for a sentence with seven simple sentences will have 128 rows! Sometimes, though, we can take some shortcuts.
+Let's go back and look at some of our earlier examples.
+
+First, we don't need to always copy the columns for the simple sentences.
+Sometimes it helps to do so for clarity's sake.
+In this case, there's really no need.
+
+\[
+  \begin{array}{cc|ccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg P \\ \midrule
+    \true & \true &&&&&\\
+    \true & \false &&&&&\\
+    \false & \true &&&&&\\
+    \false &\false &&&&&\\
+\end{array}
+\]
+
+First, we know that the column for \enquote*{\(\lneg P\)} will just be the opposite of \enquote*{P}.
+It's just as easy to switch the truth-values as copy the column in the first place.
+So, we'll just write this:
+
+
+\[
+  \begin{array}{cc|ccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg P \\ \midrule
+    \true & \true &&&&& \false \\
+    \true & \false &&&&& \false \\
+    \false & \true &&&&& \true \\
+    \false &\false &&&&& \true \\
+\end{array}
+\]
+
+Always keep in mind that what we're really interested in is the column under the main connective, which, in this case, is the conjunction symbol.
+Conjunctions are true only when both conjuncts are true, and since \enquote*{\(\lneg P\)} is false on the first two lines, the conjunction will be false there also:
+
+\[
+  \begin{array}{cc|ccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg P \\ \midrule
+    \true & \true &&&& \false & \false \\
+    \true & \false &&&& \false & \false \\
+    \false & \true &&&&& \true \\
+    \false &\false &&&&& \true \\
+\end{array}
+\]
+
+Now, all that we need to do is find the truth-value of the \enquote*{\(P \lor Q\)} on the last two lines.
+We can easily see that it will be false only on the last line, where both disjuncts are false.
+So, we now have this:
+
+\[
+  \begin{array}{cc|ccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg P \\ \midrule
+    \true & \true &&&& \false & \false \\
+    \true & \false &&&& \false & \false \\
+    \false & \true && \true &&& \true \\
+    \false &\false && \false &&& \true \\
+\end{array}
+\]
+
+Now, we can complete the column for the main connective on the last two rows.
+Both conjuncts are true on the third row, but the first is false on the fourth row, resulting in this:
+
+
+\[
+  \begin{array}{cc|ccccc}
+    P & Q & (P & \lor & Q) & \land & \lneg P \\ \midrule
+    \true & \true &&&& \false & \false \\
+    \true & \false &&&& \false & \false \\
+    \false & \true && \true && \true & \true \\
+    \false &\false && \false && \false & \true \\
+\end{array}
+\]
+
+
+Sometimes, we're only asked to determine the truth-value for a sentence on a single model.
+That is just asking what the truth-value of the sentence would be on one particular row of a truth-table.
+Here's an example:
+
+\begin{quote}
+  Determine the truth value of \enquote*{\(\lneg (Q \land R) \lif (S \lor \lneg T)\)} on this model:
+
+  Q = \false\\
+  R = \true\\
+  S = \false\\
+  T = \false
+\end{quote}
+
+
+So, we build a single row truth-table.
+
+\[
+  \begin{array}{cccc|cccccccc}
+    Q & R & S & T & \lneg & (Q & \land & R) & \lif & (S & \lor & \lneg T) \\ \midrule
+    \false& \true & \false & \false &&&&&&&& \\
+  \end{array}
+\]
+
+Since \textbf{Q} is false, so is \(\boldsymbol{Q \land R}\).
+
+
+\[
+  \begin{array}{cccc|cccccccc}
+    Q & R & S & T & \lneg & (Q & \land & R) & \lif & (S & \lor & \lneg T) \\ \midrule
+    \false& \true & \false & \false & & & \false &&&&& \\
+  \end{array}
+\]
+
+
+  The negation, then, will be true.
+
+\[
+  \begin{array}{cccc|cccccccc}
+    Q & R & S & T & \lneg & (Q & \land & R) & \lif & (S & \lor & \lneg T) \\ \midrule
+    \false& \true & \false & \false & \true & & \false &&&&&
+  \end{array}
+\]
+
+
+\(\boldsymbol{\lneg T}\) is true, so the disjunction is also true.
+
+
+\[
+  \begin{array}{cccc|cccccccc}
+    Q & R & S & T & \lneg & (Q & \land & R) & \lif & (S & \lor & \lneg T) \\ \midrule
+    \false& \true & \false & \false & \true & & \false &&&& \true & \true
+  \end{array}
+\]
+
+So, now we have a conditional with a false antecedent and a true consequent, making the conditional true.
+
+\[
+  \begin{array}{cccc|cccccccc}
+    Q & R & S & T & \lneg & (Q & \land & R) & \lif & (S & \lor & \lneg T) \\ \midrule
+    \false& \true & \false & \false & \true & & \false && \true && \true & \true
+  \end{array}
+\]
+
+Note that we needed to determine the truth-value of only one of the antecedent or the consequent.
+Either one would have been enough to guarantee that the conditional was true.
+
+\section{Logical Truth, Falsehood, and Indeterminacy}
+\label{sec:taut-contr}
+
+Now that we know how to complete truth tables, let's see what can be done with them.
+Truth-tables provide a systematic means for determining those things that were discussed in chapter \ref{chap:intro}---validity, consistency, logical truth and falsehood, and logical equivalency.
+
+To check the logical status of a sentence, simply complete the truth table the same way that we have done so far.
+After completing it, if there are only \true 's under the main connective of the sentence, then the sentence is a logical truth.
+If there are only \false 's, then the statement is a logical falsehood.
+If there is a mixture of \true 's and \false 's, then it is logically indeterminate.
+Let's work a few examples.
+
+
+\begin{quote}
+  \(P \lif (Q \lif P)\)
+\end{quote}
+
+
+Since there are two simple sentences, the truth-table will have four rows.
+
+
+\[
+\begin{array}{cc|ccccc}
+  P & Q & P & \lif & (Q & \lif & P) \\ \midrule
+  \true & \true &&&&& \\
+    \true & \false &&&&& \\
+  \false & \true &&&&& \\
+  \false & \false &&&&& \\
+\end{array}
+\]
+
+
+Whenever the antecedent of a conditional is false, the conditional must be true.
+So, the bottom two rows must both be true.
+
+\[
+\begin{array}{cc|ccccc}
+  P & Q & P & \lif & (Q & \lif & P) \\ \midrule
+  \true & \true &&&&& \\
+    \true & \false &&&&& \\
+  \false & \true & \false & \true &&& \\
+  \false & \false & \false & \true &&& \\
+\end{array}
+\]
+
+Now, the consequent is itself a conditional, \enquote*{\(Q \lif P\)}.
+So, when \textbf{P} is true, that conditional is true.
+
+\[
+\begin{array}{cc|ccccc}
+  P & Q & P & \lif & (Q & \lif & P) \\ \midrule
+  \true & \true &&& \true && \\
+    \true & \false &&& \true && \\
+  \false & \true & \false & \true &&& \\
+  \false & \false & \false & \true &&& \\
+\end{array}
+\]
+
+Since a true consequent is enough to make a conditional true, the sentence is also true on the top two rows.
+
+\[
+\begin{array}{cc|ccccc}
+  P & Q & P & \lif & (Q & \lif & P) \\ \midrule
+  \true & \true && \true & \true && \\
+    \true & \false && \true & \true && \\
+  \false & \true & \false & \true &&& \\
+  \false & \false & \false & \true &&& \\
+\end{array}
+\]
+
+So, since this sentence is true on every model, it is a logical truth, or tautology.
+
+
+\begin{quote}
+  \(\lneg (A \lif B) \land (B \lor \lneg A)\)
+\end{quote}
+
+
+This is also a four-row truth table.
+
+
+\[
+  \begin{array}{cc|ccccccccc}
+    A & B & \lneg & (A & \lif & B) & \land & (B & \lor & \lneg A) \\ \midrule
+    \true & \true &&&&&&&& \\
+    \true & \false &&&&&&&& \\
+    \false & \true &&&&&&&& \\
+    \false & \false &&&&&&&& \\
+  \end{array}
+\]
+
+The left conjunct contains a simple conditional, so let's start there.
+
+\[
+  \begin{array}{cc|cccccccc}
+    a & b & \lneg & (a & \lif & b) & \land & (b & \lor & \lneg a) \\ \midrule
+    \true & \true &&& \true &&&&& \\
+    \true & \false &&& \false &&&&& \\
+    \false & \true &&& \true &&&&& \\
+    \false & \false &&& \true &&&&& \\
+  \end{array}
+\]
+
+Now, that conditional is negated to form the first conjunct.
+
+\[
+  \begin{array}{cc|cccccccc}
+    A & B & \lneg & (A & \lif & B) & \land & (B & \lor & \lneg A) \\ \midrule
+    \true & \true & \false && \true &&&&& \\
+    \true & \false & \true && \false &&&&& \\
+    \false & \true & \false && \true &&&&& \\
+    \false & \false & \false && \true &&&&& \\
+  \end{array}
+\]
+
+That's enough to make the conjunction false on rows 1, 3, and 4.
+
+\[
+  \begin{array}{cc|cccccccc}
+    A & B & \lneg & (A & \lif & B) & \land & (B & \lor & \lneg A) \\ \midrule
+    \true & \true & \false && \true && \false &&& \\
+    \true & \false & \true && \false &&&&& \\
+    \false & \true & \false && \true && \false &&& \\
+    \false & \false & \false && \true && \false &&& \\
+  \end{array}
+\]
+
+
+So, we really just need to find the truth-value of the second conjunct on row 2.
+Since, on that row, \textbf{B} is false and \textbf{A} is true, the disjunction \(B \lor \lneg A\) is false, which makes the conjunction false on the second row also.
+
+\[
+  \begin{array}{cc|cccccccc}
+    A & B & \lneg & (A & \lif & B) & \land & (B & \lor & \lneg A) \\ \midrule
+    \true & \true & \false && \true && \false &&& \\
+    \true & \false & \true && \false && \false && \false & \\
+    \false & \true & \false && \true && \false &&& \\
+    \false & \false & \false && \true && \false &&& \\
+  \end{array}
+\]
+
+So, the truth-table show that the sentence is false on all models, and is therefore a logical falsehood or contradiction.
+
+One more example:
+
+\begin{quote}
+  \((X \liff Y) \lor (W \lor Z)\)
+\end{quote}
+
+This truth table, containing four simple sentences, will have sixteen rows.
+That makes it slightly painful to complete.
+So, let's think about how we can make things easier.
+Note that before we can conclude that a sentence is a tautology or contradition, we have to complete all of the rows.
+On the other hand, to conclude that a sentence is logically indeterminate or contingent, we only need one row that is \true, and one row that is \false.
+Thinking shrewdly about which rows should have which values may make our job much easier.
+
+\[
+\begin{array}{cccc|ccccccc}
+  W & X & Y & Z & (X & \liff &  Y) & \lor & (W & \lor & Z)\\ \midrule
+  \true & \true & \true & \true &&&&&&& \\
+    \true & \true & \true & \false &&&&&&& \\
+  \true & \true & \false & \true &&&&&&& \\
+  \true & \true & \false & \false &&&&&&& \\
+  \true & \false & \true & \true &&&&&&& \\
+  \true & \false & \true & \false &&&&&&& \\
+  \true & \false & \false & \true &&&&&&& \\
+  \true & \false & \false & \false &&&&&&& \\
+  \false & \true & \true & \true &&&&&&& \\
+  \false & \true & \true & \false &&&&&&& \\
+  \false & \true & \false & \true &&&&&&& \\
+  \false & \true & \false & \false &&&&&&& \\
+  \false & \false & \true & \true &&&&&&& \\
+  \false & \false & \true & \false &&&&&&& \\
+  \false & \false & \false & \true &&&&&&& \\
+  \false & \false & \false & \false &&&&&&& \\
+\end{array}
+\]
+
+\textbf{X} and \textbf{Y} are both true on the first row, so the biconditional is true.
+That's enough to guarantee that the disjunction is also true.
+
+\[
+\begin{array}{cccc|ccccccc}
+  W & X & Y & Z & (X & \liff &  Y) & \lor & (W & \lor & Z)\\ \midrule
+  \true & \true & \true & \true & \true & \true & \true & \true &&& \\
+    \true & \true & \true & \false &&&&&&& \\
+  \true & \true & \false & \true &&&&&&& \\
+  \true & \true & \false & \false &&&&&&& \\
+  \true & \false & \true & \true &&&&&&& \\
+  \true & \false & \true & \false &&&&&&& \\
+  \true & \false & \false & \true &&&&&&& \\
+  \true & \false & \false & \false &&&&&&& \\
+  \false & \true & \true & \true &&&&&&& \\
+  \false & \true & \true & \false &&&&&&& \\
+  \false & \true & \false & \true &&&&&&& \\
+  \false & \true & \false & \false &&&&&&& \\
+  \false & \false & \true & \true &&&&&&& \\
+  \false & \false & \true & \false &&&&&&& \\
+  \false & \false & \false & \true &&&&&&& \\
+  \false & \false & \false & \false &&&&&&& \\
+\end{array}
+\]
+
+Now, we just need a row that is false.
+Since our sentence is a disjunction, we need a row on which both disjuncts are false.
+Let's start with the second disjunct.
+For this to be false, both \textbf{W} and \textbf{Z} must be false.
+That is the case on rows, 10, 12, 14, and 16.
+Now, we also need it to be a row on which the first disjunct is false, which will be row on which \textbf{X} and \textbf{Y} have different truth values.
+That's true on rows 12 and 14.
+So, either row 12 or 14 will provide what we need, a row on which the sentence is false.
+
+\[
+\begin{array}{cccc|ccccccc}
+  W & X & Y & Z & (X & \liff &  Y) & \lor & (W & \lor & Z)\\ \midrule
+  \true & \true & \true & \true & \true & \true & \true & \true &&& \\
+    \true & \true & \true & \false &&&&&&& \\
+  \true & \true & \false & \true &&&&&&& \\
+  \true & \true & \false & \false &&&&&&& \\
+  \true & \false & \true & \true &&&&&&& \\
+  \true & \false & \true & \false &&&&&&& \\
+  \true & \false & \false & \true &&&&&&& \\
+  \true & \false & \false & \false &&&&&&& \\
+  \false & \true & \true & \true &&&&&&& \\
+  \false & \true & \true & \false &&&&&&& \\
+  \false & \true & \false & \true &&&&&&& \\
+  \false & \true & \false & \false &&&&&&& \\
+  \false & \false & \true & \true &&&&&&& \\
+  \false & \false & \true & \false & \false & \false & \true & \false & \false & \false & \false \\
+  \false & \false & \false & \true &&&&&&& \\
+  \false & \false & \false & \false &&&&&&& \\
+\end{array}
+\]
+
+We now have at least one row that is true and at least one row that is false, so the sentence is logically indeterminate.
+
+
+\section{Logical Equivalence}
+\label{sec:logical-equivalence}
+
+
+Two sentences are logically equivalent if and only if they have the same truth-value on every model.
+To show logical equivalence, put the two sentences on the same truth-table.
+If they are logically equivalent, the columns under the main connectives of the sentences will be exactly the same.
+
+Two logical truths will always be logically equivalent, as will two logical falsehoods.
+Logical indeterminacies may or may not be equivalent.
+
+Let's check these two sentences for logical equivalence (We'll separate them with a forward slash for clarity):
+
+\begin{quote}
+  \(F \lif G\) \phantom{xxxxx} \(\lneg G \lif \lneg F \)
+\end{quote}
+
+
+\[
+\begin{array}{cc|ccccccc}
+  F & G & F & \lif & G & / & \lneg G & \lif & \lneg F \\ \midrule
+  \true & \true && \true &&&& \true & \\
+  \true & \false && \false &&&& \false & \\
+  \false & \true && \true &&&& \true & \\
+  \false & \false && \true &&&& \true & \\
+\end{array}
+\]
+
+
+See that the two sentences have the same truth-value on every model, and are therefore logically equivalent.
+
+Now, consider these two sentences:
+
+\begin{quote}
+  \( A \lor B\) \phantom{xxxxx} \((B \lor C) \lor A\)
+\end{quote}
+
+\[
+  \begin{array}{ccc|ccccccccc}
+    A & B & C & A & \lor & B & / & (B & \lor & C) & \lor & A \\ \midrule
+    \true & \true & \true & & \true &&&& \true && \true & \true \\
+    \true & \true & \false & & \true &&&& \true && \true & \true \\
+    \true & \false & \true & & \true &&&& \true && \true & \true \\
+    \true & \false & \false & & \true &&&& \false && \true & \true \\
+    \false & \true & \true & & \true &&&& \true && \true &  \false \\
+    \false & \true & \false & & \true &&&& \true && \true &  \false \\
+    \false & \false & \true & & \false &&&& \true && \true &  \false \\
+    \false & \false & \false & & \false &&&& \false && \false &  \false \\
+  \end{array}
+\]
+
+Note that it is not until line 7 that the two sentences differ in truth-value.
+Since there is at least one model on which they have different truth-values, the two sentences are not logically equivalent.
+
+\section{Logical Consistency}
+\label{sec:logical-consistency}
+
+
+A set of sentences is logically consistent if and only if there is at least one model on which all of the members of the set are true.
+If there is no model on which all of the members are true, then the set is logically inconsistent.
+
+Any set that contains a logical falsehood is inconsistent.
+Sets that do not contain logical falsehoods \emph{can} be inconsistent.
+We can check for logical consistency using one truth-table.
+If the set is consistent, then there will be at least one row on which all of the sentences are true.
+
+
+\(\{ \lneg A \land \lneg B, A \lor \lneg C\}\)
+
+
+\[
+\begin{array}{ccc|ccccccc}
+  A & B & C & \lneg A & \land & \lneg B & / & A & \lor & \lneg C \\ \midrule
+  \true & \true & \true & \false & \false & \false &  & \true & \true & \false  \\
+  \true & \true & \false & \false & \false & \false && \true & \true & \true \\
+  \true & \false & \true & \false & \false & \true && \true & \true & \false \\
+  \true & \false & \false & \false & \false & \true && \true & \true & \true \\
+  \false & \true & \true & \true & \false & \false && \false & \false &  \false \\
+  \false & \true & \false & \true & \false & \false && \false & \true &  \true \\
+  \false & \false & \true & \true & \true & \true && \false & \false &  \false \\
+  \false & \false & \false & \true & \true & \true && \false & \true &  \true\\
+\end{array}
+\]
+
+This truth table shows that the set of consistent.
+Not that it is only on the last row on which both sentences are true.
+We cannot conclude that a set is inconsistent without examining all of the rows of a truth-table.
+That doesn't mean that we necessarily have to complete each row completely, though.
+Let's look at this example again to see the shortcuts we could have taken.
+
+\[
+\begin{array}{ccc|ccccccc}
+  A & B & C & \lneg A & \land & \lneg B & / & A & \lor & \lneg C \\ \midrule
+  \true & \true & \true   &&&&&&& \\
+  \true & \true & \false  &&&&&&& \\
+  \true & \false & \true  &&&&&&& \\
+  \true & \false & \false &&&&&&& \\
+  \false & \true & \true  &&&&&&& \\
+  \false & \true & \false &&&&&&& \\
+  \false & \false & \true &&&&&&& \\
+  \false & \false & \false &&&&&&& \\
+\end{array}
+\]
+
+Keep in mind that we're trying to find a row on which both sentences are true.
+The first sentence will be true only when A and B are both false, which is only on the last two rows.
+
+\[
+\begin{array}{ccc|ccccccc}
+  A & B & C & \lneg A & \land & \lneg B & / & A & \lor & \lneg C \\ \midrule
+  \true & \true & \true   &&  &&&&& \\
+  \true & \true & \false  &&  &&&&& \\
+  \true & \false & \true  &&  &&&&& \\
+  \true & \false & \false &&  &&&&& \\
+  \false & \true & \true  &&  &&&&& \\
+  \false & \true & \false &&  &&&&& \\
+  \false & \false & \true && \true &&&&& \\
+  \false & \false & \false && \true &&&&& \\
+\end{array}
+\]
+
+The truth-value of the second sentence won't matter on the first six rows since the first sentence is false on those rows.
+So, we just need to determine the truth value of the second sentence on the last two rows.
+It is true whenever A is true or C is false.
+So, it is false on row 7, but true on row 8.
+
+\[
+\begin{array}{ccc|ccccccc}
+  A & B & C & \lneg A & \land & \lneg B & / & A & \lor & \lneg C \\ \midrule
+  \true & \true & \true   &&  &&&&& \\
+  \true & \true & \false  &&  &&&&& \\
+  \true & \false & \true  &&  &&&&& \\
+  \true & \false & \false &&  &&&&& \\
+  \false & \true & \true  &&  &&&&& \\
+  \false & \true & \false &&  &&&&& \\
+  \false & \false & \true && \true &&&& \false & \\
+  \false & \false & \false && \true &&&& \true & \\
+\end{array}
+\]
+
+
+So, it's only on that last row that both of the sentences are true, but that is enough to make the set consistent.
+
+
+Here's another example:
+
+\( \{P \lor \lneg P, P \lif Q, P \land \lneg Q\}\)
+
+We know that \(P \lor \lneg P\) is true on all rows.
+
+\[
+\begin{array}{cc|ccccccccccc}
+  P & Q & P & \lor & \lneg P &/& P & \lif & Q &/& P & \land & \lneg Q \\ \midrule
+  \true & \true && \true &&&&&&&&& \\
+  \true & \false && \true &&&&&&&&& \\
+  \false & \true && \true &&&&&&&&& \\
+  \false & \false && \true &&&&&&&&& \\
+\end{array}
+\]
+
+
+Unfortunately, we can't draw any conclusions from that alone.
+The second sentence is true on all rows except for the second.
+
+\[
+\begin{array}{cc|ccccccccccc}
+  P & Q & P & \lor & \lneg P &/& P & \lif & Q &/& P & \land & \lneg Q \\ \midrule
+  \true & \true && \true &&& & \true &&&&& \\
+  \true & \false && \true &&&& \false &&&&& \\
+  \false & \true && \true &&&& \true &&&&& \\
+  \false & \false && \true &&&& \true &&&&& \\
+\end{array}
+\]
+
+The third sentence is true only when P is true and Q is false, which is just the second row.
+
+\[
+\begin{array}{cc|ccccccccccc}
+  P & Q & P & \lor & \lneg P &/& P & \lif & Q &/& P & \land & \lneg Q \\ \midrule
+  \true & \true && \true &&& & \true &&&& \false & \\
+  \true & \false && \true &&&& \false &&&& \true & \\
+  \false & \true && \true &&&& \true &&&& \false & \\
+  \false & \false && \true &&&& \true &&&& \false & \\
+\end{array}
+\]
+
+So, there is no row on which all of the sentences are true.
+The set is then inconsistent.
+
+
+
+\section{Logical Entailment and Validity}
+\label{sec:logic-enta-valid}
+
+Entailment is a relation between a set of sentences of a language and a sentence of that language.
+
+A set \(\Gamma\) logically entails a sentence \(\alpha\) if and only if there is no model on which every member of \(\Gamma\) is true and \(\alpha\) is false.
+
+The symbol for logical entailment is the double turnstile \enquote*{\(\vDash\)}
+
+This expression
+
+\begin{quote}
+  \(\Gamma \vDash \alpha\)
+\end{quote}
+
+means that \(\Gamma\) entails \(\alpha\), and the expression
+
+\begin{quote}
+  \(\Gamma \nvDash \alpha\)
+\end{quote}
+
+means that \(\Gamma\) does not entail \(\alpha\).
+
+
+When we test for logical entailment using a truth table, we'll single slashes between each member of \(\Gamma\) and a double slash between the members of \(\Gamma\) and the purportedly entailed sentence.
+Here's a simple example of a classic argument form called \emph{Modus Ponens}:
+
+\begin{quote}
+\(\{P, P \lif Q\} \vDash Q\)
+\end{quote}
+
+
+\[
+  \begin{array}{cc|ccccccc}
+    P & Q & P & / & P & \lif & Q & // & Q \\ \midrule
+    \true & \true & \true &&& \true &&& \true \\
+    \true & \false  & \true &&& \false &&& \true \\
+    \false & \true & \false &&& \true &&&  \false \\
+    \false & \false  & \false &&& \true &&& \false \\
+  \end{array}
+\]
+
+We now check to make sure that there are no rows on which all of the premises are true and the conclusion is false.
+The only row on which all of the premises are true is the first one, but on that row, the conclusion is also true.
+So, there is no row on which all of the premises are true and the conclusion is false, so the set containing the premises logically entails the conclusion, which is to say that the argument is valid.
+
+Compare that to this:
+
+\[
+  \begin{array}{cc|ccccccc}
+    P & Q & P & \lif & Q & / & Q & // & P \\ \midrule
+    \true & \true & &\true &&& \true && \true \\
+    \true & \false  && \false &&& \false && \true \\
+    \false & \true & &\true &&& \true &&  \false \\
+    \false & \false  && \true &&& \false && \false \\
+  \end{array}
+\]
+
+\noindent The third row demonstrates that \(\{P \lif Q, Q\}\) does not logically entail P.
+
+Entailment and validity are closely related concepts.
+An argument is logically valid if and only if there is no model on which all of the premises are true and the conclusion is false.
+This means that an argument is logically valid just in case the set containing the premises logically entails the conclusion.
+
+Let's check this argument for validity:
+
+\begin{enumerate}
+  % \tightlist
+	\item \(H \liff I\)
+	\item \underline{\(\lneg H \lor \lneg I\)}
+	\item [$\therefore$] \(\lneg H \land \lneg I\)
+\end{enumerate}
+
+
+\[
+  \begin{array}{cc|ccccccccccc}
+    H & I & H & \liff & I & / & \lneg H & \lor & \lneg I & // & \lneg H & \land & \lneg I \\ \midrule
+      \true & \true && \true &&&& \false &&&& \false & \\
+      \true & \false && \false &&&& \true &&&& \false & \\
+      \false & \true && \false &&&& \true &&&& \false & \\
+      \false & \false && \true &&&& \true &&&& \true & \\
+  \end{array}
+\]
+
+The fourth row is the only row on which both premises are true, but the conclusion is also true on that row. So, the argument is logically valid.
+
+
+Now, let's look at this argument:
+
+\begin{enumerate}
+  % \tightlist
+	\item \(W \lif (X \lor Y)\)
+	\item \(X \lif (\lneg Y \lor Z)\)
+  \item \underline{ \(W\)\phantom{xxxxxxxx} }
+	\item [$\therefore$] \(Z\)
+\end{enumerate}
+
+
+With four simple sentences, this is a long truth-table. So, let's take a shortcut or two. Notice first that the third premise is only true on the last eight rows of the truth-table. That means that there won't be any lines in the upper half of the truth-table where the premises are all true and the conclusion false.
+
+
+
+\[
+  \begin{array}{cccc|cccccccccccccccc}
+    W & X & Y & Z & W & \lif & (X & \lor&  Y)&  /&  X&  \lif&  (\lneg Y &  \lor &  Z) & / & W & // & Z \\ \midrule
+    \true & \true & \true & \true &&&&&&&&&&&&&&& \\
+    \true & \true & \true & \false &&&&&&&&&&&&&&& \\
+    \true & \true & \false & \true &&&&&&&&&&&&&&& \\
+    \true & \true & \false & \false &&&&&&&&&&&&&&& \\
+    \true & \false & \true & \true &&&&&&&&&&&&&&& \\
+    \true & \false & \true & \false &&&&&&&&&&&&&&& \\
+    \true & \false & \false & \true &&&&&&&&&&&&&&& \\
+    \true & \false & \false & \false &&&&&&&&&&&&&&& \\
+    \false & \true & \true & \true &&&&&&&&&&&&& \true && \\
+    \false & \true & \true & \false &&&&&&&&&&&&& \true && \\
+    \false & \true & \false & \true &&&&&&&&&&&&& \true && \\
+    \false & \true & \false & \false &&&&&&&&&&&&& \true && \\
+    \false & \false & \true & \true &&&&&&&&&&&&& \true && \\
+    \false & \false & \true & \false &&&&&&&&&&&&& \true && \\
+    \false & \false & \false & \true &&&&&&&&&&&&& \true && \\
+    \false & \false & \false & \false &&&&&&&&&&&&& \true && \\
+\end{array}
+\]
+
+
+Now, the conclusion is false on only half of those rows.
+
+\[
+  \begin{array}{cccc|cccccccccccccccc}
+    W & X & Y & Z & W & \lif & (X & \lor&  Y)&  /&  X&  \lif&  (\lneg Y &  \lor &  Z) & / & W & // & Z \\ \midrule
+    \true & \true & \true & \true &&&&&&&&&&&&&&& \\
+    \true & \true & \true & \false &&&&&&&&&&&&&&& \\
+    \true & \true & \false & \true &&&&&&&&&&&&&&& \\
+    \true & \true & \false & \false &&&&&&&&&&&&&&& \\
+    \true & \false & \true & \true &&&&&&&&&&&&&&& \\
+    \true & \false & \true & \false &&&&&&&&&&&&&&& \\
+    \true & \false & \false & \true &&&&&&&&&&&&&&& \\
+    \true & \false & \false & \false &&&&&&&&&&&&&&& \\
+    \false & \true & \true & \true &&&&&&&&&&&&& \true && \true \\
+    \false & \true & \true & \false &&&&&&&&&&&&& \true && \false \\
+    \false & \true & \false & \true &&&&&&&&&&&&& \true && \true \\
+    \false & \true & \false & \false &&&&&&&&&&&&& \true && \false \\
+    \false & \false & \true & \true &&&&&&&&&&&&& \true && \true \\
+    \false & \false & \true & \false &&&&&&&&&&&&& \true && \false \\
+    \false & \false & \false & \true &&&&&&&&&&&&& \true && \true \\
+    \false & \false & \false & \false &&&&&&&&&&&&& \true && \false \\
+\end{array}
+\]
+
+That means that we only need to check the truth-value of the other two premises on rows, 10, 12, 14, and 16.
+The first premise is true on rows 8--12, since W is false on those rows.
+So, it really depends on the second premise.
+Since X is false on the bottom four rows, making the second premise true there.
+
+\[
+  \begin{array}{cccc|cccccccccccccccc}
+    W & X & Y & Z & W & \lif & (X & \lor&  Y)&  /&  X&  \lif&  (\lneg Y &  \lor &  Z) & / & W & // & Z \\ \midrule
+    \true & \true & \true & \true &&&&&&&&&&&&&&& \\
+    \true & \true & \true & \false &&&&&&&&&&&&&&& \\
+    \true & \true & \false & \true &&&&&&&&&&&&&&& \\
+    \true & \true & \false & \false &&&&&&&&&&&&&&& \\
+    \true & \false & \true & \true &&&&&&&&&&&&&&& \\
+    \true & \false & \true & \false &&&&&&&&&&&&&&& \\
+    \true & \false & \false & \true &&&&&&&&&&&&&&& \\
+    \true & \false & \false & \false &&&&&&&&&&&&&&& \\
+    \false & \true & \true & \true && \true &&&&&&&&&&& \true && \true \\
+    \false & \true & \true & \false && \true &&&&&&&&&&& \true && \false \\
+    \false & \true & \false & \true && \true &&&&&&&&&&& \true && \true \\
+    \false & \true & \false & \false && \true &&&&&&&&&&& \true && \false \\
+    \false & \false & \true & \true && \true &&&&&& \true &&&&& \true && \true \\
+    \false & \false & \true & \false && \true &&&&&& \true &&&&& \true && \false \\
+    \false & \false & \false & \true && \true &&&&&& \true &&&&& \true && \true \\
+    \false & \false & \false & \false && \true &&&&&& \true &&&&& \true && \false \\
+\end{array}
+\]
+
+
+We shown that the premises are true and the conclusion is false on at least rows 14 and 16. That's one more than needed to prove that the argument is invalid.
+
+
+\section{Short Truth Tables}
+\label{sec:short-truth-tables}
+
+
+If done correctly, truth-tables are a foolproof way of answering questions about truth-functional properties. They do have a significant drawback, though---they can quickly get very large and cumbersome. Although we have seen how we can take some shortcuts, we still often have to complete large portions of a truth table before we can draw a conclusion. It would nice if we were able to go straight the row, if there is one, that proves that an argument is invalid or a set is consistent, or else easily prove that there is no such row. In this section, I'll introduce a method called the short truth-table that can do that, and that works very well \emph{most} of the time.
+
+Let's try it out on the following argument:
+
+\begin{enumerate}
+  % \tightlist
+	\item \(A \lor B\)
+  \item \(B \lif C \)
+	\item \underline{\(\lneg A\)}
+	\item [$\therefore$] \(C\)
+\end{enumerate}
+
+
+We start by listing the premises and conclusion at the top of a truth table, but we only need to leave room for one line:
+
+\[
+\begin{array}{ccc|cccccccccccc}
+  A&B&C& A & \lor & B & / & B & \lif & C & / & \lneg & A & // & C \\ \midrule
+  &&&&&&&&&&&&&& \\
+\end{array}
+\]
+
+Now, we will assume that the argument is invalid. That is, we assume that there is at least one row on which the premises are true and the conclusion is false. So, we'll put a \true\ under the main connective of each premises and a \false\ under the main connective of the conclusion.
+
+\[
+\begin{array}{ccc|cccccccccccc}
+  A&B&C& A & \lor & B & / & B & \lif & C & / & \lneg & A & // & C \\ \midrule
+  &&&& \true &&&& \true &&& \true &&& \false \\
+\end{array}
+\]
+
+Now, we fill in what we know. The same sentence letter must have the same truth-value no matter where it occurs in the argument. So, \enquote*{C} must be false in the second premise.
+
+\[
+\begin{array}{ccc|cccccccccccc}
+  A&B&C& A & \lor & B & / & B & \lif & C & / & \lneg & A & // & C \\ \midrule
+  &&&& \true &&&& \true & \false && \true &&& \false \\
+\end{array}
+\]
+
+We can't really do anything with the first premise yet, since there are three different ways that a disjunction can be true. We do know, however, that \enquote*{A} must be false in the third premise, which would make it false in the first premise as well.
+
+\[
+\begin{array}{ccc|cccccccccccc}
+  A&B&C& A & \lor & B & / & B & \lif & C & / & \lneg & A & // & C \\ \midrule
+  &&& \false & \true &&&& \true & \false && \true & \false && \false \\
+\end{array}
+\]
+
+Now, since we have a true disjunction with one false disjunct, we know the other disjunct must be true.
+
+\[
+\begin{array}{ccc|cccccccccccc}
+  A&B&C& A & \lor & B & / & B & \lif & C & / & \lneg & A & // & C \\ \midrule
+  &&& \false & \true & \true &&& \true & \false && \true & \false && \false \\
+\end{array}
+\]
+
+Finally, we fill in the truth-value for B in the second premise.
+
+\[
+\begin{array}{ccc|cccccccccccc}
+  A&B&C& A & \lor & B & / & B & \lif & C & / & \lneg & A & // & C \\ \midrule
+  &&& \false & \true & \true && \true & \true & \false && \true & \false && \false \\
+\end{array}
+\]
+
+Now, we have a problem. Assuming that the argument was invalid led to a contradiction. In this case, the contradiction is a true conditional with a true antecedent and a false consequent. So, assumption must have been false, and the argument is therefore valid.
+There are two kinds of contradictions that can occur.
+The first is having a simple sentence that is true in one place but false in another.
+The second is having a complex sentence with a truth-value that is incompatible with the truth-values of the component simple sentences.
+
+Let's back up a few steps to see another way that it could have gone, although it won't change anything about the validity of the argument.
+
+\[
+\begin{array}{ccc|cccccccccccc}
+  A&B&C& A & \lor & B & / & B & \lif & C & / & \lneg & A & // & C \\ \midrule
+  &&& \false & \true &&&& \true & \false && \true & \false && \false \\
+\end{array}
+\]
+
+Instead of completing the first premise, we could have gone to the second premise. The only way that a conditional can be true if it has a false consequent is that the antecedent is false. So, we'll put \false\ under the \enquote*{B}.
+
+\[
+\begin{array}{ccc|cccccccccccc}
+  A&B&C& A & \lor & B & / & B & \lif & C & / & \lneg & A & // & C \\ \midrule
+  &&& \false & \true &&& \false & \true & \false && \true & \false && \false \\
+\end{array}
+\]
+
+Now, we'll have to put \false\ under the \enquote*{B} in the first premise.
+
+\[
+\begin{array}{ccc|cccccccccccc}
+  A&B&C& A & \lor & B & / & B & \lif & C & / & \lneg & A & // & C \\ \midrule
+  &&& \false & \true & \false && \false & \true & \false && \true & \false && \false \\
+\end{array}
+\]
+
+But that gives us a true disjunction with two false disjuncts, another contradiction. There is no way that we can construct a line where this valid argument has all true premises and a false conclusion.
+Let's try another one:
+
+\begin{enumerate}
+  % \tightlist
+	\item \(A \liff (B \lor C)\)
+	\item \underline{\(\lneg B \lor \lneg D\)}
+	\item [$\therefore$] \(\lneg A\)
+\end{enumerate}
+
+We'll start by making the heading row of the truth table.
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  &&&&&&&&&&&&&&&&& \\
+  \end{array}
+\]
+
+Fill in the truth values under the main connectives like this:
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  &&&& & \true &&&&&&&\ \true &&&& \false & \\
+  \end{array}
+\]
+
+There are too many ways that biconditional and disjunctions can be true, so the only place we can start is the conclusion.
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  &&&& & \true &&&&&&&\ \true &&&& \false & \true \\
+  \end{array}
+\]
+
+Now, we can fill in something in the first premise.
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  &&&& \true & \true &&&&&&&\ \true &&&& \false & \true \\
+  \end{array}
+\]
+
+Since the first half of that biconditional is true, we know the second half must be also.
+
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  &&&& \true & \true && \true &&&&&\ \true &&&& \false & \true \\
+  \end{array}
+\]
+
+Now, the only thing we can do is to take a guess. Let's assume that both \enquote*{B} and \enquote*{C} are true in the first premise. That will make the bicondional true.
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  &&&& \true & \true & \true & \true & \true &&&&\ \true &&&& \false & \true \\
+  \end{array}
+\]
+
+And if \enquote*{B} is true, then \enquote*{\(\lneg B\)} must be false in the second premise.
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  &&&& \true & \true & \true & \true & \true && \false & \true & \true &&&& \false & \true \\
+  \end{array}
+\]
+
+So, now we have a true conditional with one false disjunct, so the other disjunct must be true.
+
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  &&&& \true & \true & \true & \true & \true && \false & \true & \true & \true &&& \false & \true \\
+  \end{array}
+\]
+
+This means that \enquote*{D} must be false.
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  &&&& \true & \true & \true & \true & \true && \false & \true & \true & \true & \false && \false & \true \\
+  \end{array}
+\]
+
+We have now filled in the truth-table, and our assumption that the argument was invalid has led to no contradictions. Not only do we know that the argument is invalid, we can state one of the rows on which it would have true premises and a false conclusion. Our last step is to fill in the model on the left by copying the truth-values underneath the simple sentences.
+
+
+\[
+\begin{array}{cccc|cccccccccccccc}
+  A&B&C&D& A &  \liff & (B & \lor & C) & / & \lneg & B & \lor & \lneg & D & / & \lneg & A \\ \midrule
+  \true & \true & \true & \false & \true & \true & \true & \true & \true && \false & \true & \true & \true & \false && \false & \true \\
+  \end{array}
+\]
+
+Remember that I said that this works very well \emph{most} of the time. We start by assuming the argument is invalid. If that's the only assumption that we have to make, then we should get our answer fairly easily. In the second example, though, I had to make some further assumptions---I assumed that both \enquote*{B}  and \enquote*{C} were true. If, on those assumptions, we do \emph{not} get any contradictions, then we have successfully proved the argument to be invalid. If we do get a contradiction, however, we have only proved that at least one of our assumptions was false. It need not have been the assumption that the argument was invalid. So, if there had been a contradiction, we would have needed to assume that B was true and C was false to see if we still got a contradiction. If we did, then we would have to assume that C was true and B was false and tried again. The bottom line is that the more assumptions we make, the more difficult it will be to fill everything in. 
+
 \end{document}

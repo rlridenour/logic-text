@@ -6,7 +6,8 @@
 
 \documentclass[letterpaper,11pt,oneside,onecolumn]{memoir}
 
-\usepackage{graphicx,epstopdf,amsmath,amssymb,url,booktabs}
+\usepackage{graphicx,epstopdf,amsmath,amssymb,url,booktabs,turnstile}
+\usepackage[tableaux]{prooftrees}
 \usepackage{microtype}
 \usepackage[american]{babel}
 \usepackage[sf,sc]{titlesec}
@@ -49,6 +50,13 @@
 \newcommand{\lif}{\supset} % For an arrow, use \rightarrow instead of \supset.
 \newcommand{\liff}{\equiv} % For a double arrow, use \leftrightarrow instead of \equiv.
 
+% To use T and F in truth tables, uncomment these two lines. For 1 and 0 instead, uncomment the next two.
+\newcommand{\true}{\textbf{T}}
+\newcommand{\false}{\textbf{F}}
+
+% \newcommand{\true}{1}
+% \newcommand{\false}{0}
+
 \usepackage{subfiles}
 
 % This is for producing corner quotes.
@@ -88,8 +96,8 @@
 \subfile{concepts/concepts}
 \subfile{categorical-logic/categorical}
 \subfile{sl-syntax/sl-syntax}
-% \subfile{pl-syntax/pl-syntax}
-
+\subfile{sl-semantics/sl-semantics}
+\subfile{sl-trees/sl-trees}
 \printbibliography
 
 \end{document}
