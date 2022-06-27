@@ -8,4 +8,462 @@
 \label{"waiting for reftex-label call..."}
 
 
+Truth trees are methods for determining consistency of sets. Since the concepts of tautology, contradiction, consistency, logical equivalence, and validity can all be defined in terms of consistency, truth trees can be very powerful tools for logical analysis.
+
+The trees work by breaking down complex sentences into increasingly simpler sentences, until nothing is left except for simple sentences and the negations of simple sentences. Complex sentences are broken down by using the following decomposition rules. 
+
+\section{Decomposition Rules}
+\label{sec:decomposition-rules-1}
+
+
+\forestset{%
+          default preamble={
+            close with = {\text{\ding{55}}},
+            check with ={\text{\ding{51}}}
+          },
+}
+
+\subsection{Conjunctions}
+\label{sec:conjunctions}
+
+\begin{multicols}{2}
+  
+\emph{Conjunction Decomposition} 
+
+\begin{prooftree}
+  {not line numbering}
+  [\alpha \land \beta, checked
+  [\alpha
+  [\beta]]]
+\end{prooftree}
+
+\emph{Negated Conjunction Decomposition}
+
+
+
+\begin{prooftree}
+  {not line numbering}
+  [\lneg (\alpha \land \beta), checked
+  [\lneg \alpha]
+  [\lneg \beta]
+  ]
+\end{prooftree}
+
+\end{multicols}
+
+Note that the tree on the right splits, or has branches. A tree branches when there is more than one way that a sentence could be true. In order for a conjunction to be true, both conjuncts must be true. So, the tree for a conjunction does not branch. There are two ways, however, that conjunctions could be false --- either the first conjunct is false or the second conjunct is false.
+
+Knowing the truth conditions for disjunctions, conditionals, and biconditionals, you should be able to see what the trees for those sentences and their negations will look like. Disjunctions and conditionals will both branch, but their negations will not. The trees for biconditionals and their negations will both branch.
+
+\subsection{Disjunctions}
+\label{sec:disjunctions}
+
+\begin{multicols}{2}
+  
+\emph{Disjunction Decomposition}
+
+
+
+\begin{prooftree}
+  {not line numbering}
+  [\alpha \lor \beta
+  [\alpha]
+  [\beta]
+  ]
+\end{prooftree}
+
+\emph{Negated Disjunction Decomposition}
+
+\begin{prooftree}
+  {not line numbering}
+  [\lneg (\alpha \lor \beta)
+  [\lneg \alpha
+  [\lneg \beta]]]
+\end{prooftree}
+
+\end{multicols}
+
+\subsection{Conditionals}
+\label{sec:conditionals}
+
+\begin{multicols}{2}
+
+  \emph{Conditional Decomposition}
+
+\begin{prooftree}
+  {not line numbering}
+  [\alpha \lif \beta, checked
+  [\lneg \alpha]
+  [\beta]]
+\end{prooftree}  
+
+\emph{Negated Conditional Decomposition}
+
+\begin{prooftree}
+  {not line numbering}
+  [\lneg (\alpha \lif \beta), checked
+  [\alpha
+  [\lneg \beta]]]
+\end{prooftree}
+
+\end{multicols}
+
+\subsection{Biconditionals}
+\label{sec:biconditionals}
+
+
+\begin{multicols}{2}
+
+\emph{Biconditional Decomposition}
+  
+\begin{prooftree}
+  {not line numbering}
+  [\alpha \liff \beta, checked
+  [\alpha \land \beta]
+  [\lneg \alpha \land \lneg \beta]]
+\end{prooftree}
+
+\emph{Negated Biconditional Decomposition}
+
+\begin{prooftree}
+  {not line numbering}
+  [\lneg (\alpha \liff \beta), checked
+  [\alpha \land \lneg \beta]
+  [\lneg \alpha \land \beta]]
+\end{prooftree}
+
+\end{multicols}
+
+\subsection{Double Negations}
+\label{sec:double-negations}
+
+Finally, we need a rule for double negations. As you can guess, it's rather simple:
+
+\medskip  
+
+\emph{Double Negation Decomposition}
+
+\begin{prooftree}
+  {not line numbering}
+  [\lneg \lneg \alpha, checked
+  [\alpha]]
+\end{prooftree}
+
+\section{Logical Analysis with Trees}
+\label{sec:logic-analys-with}
+
+A branch includes all of the sentences acquired by reading from the bottom of the tree upwards to the top. If a branch contains both a simple sentence and its negation, then that branch is closed. If all of the complex sentences on a branch have been completely decomposed, and that branch does not contain a simple sentence and the negation of that same sentence, then it is a completed open branch. A tree is completed when every branch is either a closed branch or a completed open branch. A tree is closed if all of its branches are closed. It is open if it contains at least one completed open branch. Sentences that have been decomposed are marked with a checkmark; branches that are closed are marked with an ``x.''
+
+Strategically, the goal is to close branches as quickly as possible. That will keep the tree manageable. Sentences may be decomposed in any order. The best strategy is to first decompose any sentence that does not branch, then decompose sentences that will result in a closed branch.
+
+\subsection{Consistency}
+\label{sec:consistency}
+
+To use a tree to determine the consistency of a set, start by listing the members of the set at the top of the tree on separate, numbered lines.
+
+% \forestset{%
+%           default preamble={
+%             line numbering,
+%             close with = {\text{\ding{55}}},
+%             check with ={\text{\ding{51}}}
+%           },
+% }
+
+\begin{prooftree}
+  {}
+  [P \lif Q
+  [\lneg (Q \lor R)
+  [R \lor \lneg P]]]
+\end{prooftree}
+
+The first thing to do is to decompose line 2, since it doesn't branch. Just as in derivations, we'll list what line these came from and what rule was used. We'll also check off line 2, so that we'll know that it has been decomposed already.
+
+\begin{prooftree}
+  {}
+  [P \lif Q
+  [\lneg (Q \lor R), checked
+  [R \lor \lneg P
+  [\lneg Q, just={2 \(\lneg \lor D\)}
+  [\lneg R, just={2 \(\lneg \lor D\)}
+  ]]]]]
+\end{prooftree}
+
+Lines 1 and 3 will both branch, so we should see if either will result in a closed branch. In this case, both will, so it doesn't matter which we do first.
+
+\begin{prooftree}
+  {}
+  [P \lif Q, checked
+  [\lneg (Q \lor R), checked
+  [R \lor \lneg P
+  [\lneg Q, just={2 \(\lneg \lor D\)}
+  [\lneg R, just={2 \(\lneg \lor D\)}
+  [\lneg P, just={1 \(\lif\) D}
+  ]
+  [Q, close]
+  ]]]]]
+\end{prooftree}
+
+Note that the branch on the right now contains \(Q\) and \(\lneg Q\), so it is closed. We will mark it as closed with some symbol, an ``X'' is common, especially when writing trees out by hand. If a branch is closed, then nothing more needs to be done on that branch. 
+
+Now, we just have line 3 remaining to finish.
+
+\begin{prooftree}
+  {}
+  [P \lif Q, checked
+  [\lneg (Q \lor R), checked
+  [R \lor \lneg P, checked
+  [\lneg Q, just={2 \(\lneg \lor D\)}
+  [\lneg R, just={2 \(\lneg \lor D\)}
+  [\lneg P, just={1 \(\lif\) D}
+  [R, close]
+  [\lneg P]
+  ]
+  [Q, close]
+  ]]]]]
+\end{prooftree}
+
+An open tree contains at least one open branch; a closed tree contains no open branches.
+
+So, we finished decomposing all of the complex sentences, but we still have one open branch. That means our original set is consistent. The tree also gives us a truth-value assignment on which all of the set's members are true. We just read up an open branch and assign F to any negated simple sentence and T to any non-negated simple sentence. In this case, the members of the set are all true when P, Q, and R are all false.
+
+Trees for single sentences can be used to determine if a sentence is a tautology, a contradiction, or a contingency. If the tree for a sentence is closed, then it is a contradiction. If the tree for the negation of a sentence is closed, then the sentence is a tautology. If neither the tree for the sentence nor the tree for its negation is closed, then the sentence is contingent.
+
+\section{Validity}
+\label{sec:validity}
+
+Since validity can be defined in terms of consistency, truth trees can be used to determine if an argument if valid.\footnote{An argument is valid, if and only if the set containing the premises and the negation of the conclusion is inconsistent.} List the premises on numbered lines at the top, followed by the negation of the conclusion. Then, complete the tree using the same rules and methods as above. If the tree is closed, then there is no way for the premises to be true and the conclusion false, and the argument is valid. If the tree is open, then there is at least one truth-value assignment on which the premises are true and the conclusion false, and the argument is invalid. A truth-value assignment showing invalidity can be read from any open branch.
+
+Here's a simple tree on a version of DeMorgan's Law, \(P \land Q \vdash \lneg ( \lneg P \lor \lneg Q)\). First, we list the premises and the negated conclusion. 
+
+\begin{prooftree}
+  {}
+[P \land Q
+[\lneg \lneg ( \lneg P \lor \lneg Q)]]
+\end{prooftree}
+
+Then, we decompose any non-branching sentences.
+
+\begin{prooftree}
+  {}
+[P \land Q, checked,just={Premise}
+[\lneg \lneg ( \lneg P \lor \lneg Q), checked, just={Negated Conclusion}
+[P, just={1 \(\land D\)}
+[Q, just={1 \(\land D\)}
+[\lneg P \lor \lneg Q,just={2 \(\lneg \lneg\) D}]]]]]
+\end{prooftree}
+
+We then continue by decomposing any branching sentences, beginning with those that will result in closed branches. In this case, we only have line 5 remaining. 
+
+\begin{prooftree}
+  {}
+[P \land Q, checked,just={Premise}
+[\lneg \lneg ( \lneg P \lor \lneg Q), checked, just={Negated Conclusion}
+[P, just={1 \(\land D\)}
+[Q, just={1 \(\land D\)}
+[\lneg P \lor \lneg Q,checked,just={2 \(\lneg \lneg\) D}
+[\lneg P,close,just={5 \(\lor\) D}]
+[\lneg Q,close,just={5 \(\lor\) D}]
+]]]]]
+\end{prooftree}
+
+Since all branches are closed, the argument is valid.
+
+Here is a more complex example:
+
+\( (G \land H) \lif \lneg I,\ I \lor G,\ H \lif \lneg G,\ H \liff I \vdash \lneg H \lor G\)
+
+As before, we begin by list the premises and the negation of the conclusion.
+
+\begin{prooftree}
+  {}
+  [(G \land H) \lif \lneg I
+[I \lor G
+[H \lif \lneg G
+[H \liff I
+[\lneg (\lneg H \lor G)
+]]]]]
+\end{prooftree}
+
+Unfortunately, there is only line that doesn't branch. So, we'll decompose line 5, followed by decomposing the double negation that will result.
+
+\begin{prooftree}
+  {}
+  [(G \land H) \lif \lneg I
+[I \lor G
+[H \lif \lneg G
+[H \liff I
+[\lneg (\lneg H \lor G), checked
+[\lneg \lneg H, checked, just={5 \(\lneg \lor D\)}
+[\lneg G, just={5 \(\lneg \lor D\)}
+[H, just={6 \(\lneg \lneg D\)}
+% [G, just={7 \(\lneg \lneg D\)}
+]]]]]]]]]
+\end{prooftree}
+
+Now, we have a choice. Both line 2 and line 3 will branch, but they will both also result in an immediately closed branch. Let's start with line 3.
+
+\begin{prooftree}
+  {}
+  [(G \land H) \lif \lneg I
+[I \lor G
+[H \lif \lneg G, checked
+[H \liff I
+[\lneg (\lneg H \lor G), checked
+[\lneg \lneg H, checked, just={5 \(\lneg \lor D\)}
+[\lneg G, just={5 \(\lneg \lor D\)}
+[H, just={6 \(\lneg \lneg D\)}
+% [G, just={7 \(\lneg \lneg D\)}
+[\lneg H,close,just={3 \(\lif D\)}]
+[\lneg G,just={3 \(\lif D\)}]
+]]]]]]]]]
+\end{prooftree}
+
+We'll next do line 2.
+
+\begin{prooftree}
+  {}
+  [(G \land H) \lif \lneg I
+[I \lor G, checked
+[H \lif \lneg G, checked
+[H \liff I
+[\lneg (\lneg H \lor G), checked
+[\lneg \lneg H, checked, just={5 \(\lneg \lor D\)}
+[\lneg G, just={5 \(\lneg \lor D\)}
+[H, just={6 \(\lneg \lneg D\)}
+% [G, just={7 \(\lneg \lneg D\)}
+[\lneg H,close,just={3 \(\lif D\)}]
+[\lneg G,just={3 \(\lif D\)}
+[I, just={2 \(\lor D\)}]
+[G, close,just={2 \(\lor D\)}]
+]
+]]]]]]]]]
+\end{prooftree}
+
+That just leaves two lines. I usually try to avoid biconditionals until the end, so I'll decompose line 1.
+
+\begin{prooftree}
+  {}
+  [(G \land H) \lif \lneg I, checked
+[I \lor G, checked
+[H \lif \lneg G, checked
+[H \liff I
+[\lneg (\lneg H \lor G), checked
+[\lneg \lneg H, checked, just={5 \(\lneg \lor D\)}
+[\lneg G, just={5 \(\lneg \lor D\)}
+[H, just={6 \(\lneg \lneg D\)}
+[\lneg H,close,just={3 \(\lif D\)}]
+[\lneg G,just={3 \(\lif D\)}
+[I, just={2 \(\lor D\)}
+[\lneg(G \land H), just={1 \(\lif D\)}]
+[\lneg I, close]
+]
+[G, close,just={2 \(\lor D\)}]
+]
+]]]]]]]]]
+\end{prooftree}
+
+Now, I'll decompose the negated conjunction in line 11.
+
+\begin{prooftree}
+  {}
+  [(G \land H) \lif \lneg I,checked
+[I \lor G, checked
+[H \lif \lneg G, checked
+[H \liff I
+[\lneg (\lneg H \lor G), checked
+[\lneg \lneg H, checked, just={5 \(\lneg \lor D\)}
+[\lneg G, just={5 \(\lneg \lor D\)}
+[H, just={6 \(\lneg \lneg D\)}
+[\lneg H,close,just={3 \(\lif D\)}]
+[\lneg G,just={3 \(\lif D\)}
+[I, just={2 \(\lor D\)}
+[\lneg(G \land H), checked, just={1 \(\lif D\)}
+[\lneg G, just={11 \(\lneg \land D\)}]
+[\lneg H,close]
+]
+[\lneg I, close]
+]
+[G, close,just={2 \(\lor D\)}]
+]
+]]]]]]]]]
+\end{prooftree}
+
+The right branch closes with H and \(\lneg H\). Now I'm forced to decompose the biconditional in line 4.
+
+\begin{prooftree}
+  {}
+  [(G \land H) \lif \lneg I,checked
+[I \lor G, checked
+[H \lif \lneg G, checked
+[H \liff I, checked
+[\lneg (\lneg H \lor G), checked
+[\lneg \lneg H, checked, just={5 \(\lneg \lor D\)}
+[\lneg G, just={5 \(\lneg \lor D\)}
+[H, just={6 \(\lneg \lneg D\)}
+[\lneg H,close,just={3 \(\lif D\)}]
+[\lneg G,just={3 \(\lif D\)}
+[I, just={2 \(\lor D\)}
+[\lneg(G \land H), checked, just={1 \(\lif D\)}
+[\lneg G, just={11 \(\lneg \land D\)}
+[H \land I, just={4, \(\liff D\)}]
+[ \lneg H \land \lneg I] 
+]
+[\lneg H,close]
+]
+[\lneg I, close]
+]
+[G, close,just={2 \(\lor D\)}]
+]
+]]]]]]]]]
+\end{prooftree}
+
+All that remains now is to decompose the two conjunctions in line 13.
+
+\begin{prooftree}
+  {}
+  [(G \land H) \lif \lneg I,checked
+[I \lor G, checked
+[H \lif \lneg G, checked
+[H \liff I, checked
+[\lneg (\lneg H \lor G), checked
+[\lneg \lneg H, checked, just={5 \(\lneg \lor D\)}
+[\lneg G, just={5 \(\lneg \lor D\)}
+[H, just={6 \(\lneg \lneg D\)}
+[\lneg H,close,just={3 \(\lif D\)}]
+[\lneg G,just={3 \(\lif D\)}
+[I, just={2 \(\lor D\)}
+[\lneg(G \land H), checked, just={1 \(\lif D\)}
+[\lneg G, just={11 \(\lneg \land D\)}
+[H \land I, checked, just={4, \(\liff D\)}
+[H, just={13 \(\land D\)}
+[I, just={13 \(\land D\)}
+]]]
+[ \lneg H \land \lneg I, checked, just={4, \(\liff D\)}
+[\lneg H
+[\lneg I, close
+]]] 
+]
+[\lneg H,close]
+]
+[\lneg I, close]
+]
+[G, close,just={2 \(\lor D\)}]
+]
+]]]]]]]]]
+\end{prooftree}
+
+The tree is finally finished. The right branch is closed, but the left branch is not. It tells us that the premises of the original argument will be true and the conclusion will be false whenever G is false, H is true, and I is true. That would be the fifth line of the truth table, and would look like this:
+
+\[
+\begin{array}{ccc|ccccccccccccccccccccc}
+G & H & I & (G & \land & H) & \lif & \lneg I & / & I & \lor & G & / & H & \lif & \lneg G & / & H & \liff & I &  // &  \lneg H & \lor & G \\ \midrule
+F & T & T & F  & F     & T  & \mathbf{T}    & F       &  & T & \mathbf{T}    & F &  & T & \mathbf{T}    & T       &  & T & \mathbf{T}     & T &  & F        & \mathbf{F}    & F 
+\end{array}
+\]
+
+
+
+
+
+
 \end{document}

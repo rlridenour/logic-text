@@ -99,10 +99,26 @@ So, to determine the truth-values of all of the formulas, however complex, of \e
 A model is a function that maps atomic formulas of \emph{SL} to truth-values.
 Thus, a model determines the truth-values of every sentence in \emph{SL}, not just the simple sentences.
 A partial model assigns truth-values to only some of the sentences in \emph{SL}.
-Whenever we use the term \enquote*{model}, we will almost always mean a partial model.
-We aren't generally concerned about the truth values of all of the sentences in \emph{SL}, but only those that are contained in the sentence or argument that we are analyzing.
+Whenever we use the term \enquote*{model}, we will almost always mean a partial model, since we aren't generally concerned about the truth values of all of the sentences in \emph{SL}, but only those that are contained in the sentence or argument that we are analyzing.
 
-A truth-table for a sentence shows its truth-value for every model.
+Here are two ways to express models. The first uses standard function notation, using \enquote*{\(v\)} for \enquote*{valuation}:
+
+\begin{quote}
+  \(v_{1}(A) = \true\), \(v_{1}(B) = \false\), \(v_{1}(C) = \true\)
+\end{quote}
+
+\noindent This says that valuation \(v_{1}\) assigns \true\ to \textbf{A} and \textbf{C}, and \false\ to \textbf{B}. The same information can be expressed in a table:
+
+
+\[
+\begin{array}{c|ccc}
+  & A & B & C \\ \midrule
+  v_{1}& \true & \false & \true \\
+\end{array}
+\]
+
+
+A truth-table for a sentence shows its truth-value for every partial model.
 Let's begin by constructing a very simple truth table for a sentence containing one simple sentence, \enquote*{\(A \lif A\)}.
 Begin simply by writing down the sentence.
 
@@ -1411,5 +1427,35 @@ We have now filled in the truth-table, and our assumption that the argument was 
 \]
 
 Remember that I said that this works very well \emph{most} of the time. We start by assuming the argument is invalid. If that's the only assumption that we have to make, then we should get our answer fairly easily. In the second example, though, I had to make some further assumptions---I assumed that both \enquote*{B}  and \enquote*{C} were true. If, on those assumptions, we do \emph{not} get any contradictions, then we have successfully proved the argument to be invalid. If we do get a contradiction, however, we have only proved that at least one of our assumptions was false. It need not have been the assumption that the argument was invalid. So, if there had been a contradiction, we would have needed to assume that B was true and C was false to see if we still got a contradiction. If we did, then we would have to assume that C was true and B was false and tried again. The bottom line is that the more assumptions we make, the more difficult it will be to fill everything in. 
+
+\section{Semantics for SL}
+\label{sec:semantics-sl}
+
+Finally, let's formally state the semantics of \emph{SL}:
+
+\begin{itemize}
+  \item If \(\alpha\) is a propositional constant, \(\alpha\) is true in \(v\) if and only if \(v(\alpha) = \true\).
+  \item \(\lneg \alpha\) is true in \(v\) if and only if \(\alpha\) is not true in \(v\).
+  \item \(\alpha \land \beta\) is true in \(v\) if and only if \(\alpha\) is true in \(v\) and \(\beta\) is true in \(v\).
+  \item \(\alpha \lor \beta\) is true in \(v\) if and only if either \(\alpha\) is true in \(v\) or \(\beta\) ) is true in \(v\), or both.
+  \item \(\alpha \lor \beta\) is true in \(v\) if and only if either \(\alpha\) is not true in \(v\) or \(\beta\) is true in \(v\).
+  \item \(\alpha \liff \beta\) is true in \(v\) if and only if either both \(\alpha\) and \(\beta\) are true in \(v\) or neither  \(\alpha\) nor \(\beta\) are true in \(v\).
+\end{itemize}
+
+
+These clauses determine the truth value for any well-formed formula of \emph{SL} that uses any of the five logical connectives defined.
+
+We can also carefully define some important logical concepts using the notion of a model:
+
+\begin{itemize}
+  \item A formula is a logical truth if and only if it is true on every model.
+  \item A formula is a logical false hood if and only if it is false on every model.
+  \item A formula is logically contingent if and only if it is neither a logical truth nor a logical falsehood.
+  \item Two formulas are equivalent if and only if they have the same truth value on every model.
+  \item A set of formulas is consistent if and only if there is at least one model in which they are all true.
+  \item A formula \(\alpha\) entails another formula \(\beta\) if and only if there is no model in which \(\alpha\) is true and \(\beta\) is false.
+  \item An argument is valid if and only there is no model in which all of its premises are true and its conclusion is false.
+\end{itemize}
+
 
 \end{document}
