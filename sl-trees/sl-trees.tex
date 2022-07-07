@@ -8,9 +8,23 @@
 \label{"waiting for reftex-label call..."}
 
 
-Truth trees are methods for determining consistency of sets. Since the concepts of tautology, contradiction, consistency, logical equivalence, and validity can all be defined in terms of consistency, truth trees can be very powerful tools for logical analysis.
+Truth-tables provide a mechanical means of determining the logical status of sentences, sets, and arguments. You simply follow the rules, and the table will give you the answer. As I mentioned before, though, they have a significant drawback. With every additional propositional constant, the truth-table doubles in size. Truth-trees provide another means for determining consistency, validity, etc., and in many cases truth-trees are far more efficient than truth-tables. 
 
-The trees work by breaking down complex sentences into increasingly simpler sentences, until nothing is left except for simple sentences and the negations of simple sentences. Complex sentences are broken down by using the following decomposition rules. 
+Strictly speaking, truth-trees are methods for determining consistency of sets. Since the concepts of tautology, contradiction, consistency, logical equivalence, and validity can all be defined in terms of consistency, truth trees can be very powerful tools for logical analysis.
+
+Remember that a set is consistent if and only if its members are all true in at least one model. A set is inconsistent if and only if there is no model in which all of its members are true. Now, let's define our other logical concepts in terms of consistency.
+
+
+\begin{description}
+  \item[Logical Falsehood]: \(\alpha\) is logically false if and only if \(\{\alpha\}\) is inconsistent.
+  \item[Logical Truth]: \(\alpha\) is logically true if and only if \(\{\lneg \alpha\}\) is inconsistent.
+  \item[Logical Indeterminacy]: \(\alpha\) is logically indeterminate if and both \(\{\alpha\}\) and \(\{\lneg \alpha\}\) are consistent.
+  \item[Logical Equivalence]: \(\alpha\) and \(\beta\) are logically equivalent if and only if \(\{ \lneg (\alpha \liff \beta)\}\) is inconsistent.
+  \item[Logical Entailment]: \(\Gamma \vDash \alpha\) if and only if \(\Gamma \cup \{\lneg \alpha\}\) is inconsistent.
+  \item[Logical Validity]: An argument is logically valid if and only the set containing the premises and the negation of the conclusion is inconsistent. 
+\end{description}
+
+The trees work by breaking down complex sentences into increasingly simpler sentences, until nothing is left except for simple sentences and the negations of simple sentences. Complex sentences are broken down by using the following decomposition rules.  
 
 \section{Decomposition Rules}
 \label{sec:decomposition-rules-1}
@@ -224,14 +238,140 @@ Now, we just have line 3 remaining to finish.
 
 An open tree contains at least one open branch; a closed tree contains no open branches.
 
-So, we finished decomposing all of the complex sentences, but we still have one open branch. That means our original set is consistent. The tree also gives us a truth-value assignment on which all of the set's members are true. We just read up an open branch and assign F to any negated simple sentence and T to any non-negated simple sentence. In this case, the members of the set are all true when P, Q, and R are all false.
+So, we finished decomposing all of the complex sentences, but we still have one open branch. That means our original set is consistent. The tree also gives us a model on which all of the set's members are true. We just read up an open branch and assign F to any negated simple sentence and T to any non-negated simple sentence. In this case, the members of the set are all true when P, Q, and R are all false.
 
 Trees for single sentences can be used to determine if a sentence is a tautology, a contradiction, or a contingency. If the tree for a sentence is closed, then it is a contradiction. If the tree for the negation of a sentence is closed, then the sentence is a tautology. If neither the tree for the sentence nor the tree for its negation is closed, then the sentence is contingent.
+
+\section{Contradictions and Tautologies}
+\label{sec:contr-taut}
+
+To determine whether a sentence is a contradiction, we do a tree for that sentence. If the tree is closed, then there is no model in which the sentence is true, and it is therefore a contradiction. Here's an example:
+
+\begin{quote}
+  \(P \land (\lneg (Q \lif P))\)
+\end{quote}
+
+We start by writing the sentence on line 1.
+
+\begin{prooftree}
+  {}
+  [P \land \lneg (Q \lif P)]
+  % [P, just={1 \(\land\) D}
+  % [\lneg (Q \lif P), checked, just={1 \(\land\) D}
+  % [Q, just=3 \(\lneg \lif D\)
+  % [\lneg P, close, just=3 \(\lneg \lif D\)]]]]]
+\end{prooftree}
+
+Then, we will decompose it using the conjunction decomposition rule, and checking it off showing that we're finished with it.
+
+\begin{prooftree}
+  {}
+  [P \land \lneg (Q \lif P), checked
+  [P, just={1 \(\land\) D}
+  [\lneg (Q \lif P), checked, just={1 \(\land\) D}]]]
+  % [Q, just=3 \(\lneg \lif D\)
+  % [\lneg P, close, just=3 \(\lneg \lif D\)]]]]]
+\end{prooftree}
+
+Line 2 is already a simple sentence, so there's nothing we need to do with it. Decomposing the negated conditional on line 3 produces \enquote*{\(\lneg P\)}, which closes the branch. 
+
+\begin{prooftree}
+  {}
+  [P \land \lneg (Q \lif P), checked
+  [P, just={1 \(\land\) D}
+  [\lneg (Q \lif P), checked, just={1 \(\land\) D}
+  [Q, just=3 \(\lneg \lif D\)
+  [\lneg P, close, just={3 \(\lneg \lif D\)}]]]]]
+\end{prooftree}
+
+Since the tree has only one branch and it is closed, there is no model on which the original sentence is true. So, it is a contradiction.
+
+To determine if a sentence is a tautology, we do a tree for the negation of the sentence. Since the negation of a tautology is false on every model, the tree will be closed. Here's an example:
+
+\begin{quote}
+  \(P \lif (Q \lif P)\)
+\end{quote}
+
+We start by putting the negation of the sentence on line 1.
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr P \lif (Q \lif P) \rbr]
+\end{prooftree}
+
+After that, decompose line 1 with negated conditional decomposition.
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr P \lif (Q \lif P) \rbr, checked
+  [P
+  [\lneg (Q \lif P)]]]
+\end{prooftree}
+
+\medskip
+Now, decompose line 3, again using negated conditional decomposition 
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr P \lif (Q \lif P) \rbr, checked
+  [P, just={1 \(\lneg \lif D\)}
+  [\lneg (Q \lif P), checked, just={1 \(\lneg \lif D\)}
+  [Q, just={3 \(\lneg \lif D\)}
+  [\lneg P, close, just={3 \(\lneg \lif D\)}]]]]]
+\end{prooftree}
+
+
+This tree tells us that \enquote*{\(\lneg [P \lif (Q \lif P)]\)} is a contradiction, which means that our original sentence, \enquote*{\(P \lif (Q \lif P)\)} is tautology.
+
+
+If a tree for a sentence is open, we only know that it is not a contradiction, \emph{even if every branch is open}. Likewise, if tree for a negated sentence is open, we only know that the original sentence is not a tautology. Let's see a simple example:
+
+\begin{quote}
+  \(P \lor (Q \land R)\)
+\end{quote}
+
+\begin{prooftree}
+  {}
+  [P \lor (Q \land R), checked
+  [P, just={ \( 1 \lor D\)}]
+  [Q \land R, checked
+  [Q, just={\(2 \land D\)}
+  [R, just={\(2 \land D\)}]]]]
+\end{prooftree}
+
+Note that both branches are open. Now, we can easily state a model on which \enquote*{\(P \lor (Q \land R)\)} is true. The left-hand branch tells us that any model in which \enquote*{P} is true will be a model in which  \enquote*{\(P \lor (Q \land R)\)} is true. We can fill in any values for \enquote*{Q} and \enquote*{R} that we like. Here's one such model:
+
+\begin{quote}
+  P = \true\\
+  Q = \true\\
+  R = \true\\
+\end{quote}
+
+Note, though, that even though every branch is open, our sentence is definitely not a tautology. \enquote*{\(P \lor (Q \land R)\)} is false whenever both P and at least one of Q or R are false. We can show this by doing a tree for the negation of the sentence. Here's the completed tree:
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr P \lor (Q \land R) \rbr, checked
+  [\lneg P, just={ \( 1 \lneg \lor D\)}
+  [\lneg (Q \land R), checked, just={ \( 1 \lneg \lor D\)}
+  [\lneg Q, just={\(3 \lneg \land R\)}]
+  [\lneg R]]]]
+\end{prooftree}
+
+\medskip
+Now, since we have an open tree for both \enquote*{\(P \lor (Q \land R)\)} and its negation, we have shown that the sentence is logically indeterminate, or contingent.
+
+
 
 \section{Validity}
 \label{sec:validity}
 
-Since validity can be defined in terms of consistency, truth trees can be used to determine if an argument if valid.\footnote{An argument is valid, if and only if the set containing the premises and the negation of the conclusion is inconsistent.} List the premises on numbered lines at the top, followed by the negation of the conclusion. Then, complete the tree using the same rules and methods as above. If the tree is closed, then there is no way for the premises to be true and the conclusion false, and the argument is valid. If the tree is open, then there is at least one truth-value assignment on which the premises are true and the conclusion false, and the argument is invalid. A truth-value assignment showing invalidity can be read from any open branch.
+Since validity can be defined in terms of consistency, truth trees can be used to determine if an argument if valid.
+List the premises on numbered lines at the top, followed by the negation of the conclusion.
+Then, complete the tree using the same rules and methods as above.
+If the tree is closed, then there is no way for the premises to be true and the conclusion false, and the argument is valid.
+If the tree is open, then there is at least one model on which the premises are true and the conclusion false, and the argument is invalid.
+A truth-value assignment showing invalidity can be read from any open branch.
 
 Here's a simple tree on a version of DeMorgan's Law, \(P \land Q \vdash \lneg ( \lneg P \lor \lneg Q)\). First, we list the premises and the negated conclusion. 
 
@@ -266,7 +406,7 @@ We then continue by decomposing any branching sentences, beginning with those th
 ]]]]]
 \end{prooftree}
 
-Since all branches are closed, the argument is valid.
+Since all branches are closed, the argument is valid. Note that a tree for logical entailment works exactly the same way, simply put all of the members of the set and the negation of the entailed sentence on the tree.
 
 Here is a more complex example:
 
