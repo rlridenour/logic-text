@@ -361,6 +361,187 @@ Note, though, that even though every branch is open, our sentence is definitely 
 \medskip
 Now, since we have an open tree for both \enquote*{\(P \lor (Q \land R)\)} and its negation, we have shown that the sentence is logically indeterminate, or contingent.
 
+\section{Equivalence}
+\label{sec:equivalence}
+
+
+Remember that a biconditional is true whenever the two sentences joined by the biconditional operator have the same truth value. So, if the two sentences have the same truth value in every model, then the biconditional will be a tautology. This means that we can test whether two sentences are logically equivalent by joining them with a triple bar, negating the resulting sentence, then working a truth-tree for it. If the tree is closed, then the two original sentences are logically equivalent.
+
+Let's test it with a simple example:
+
+\begin{quote}
+  \(P \lif Q\) \(\lneg P \lor Q\)
+\end{quote}
+
+First, we will make a negated biconditional using the two sentences.
+
+\medskip
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr (P \lif Q) \liff (\lneg P \lor Q) \rbr]
+\end{prooftree}
+
+\medskip
+
+Now, we can decompose it using the negated biconditional rule.
+
+\medskip
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr (P \lif Q) \liff (\lneg P \lor Q) \rbr, checked
+  [P \lif Q, just={\(1 \lneg \liff D\)}
+  [\lneg (\lneg P \lor Q), just={\(1 \lneg \liff D\)}
+  % [\lnot \lnot P, just={\(3 \lneg \lor D\)}
+  % [\lnot Q, just={\(3 \lneg \lor D\)}
+  % [P, just={\(4 \lneg \lneg D\)}
+  % [\lnot P, close, just={\(2 \lif D\)}]
+  % [Q, close]]]]
+  ]]
+  [\lneg (P \lif Q)
+  [\lneg P \lor Q
+  % [P
+  % [\lnot Q
+  % [\lnot P, close]
+  % [Q, close]]]
+  ]]]
+\end{prooftree}
+
+\medskip
+
+Now, we have to finish each branch; let's work on the left side first. Too keep things as simple as possible, remember to always decompose non-branching sentences first. In this case, we should decompose the negated disjunction. 
+
+\medskip
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr (P \lif Q) \liff (\lneg P \lor Q) \rbr, checked
+  [P \lif Q, just={\(1 \lneg \liff D\)}
+  [\lneg (\lneg P \lor Q), just={\(1 \lneg \liff D\)}, checked
+  [\lnot \lnot P, just={\(3 \lneg \lor D\)}
+  [\lnot Q, just={\(3 \lneg \lor D\)}
+  % [P, just={\(4 \lneg \lneg D\)}
+  % [\lnot P, close, just={\(2 \lif D\)}]
+  % [Q, close]]
+  ]]]]
+  [\lneg (P \lif Q)
+  [\lneg P \lor Q
+  % [P
+  % [\lnot Q
+  % [\lnot P, close]
+  % [Q, close]]]
+  ]]]
+\end{prooftree}
+
+\medskip
+
+The next step is to take care of the double negation.
+\medskip
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr (P \lif Q) \liff (\lneg P \lor Q) \rbr, checked
+  [P \lif Q, just={\(1 \lneg \liff D\)}
+  [\lneg (\lneg P \lor Q), just={\(1 \lneg \liff D\)}, checked
+  [\lnot \lnot P, just={\(3 \lneg \lor D\)}, checked
+  [\lnot Q, just={\(3 \lneg \lor D\)}
+  [P, just={\(4 \lneg \lneg D\)}
+  % [\lnot P, close, just={\(2 \lif D\)}]
+  % [Q, close]
+  ]
+  ]]]]
+  [\lneg (P \lif Q)
+  [\lneg P \lor Q
+  % [P
+  % [\lnot Q
+  % [\lnot P, close]
+  % [Q, close]]]
+  ]]]
+\end{prooftree}
+
+\medskip
+
+Now, we can decompose the conditional on line 2, which will result in two closed branches.
+
+
+\medskip
+\begin{prooftree}
+  {}
+  [\lneg \lbr (P \lif Q) \liff (\lneg P \lor Q) \rbr, checked
+  [P \lif Q, just={\(1 \lneg \liff D\)}, checked
+  [\lneg (\lneg P \lor Q), just={\(1 \lneg \liff D\)}, checked
+  [\lnot \lnot P, just={\(3 \lneg \lor D\)}, checked
+  [\lnot Q, just={\(3 \lneg \lor D\)}
+  [P, just={\(4 \lneg \lneg D\)}
+  [\lnot P, close, just={\(2 \lif D\)}]
+  [Q, close]
+  ]
+  ]]]]
+  [\lneg (P \lif Q)
+  [\lneg P \lor Q
+  % [P
+  % [\lnot Q
+  % [\lnot P, close]
+  % [Q, close]]]
+  ]]]
+\end{prooftree}
+
+\medskip
+
+Now, we'll decompose the negated conditional on the main right hand branch, since it doesn't branch.
+
+\medskip
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr (P \lif Q) \liff (\lneg P \lor Q) \rbr, checked
+  [P \lif Q, just={\(1 \lneg \liff D\)}, checked
+  [\lneg (\lneg P \lor Q), just={\(1 \lneg \liff D\)}, checked
+  [\lnot \lnot P, just={\(3 \lneg \lor D\)}, checked
+  [\lnot Q, just={\(3 \lneg \lor D\)}
+  [P, just={\(4 \lneg \lneg D\)}
+  [\lnot P, close, just={\(2 \lif D\)}]
+  [Q, close]
+  ]
+  ]]]]
+  [\lneg (P \lif Q), checked
+  [\lneg P \lor Q
+  [P, just={\(2 \lneg \lif D\)}
+  [\lnot Q, just={\(2 \lneg \lif D\)}
+  % [\lnot P, close]
+  % [Q, close]
+  ]]
+  ]]]
+\end{prooftree}
+
+\medskip
+
+Finally, we decompose the disjunction on line 3, which gives us two new closed branches.
+
+\medskip
+
+\begin{prooftree}
+  {}
+  [\lneg \lbr (P \lif Q) \liff (\lneg P \lor Q) \rbr
+  [P \lif Q, just={\(1 \lneg \liff D\)}
+  [\lneg (\lneg P \lor Q), just={\(1 \lneg \liff D\)}
+  [\lnot \lnot P, just={\(3 \lneg \lor D\)}
+  [\lnot Q, just={\(3 \lneg \lor D\)}
+  [P, just={\(4 \lneg \lneg D\)}
+  [\lnot P, close, just={\(2 \lif D\)}]
+  [Q, close]]]]]]
+  [\lneg (P \lif Q)
+  [\lneg P \lor Q
+  [P, just={\(2 \lneg \lif D\)}
+  [\lnot Q, just={\(2 \lneg \lif D\)}
+  [\lnot P, close, just={\(3 \lor D\)}]
+  [Q, close]]]]]]
+\end{prooftree}
+
+
+
+
 
 
 \section{Validity}
