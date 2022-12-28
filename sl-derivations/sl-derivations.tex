@@ -7,5 +7,1042 @@
 \chapter{Sentential Logic: Derivations}
 \label{cha:sl-derivations}
 
+\section{The Derivation System SD}
+\label{sec:deriv-syst-sd}
+
+
+
+The first derivation rule of \emph{SD} is \emph{Reiteration}
+
+
+\emph{Reiteration} (R)
+
+\(
+\begin{nd}
+  \have [ ] {} {\alpha}
+  \have [\triangleright] {} {\alpha}
+\end{nd}  
+\)
+
+
+The symbol \enquote*{\(\triangleright\)} indicates the formula we are allowed to derive using the rule. Reiteration does nothing more than simply allowing us to derive a sentence from itself. Here's an example of a a derivation that uses the Reiteration rule.
+
+\(
+\begin{nd}
+  \hypo {1} {P \lif (Q \lor R)}
+  \hypo {2} {\lneg (Q \land S)}
+  \have {3} {P \lif (Q \lor R)} \r{1}
+\end{nd}
+\)
+
+\bigskip
+
+The first two lines of the derivation are assumptions. Assumptions are set off by a horizontal line from the derived sentences that follow. The vertical line is called a scope line.
+Notice that the lines of the proof are numbered. To the right of each derived formula will be the rule that was used to derive that formula, and the line numbers to which the rule was applied.
+
+Along with Reiteration, \emph{SD} includes rules for introducing and eliminating each of the five logical connectives in \emph{SL}. The conjunction rules are the simplest, so let's start there.
+
+\emph{Conjunction Introduction} (\(\land I\))
+
+
+\(
+\begin{nd}
+  \have [ ] {} {\alpha}
+  \have [ ] {} {\beta}
+  \have [\triangleright] {} {\alpha \land \beta}
+\end{nd}
+\text{or}
+\qquad
+\begin{nd}
+  \have [ ] {} {\alpha}
+  \have [ ] {} {\beta}
+  \have [\triangleright] {} {\beta \land \alpha}
+\end{nd}  
+\)
+
+\bigskip
+
+This rule allows us to form a conjunction of any two formulas occurring on previous lines. The order that those formulas appear in the proof doesn't matter. Even if \(\beta\) occurred before \(\alpha\), we could still derive \(\alpha \land \beta\).
+
+\bigskip
+
+\emph{Conjunction Elimination} (\(\land E\))
+
+% \setlength\columnsep{0pt}
+
+
+
+\(
+\begin{nd}
+  \have [ ] {} {\alpha \land \beta}
+  \have [\triangleright] {} {\alpha}
+\end{nd}
+\text{or}
+\qquad
+\begin{nd}
+  \have [ ] {} {\alpha \land \beta}
+  \have [\triangleright] {} {\beta}
+\end{nd}
+\)
+
+
+
+\bigskip
+
+We have two different versions of the same rule---this allows us to derive either of the two conjuncts using the single conjunction elimination rule.
+
+Let's see an example derivation using the conjunction rules.
+
+\bigskip
+
+Derive: \(W \land (X \land Y)\)
+
+\(
+\begin{nd}
+  \hypo {1} {W \land X}
+  \hypo {2} {Y \land Z}
+  \have [  ] {} {\phantom{W}}
+  % \have {3} {W} \ae{1}
+  % \have {4} {X} \ae{1}
+  % \have {5} {Y} \ae{2}
+  % \have {6} {X \land Y} \ai{4,5}
+  % \have {7} {W \land (X \land Y)} \ai{3,6}
+\end{nd}
+\)
+
+\bigskip
+
+A good strategy is to start with the sentence that is to be derived and then think backwards. To form \enquote*{\(W \land (X \land Y)\)} using the \&I rule, we will need to have \enquote*{W} on one line and \enquote*{\(X \land Y\)} on another. We can get \enquote*{W} from line 1, so let's start there.
+
+
+\(
+\begin{nd}
+  \hypo {1} {W \land X}
+  \hypo {2} {Y \land Z}
+  \have {3} {W} \ae{1}
+  % \have {4} {X} \ae{1}
+  % \have {5} {Y} \ae{2}
+  % \have {6} {X \land Y} \ai{4,5}
+  % \have {7} {W \land (X \land Y)} \ai{3,6}
+\end{nd}
+\)
+
+\bigskip
+
+To form \enquote*{\(X \land Y\)}, we will need to have a line with each formula. One will come from line 1 and the other from line 2.
+
+\(
+\begin{nd}
+  \hypo {1} {W \land X}
+  \hypo {2} {Y \land Z}
+  \have {3} {W} \ae{1}
+  \have {4} {X} \ae{1}
+  \have {5} {Y} \ae{2}
+  % \have {6} {X \land Y} \ai{4,5}
+  % \have {7} {W \land (X \land Y)} \ai{3,6}
+\end{nd}
+\)
+
+\bigskip
+
+Now, we can from \enquote*{\(X \land Y\)} using conjunction introduction on lines 4 and 5.
+
+\(
+\begin{nd}
+  \hypo {1} {W \land X}
+  \hypo {2} {Y \land Z}
+  \have {3} {W} \ae{1}
+  \have {4} {X} \ae{1}
+  \have {5} {Y} \ae{2}
+  \have {6} {X \land Y} \ai{4,5}
+  % \have {7} {W \land (X \land Y)} \ai{3,6}
+\end{nd}
+\)
+
+\bigskip
+
+Finally, we use lines 1 and 6 to form \enquote*{\(W \land (X \land Y)\)}
+
+\(
+\begin{nd}
+  \hypo {1} {W \land X}
+  \hypo {2} {Y \land Z}
+  \have {3} {W} \ae{1}
+  \have {4} {X} \ae{1}
+  \have {5} {Y} \ae{2}
+  \have {6} {X \land Y} \ai{4,5}
+  % \have {7} {W \land (X \land Y)} \ai{3,6}
+\end{nd}
+\)
+
+\bigskip
+
+\emph{Conditional Elimination} (\(\lif E\))
+
+\(
+\begin{nd}
+  \have [  ] {} {\alpha \lif \beta}
+  \have [  ] {} {\alpha}
+    \have [\triangleright] {} {\beta}
+\end{nd}
+\)
+
+\bigskip
+
+The conditional elimination rule, also called \enquote*{Modus Ponens}, tells us that the consequent of a conditional can be derived whenever the conditional and its antecedent occur on previous lines. Here's a derivation using conditional elimination.
+
+Derive: H
+
+\bigskip
+
+
+\(
+\begin{nd}
+  \hypo {} {F \qquad/H}
+  \hypo {} {G}
+  \hypo {} {(F \land G) \lif H}
+  \have {} {F \land G} \ai{1,2}
+  \have {} {H} \ie{3,4}
+\end{nd}
+\)
+
+
+
+\bigskip
+
+
+\emph{Conditional Introduction} (\(\lif I\))
+
+\bigskip
+
+\(
+\begin{nd}
+  \open
+  \hypo [  ] {} {\alpha}
+  \have [  ]{} {\beta}
+  \close
+  \have [\triangleright] {} {\alpha \lif \beta}
+\end{nd}
+\)
+
+\bigskip
+
+Conditional introduction is often called \enquote*{conditional proof}. Notice that it uses a \emph{subderivation}. The subderivation begins with \(\alpha\) as an assumption, and then derives \(\beta\). Since \(\beta\) can be derived from \(\alpha\), the conditional \(\alpha \lif \beta\) must be true.
+
+Look at this example of a derivation using conditional proof:
+
+
+\begin{enumerate}
+  % \tightlist
+	\item If Alan passes Organic Chemistry, then he will graduate.
+	\item \underline{If Alan graduates, then he will move to Kansas.}
+	\item [$\therefore$] If Alan passes Organic Chemistry, then he will move to Kansas.
+\end{enumerate}
+
+
+\bigskip
+
+\(
+\begin{nd}
+  \hypo{}{P \lif G}
+  \hypo {}{G \lif K}
+  \open
+  \hypo{}{P}
+  \have{}{G} \ie{1,3} 
+  \have{}{K} \ie{2,4}
+  \close
+  \have{}{P \lif K} \ii{3-5}
+\end{nd}
+\)
+
+
+\bigskip
+
+The subderivation is on lines 3--5. It has vertical and horizontal lines just like the derivations that we have been doing so far. The horizontal line distinguishes assumptions from derived formulas; the assumptions of the main derivation are called primary assumptions, and the assumptions of any subderivations are called auxiliary assumptions. The vertical line is the scope line.
+The scope line shows the scope of any assumptions.
+The subderivation shows that, given lines 1 and 2, if we assume \enquote*{P}, we can derive \enquote*{\(P \lif K\)}. We complete the subderivation by ending the scope line of the subderivation and moving the scope line that is immediately to the left of the subderivation. By ending the subderivation, we discharge the assumption. After the assumption is discharged, the lines in the subderivation are no longer accessible, and thus cannot be used later in the proof. For example, this is not allowed:
+
+\bigskip
+
+\(
+\begin{nd}
+  \hypo{}{P \lif G}
+  \hypo {}{G \lif K}
+  \open
+  \hypo{}{P}
+  \have{}{G} \ie{1,3} 
+  \have{}{K} \ie{2,4}
+  \close
+  \have{}{K} \by{MISTAKE! R}{5}
+\end{nd}
+\)
+
+This claims that, given lines 1 and 2, we can derive \enquote*{K}, but we cannot do that without making the further assumption of line 3. What we can do, though, is appeal to the entire subderivation, as in our original example:
+
+\bigskip
+
+\(
+\begin{nd}
+  \hypo{}{P \lif G}
+  \hypo {}{G \lif K}
+  \open
+  \hypo{}{P}
+  \have{}{G} \ie{1,3} 
+  \have{}{K} \ie{2,4}
+  \close
+  \have{}{P \lif K} \ii{3-5}
+\end{nd}
+\)
+
+
+\bigskip
+
+Note that the justification for line 6 cites lines 3--5, which is the entire subderivation. 
+
+
+
+
+\bigskip
+
+\emph{Disjunction Introduction} (\(\lor I\))
+
+
+\(
+\begin{nd}
+  \have [ ] {} {\alpha}
+  \have [\triangleright] {} {\alpha \lor \beta}
+\end{nd}
+\text{or}
+\qquad
+\begin{nd}
+  \have [ ] {} {\alpha}
+  \have [\triangleright] {} {\beta \lor \alpha}
+\end{nd}
+\)
+
+
+This is an unusual rule for two reasons. First, it starts with a definite claim, \(\alpha\), and derives a vague claim, \(\alpha \lor \beta \). Second, \(\beta\) might be completely new to the derivation, giving us a feeling of deriving something from nothing. The rule is obviously truth-preserving, though, since \(\alpha\) is true, it has to be the case that \(\alpha \lor \beta\) is true. Disjunction Introduction is particularly useful when a formula required to complete a derivation contains a sentence-letter that is not found in any of the premises. For example,
+
+\(
+\begin{nd}
+  \hypo {1} {F \land G}
+  \hypo {2} {(F \lor H) \lif E }
+  \have {3} {F} \ae{1}
+  \have {4} {F \lor H} \oi{3}
+  \have {5} {E} \ie{4,3}
+  \have[\triangleright] {6} {E \lor I} \oi{5}
+\end{nd}
+\)
+
+\bigskip
+
+\emph{Disjunction Elimination} (\(\lor E\))
+
+\(
+\begin{nd}
+  \have{}{\alpha \lor \beta}
+  \open
+  \hypo{}{\alpha}
+  \have{}{\gamma}
+  \close
+  \open
+  \hypo{}{\beta}
+  \have{}{\gamma}
+  \close
+\have[\triangleright]{}{\gamma}
+\end{nd}
+\)
+
+We can derive \(\gamma\) from \(\alpha \lor \beta\) if we can both derive \(\gamma\) from \(\alpha\) and derive \(\gamma\) from \(\beta\). In other words, if we have sentence of the form \(\alpha \lor \beta\), a subderivation that begins with the assumption \(\alpha\) and ends with \(\gamma\), and another subderivation that begins with the assumption \(\beta\) and ends with \(\gamma\), we can derive the sentence \(\gamma\).
+
+\bigskip
+
+\emph{Negation Introduction} \((\lneg I)\)
+
+
+\(
+\begin{nd}
+  \open
+  \hypo [  ] {} {\alpha}
+  \have [  ] {} {\beta}
+  \have [  ] {} {\lneg \beta}
+  \close
+\have [  ] {} {\lneg \alpha}
+\end{nd}
+\)
+
+\bigskip
+
+\(\lneg \alpha\) can be derived by using a subderivation that assumes \(\alpha\) and derives \(\beta\) and \(\lneg \beta\) from \(\alpha\) Both \(\beta\) and \(\lneg \beta\) must be immediately to the right of same scope line as \(\alpha\). Intuitively, anything that entails a contradiction must be false.
+
+\bigskip
+
+\emph{Negation Elimination} \(\lneg E\)
+
+Negation Elimination works the same way:
+
+\(
+\begin{nd}
+  \open
+  \hypo [  ] {} {\lneg \alpha}
+  \have [  ] {} {\beta}
+  \have [  ] {} {\lneg \beta}
+  \close
+  \have [  ] {} {\alpha}
+\end{nd}
+\)
+
+\bigskip
+
+
+\emph{Biconditional Introduction}
+
+\(
+\begin{nd}
+  \open
+  \hypo{}{\alpha}
+  \have{}{\beta}
+  \close
+  \open
+  \hypo{}{\beta}
+  \have{}{\alpha}
+  \close
+  \have [\triangleright]{}{\alpha \liff \beta}
+  
+\end{nd}
+\)
+
+This rule makes sense if we remember that a biconditional is logically equivalent to the conjunction of two conditionals, that is,  \(\alpha \liff \beta\) is equivalent to \((\alpha \lif \beta)\, \land\, (\beta \lif \alpha)\).
+
+
+\bigskip
+
+\emph{Biconditional Elimination} (\(\liff E\))
+
+\(
+\begin{nd}
+  \have [ ] {} {\alpha \liff \beta}
+  \have [ ] {} {\alpha}
+  \have [\triangleright] {} {\beta}
+\end{nd}
+\text{or}
+\qquad
+\begin{nd}
+  \have [ ] {} {\alpha \liff \beta}
+  \have [ ] {} {\beta}
+  \have [\triangleright] {} {\alpha}
+\end{nd}
+\)
+
+Note that Biconditional Elimination works just like Conditional Elimination, except that either term can be derived from the biconditional and the other term.
+
+\section{Using the Rules of SD}
+\label{sec:using-rules-sd}
+
+Here are some important things to keep in mind when using \emph{SD}. First, all of the rules of \emph{SD} are rules of inference, and rules of inference apply only to complete lines of a derivation. For example, consider this simple derivation:
+
+\bigskip
+
+Derive: A
+
+\bigskip
+
+
+
+\(
+\begin{nd}
+  \hypo [ ] {} {(A \land B) \land C}
+  \have [  ] {} {}
+\end{nd}
+\)
+
+\bigskip
+
+
+
+We are given a conjunction, and we know that all three of those conjuncts have to be true for that conjunction to be true. So, it is tempting to do this:
+
+
+\(
+\begin{nd}
+  \hypo {} {(A \land B) \land C}
+  \have {} {A} \ae{1}
+\end{nd}
+\)
+
+\bigskip
+
+\textbf{NO!}
+
+\bigskip
+
+The rule of inference can only be applied to the entire line, not part of the line. So, we first have to use Conjunction Elimination to break down the first line, then use it again to finish the proof.
+
+\(
+\begin{nd}
+  \hypo {} {(A \land B) \land C}
+  \have {} {A \land B} \ae{1}
+  \have {} {A} \ae{2}
+\end{nd}
+\)
+
+Second, the only lines that can be used for the rules of \emph{SD} are lines that are accessible at that stage of the proof. A formula is accessible at line \emph{n} if and only if it is not within the scope of an assumption that has been discharged before line \emph{n}.
+
+Notice this mistake:
+
+\(
+\begin{nd}
+  \hypo {1} {F \lif G}
+  \hypo {2} {G \lif H}
+  \open
+  \hypo {3} {F}
+  \have {4} {G} \ie{1,3}
+  \have {5} {H} \ie{2,4}
+  \close
+  \have {6} {F \lif H} \ii{3-5}
+  \have {7} {F} \r{3}
+  \have {8} {H} \ie{6,7}
+\end{nd}
+\)
+
+\bigskip
+
+\textbf{NO!}
+
+\bigskip
+
+Lines 1--6 are correct. The subderivation assumes \(F\), and derives \(G\). It is important to remember that when a subderivation is used, the entire subderivation must be cited. Here,  line 6 cites Conditional Introduction and lines 3--5. The mistake occurs in line 7. Line 7 reiterates line 3, but line 3 is not accessible at 7.  Once the assumption of the subderivation is discharged, none of the lines within that subderivation can be used in the remaining part of the proof.
+
+
+\section{SD: Basic Concepts}
+\label{sec:sd-basic-concepts}
+
+\emph{SD} is the basic derivation system for \emph{SL}. Stated precisely, A derivation in \emph{SD} is a series of sentences of \emph{SL}, in which each sentence is either an assumption with a line indicating its scope or is justified by one of the rules of \emph{SD}. Now that we have a basic understanding of the rules of \emph{SD}, it's time to define a few basic concepts. The first is a derivation:
+
+\begin{quote}
+  A \textbf{derivation in \emph{SD}} is a series of sentences of \emph{SL}, in which each sentence is either an assumption with a line indicating its scope or is justified by one of the rules of \emph{SD}. 
+\end{quote}
+
+We define the concept of derivability like this:
+
+\begin{quote}
+  A sentence \(\alpha\) of \emph{SL} is \textbf{derivable in \emph{SD}} from a set \(\Gamma\) of sentences of \emph{SL} if and only if there is a derivation in \emph{SD} in which all of the primary assumptions are members of \(\Gamma\) and \(\alpha\) occurs in the scope of only those primary assumptions. 
+\end{quote}
+
+We can state that a sentence is derivable from a set using the single turnstile symbol like this:
+
+\begin{quote}
+  \(\Gamma \vdash \alpha\)
+\end{quote}
+
+We can say that a sentence is not derivable from a set like this:
+
+\begin{quote}
+  \(\Gamma \nvdash \alpha\)
+\end{quote}
+
+Derivability is the fundamental concept of \emph{SD}; other concepts will be defined in terms of derivability. For instance, validity and invalidity in \emph{SD} are defined like this:
+
+\begin{quote}
+  An argument of \emph{SL} is \textbf{valid in \emph{SD}} if and only if the conclusion of the argument is derivable in \emph{SD} from the set consisting of the premises. 
+
+  An argument of \emph{SL} is \textbf{invalid in \emph{SD}} if and only if it is not valid in \emph{SD}.
+\end{quote}
+
+It is possible to derive some sentences from no premises at all, which is to say that those sentences can be derived from the empty set. To do that, we begin with a subderivation. Here is an example:
+
+\bigskip
+
+Derive \(P \lif (Q \lif P)\)
+
+\(
+\begin{nd}
+  \open
+  \hypo {1} {P}
+  \open
+  \hypo {2} {Q}
+  \have {3} {P} \r{1}
+  \close
+  \have {4} {Q \lif P} \ii{2-3}
+  \close
+  \have {5} {P \lif (Q \lif P)} \ii{1-3}
+\end{nd}
+\)
+
+These sentences are called theorems of \emph{SD}.
+
+\begin{quote}
+  A sentence of \emph{SL} is a \textbf{theorem of \emph{SD}} if and only if it is derivable in \emph{SD} from the empty set.
+\end{quote}
+
+We can also define equivalence in \emph{SD}:
+
+Two sentences \(\alpha\) and \(\beta\) of \emph{SL} are \textbf{equivalent in \emph{SD}} if and only if \(\beta\) is derivable in \emph{SD} from \(\{\alpha\}\) and \(\alpha\) is derivable in \emph{SD} from \(\{\beta\}\)
+
+\begin{quote}
+  A set \(\Gamma\) of \emph{SL} is \textbf{inconsistent in \emph{SD}} if and only if both a sentence \(\alpha\) of \emph{SL} and its negation are derivable in \emph{SD} from \(\Gamma\).
+
+  A set \(\Gamma\) of \emph{SL} is \textbf{consistent} if and only if it is not inconsistent.
+\end{quote}
+
+In \autoref{sec:semantics-sl}, we defined many of those same concepts for \emph{SL}. There, we defined them in terms of truth in a model. Here, they are defined in terms of derivability, not truth. The derivation system operates solely at the level of syntax, and truth is a semantic concept. Nevertheless, we want the concepts of the derivation \emph{SD} to parallel the semantic concepts of \emph{SL}:
+
+\begin{itemize}
+  \item A sentence \(\alpha\) of \emph{SL} is derivable in \emph{SD} from a set of sentences  \(\Gamma\) in \emph{SL}  if and only if \(\alpha\) is truth-functionally entailed by \(\Gamma\).
+  \item An argument of \emph{SL} is valid in \emph{SD} if and only if the argument is truth-functionally valid.
+  \item A sentence \(\alpha\) of SL is a theorem in \emph{SD} if and only if \(\alpha\) is truth-functionally true.
+  \item Sentences \(\alpha\) and \(\beta\) or \emph{SL} are equivalent in \emph{SD} if and only if they are truth-functionally equivalent.
+  \item A set of sentences of \emph{SL} is consistent in \emph{SD} if and only if it is truth-functionally consistent.
+\end{itemize}
+
+This means that if an argument is truth-functionally valid in \emph{SL}, then it will be derivable in \emph{SD}. Unfortunately, this does not mean that every student of logic will be able to construct a derivation for the argument. Constructing a successful derivation is much more likely if approached strategically, rather than haphazardly applying the derivation rules.
+
+\section{Strategies for Derivations}
+\label{sec:strat-deriv}
+
+The key to building derivations in \emph{SD} is to focus on goals and sub-goals. The goal is the sentence that we have been tasked to derive. Strategizing derivations often looks something like this. Say that we have been tasked to derive some sentence \(\alpha\). Looking at the initial assumptions, we see that we can derive \(\alpha\) if we can first derive \(\beta\). We then see that deriving \(\beta\) requires deriving \(\gamma\), and so on. So, \(\alpha\) is our goal, but \(\beta\) abd \(\gamma\) become sub-goals. Let's work through an example:
+
+\bigskip
+
+Show that \(\{\lneg A, (\lneg A \lif B) \land (C \liff \lneg A)\} \vdash (B \lor D) \land C\) in \emph{SD}.
+
+
+\(
+\begin{nd}
+  \hypo {1} {\lneg A}
+  \hypo {2} {(\lneg A \lif B) \land (C \liff \lneg A)}
+  \have [\vdots] {3} {\vdots}
+  \have [n] {4} {(B \lor D) \land C}
+\end{nd}
+\)
+
+Now, note that the conclusion is a conjunction. We can use the Conjunction Introduction to form it, if we can derive each conjunct. The second conjunct, C, has to come from the right side of premise 2, which is \(C \liff \lneg A\). So, our goal now becomes getting that on a line by itself. Since it's a conjunct, we can just use Conjunction Elimination. 
+
+\(
+\begin{nd}
+  \hypo {1} {\lneg A}
+  \hypo {2} {(\lneg A \lif B) \land (C \liff \lneg A)}
+  \have {3} {C \liff \lneg A} \ae{2}
+  \have [\vdots] {3} {\vdots}
+  \have [n] {4} {(B \lor D) \land C}
+\end{nd}
+\)
+
+Now, we can use Biconditional Elimination to produce C.
+
+\(
+\begin{nd}
+  \hypo {1} {\lneg A}
+  \hypo {2} {(\lneg A \lif B) \land (C \liff \lneg A)}
+  \have {3} {C \liff \lneg A} \ae{2}
+  \have {4} {C} \be{3,4}
+  \have [\vdots] {3} {\vdots}
+  \have [n] {4} {(B \lor D) \land C}
+\end{nd}
+\)
+
+That takes care of half of the conclusion. Now, we need to get \(B \lor D\). There's no D in the premises, which means that we'll have to introduce it using Disjunction Introduction. To do that, we first need to get B. B is the consequent of a conditional, \(\lneg A \lif B\), so we can get B if we have the antecedent, \(\lneg A\). Fortunately, \(\lneg A\) is the first premise. So our completed proof looks like this:
+
+\(
+\begin{nd}
+  \hypo {1} {\lneg A}
+  \hypo {2} {(\lneg A \lif B) \land (C \liff \lneg A)}
+  \have {3} {C \liff \lneg A} \ae{2}
+  \have {4} {C} \be{3,4}
+  \have {5} {\lneg A \lif B} \ae{2}
+  \have {6} {B} \ie{5,1}
+  \have {7} {B \lor D} \oi{6}
+  \have {8} {(B \lor D) \land C} \ai{7,4}
+\end{nd}
+\)
+
+
+\section{The Derivation System SD+}
+\label{sec:deriv-syst-sd+}
+
+
+So far, \emph{SD} has only eleven rules, Reiteration and an introduction and elimination rule for each of the five logical connectives. These eleven rules are enough to derive the conclusion from the premises of every valid argument in \emph{SL}. There is a trade-off, however---the simpler the derivation system in terms of the number of available derivation rules, the more complex the derivations tend to be. For example, consider this argument:
+
+
+
+\begin{enumerate}
+  % \tightlist
+  \item \(\alpha \lor \beta\)
+  \item \underline{\(\lneg \alpha\)}
+  \item [$\therefore$] \(\beta\)
+\end{enumerate}
+
+The argument is obviously valid. The first premise tells us that least one of \(\alpha\) and \(\beta\) are true, the second tells us that \(\alpha\) is false, so \(\beta\) must therefore be true. Proving this with the basic rules of \emph{SD}, however, is trickier than it seems it ought to be: 
+
+\bigskip
+
+
+\(
+\begin{nd}
+  \hypo {1} {\alpha \lor \beta}
+  \hypo {2} {\lneg \alpha}
+  \open
+  \hypo {3} {\alpha}
+  \open
+  \hypo {4} {\lneg \beta}
+  \have {5} {\alpha} \r{3}
+  \have {6} {\lneg \alpha} \r{2}
+  \close
+  \have {7} {\beta} \ne{4-6}
+
+  \close
+  \open
+  \hypo {8} {\beta}
+  \have {9} {\beta} \r{7}
+  \close
+  \have {10} {\beta} \oe{3-7,8-9}
+\end{nd}
+\)
+
+\bigskip
+
+
+
+We have now proved, using the basic derivation rules of \emph{SD}, that a disjunct can be derived from a disjunction and the negation of the other disjunct.
+So, we can add it as a new derivation rule to \emph{SD}.
+There is no theoretical limit to the number of rules that could be added.
+We could, in principle, add a new rule for every derivation that we successfully complete.
+The resulting system, however, would be practically unusable.
+We need a good balance between the simplicity of the system itself and the simplicity of the derivations when using the system.
+There are two criteria that we can use to determine if an additional rule should be added to the system.
+First, the circumstances to which the proposed rule applies should occur fairly often, thus saving steps in many different derivations.
+Second, those circumstances are easily recognizable. Having new rules won't help, if we can't tell when we need to use them.
+
+\subsection{Rules of Inference}
+\label{sec:rules-inference}
+
+
+Here are the rules of inference that we will add:
+
+
+
+\bigskip
+
+
+\emph{Disjunctive Syllogism} (DS)
+\(
+\begin{nd}
+  \have [ ] {} {\alpha \lor \beta}
+  \have [ ]{} {\lneg \alpha}
+  \have [\triangleright] {} {\beta}
+\end{nd}
+\text{or}
+\qquad
+\begin{nd}
+  \have [ ] {} {\alpha \lor \beta}
+  \have [ ]{} {\lneg \beta}
+  \have [\triangleright] {} {\alpha}
+\end{nd}
+\)
+
+\bigskip
+
+
+\emph{Hypothetical Syllogism} (HS)
+
+\(
+\begin{nd}
+  \have [ ] {} {\alpha \lif \beta}
+  \have [ ] {} {\beta \lif \gamma}
+  \have [\triangleright] {} {\alpha \lif \gamma}
+\end{nd}
+\)
+
+\bigskip
+
+
+
+
+\emph{Modus Tollens} (MT)
+
+\(
+\begin{nd}
+  \have [  ] {} {\alpha \lif \beta}
+  \have [  ] {} {\lneg \beta}
+    \have [\triangleright] {} {\lneg \alpha}
+\end{nd}
+\)
+
+\bigskip
+
+
+
+\emph{Constructive Dilemma} (CD)
+
+\(
+\begin{nd}
+  \have [  ] {} {\alpha \lif \gamma}
+  \have [  ] {} {\beta \lif \delta}
+  \have [  ] {} {\alpha \lor \beta}
+  \have [\triangleright] {} {\gamma \lor \delta}
+\end{nd}
+\)
+
+\bigskip
+
+
+
+\emph{Destructive Dilemma} (DD)
+
+\(
+\begin{nd}
+  \have [  ] {} {\alpha \lif \gamma}
+  \have [  ] {} {\beta \lif \delta}
+  \have [  ] {} {\lneg \gamma \lor \lneg \delta}
+  \have [\triangleright] {} {\lneg \alpha \lor \lneg \beta}
+\end{nd}
+\)
+
+\bigskip
+
+\emph{Biconditional Modus Tollens} (BMT)
+
+\(
+\begin{nd}
+\have [ ] {} {\alpha \liff \beta}
+\have [ ] {} {\lneg \alpha}
+\have [\triangleright] {} {\lneg \beta}
+\end{nd}
+\)
+
+\bigskip
+
+
+
+\emph{Biconditional Hypothetical Syllogism} (BHS)
+
+\(
+\begin{nd}
+\have [ ] {} {\alpha \liff \beta}
+\have [ ] {} {\beta \liff \gamma}
+\have [\triangleright] {} {\alpha \liff \gamma}
+\end{nd}
+\)
+
+
+\subsection{Rules of Replacement}
+\label{sec:rules-replacement}
+
+In addition to rules of inference, \emph{SD}+ contains rules of replacement.
+Rules of replacement let us derive some sentences from other sentences by replacing parts of sentences.
+Unlike rules of inference, which can be applied only to whole lines,  rules of replacement can be applied to parts of lines. For example, using a rule called Contraposition, from the sentence
+
+\medskip
+
+\((A \lor B) \liff (A \lif C)\)
+
+\medskip
+
+\noindent we can infer
+
+\medskip
+\((A \lor B) \liff (\lneg C \lif \lneg A)\)
+\medskip
+
+\noindent Since every sentence is a part of itself, the rules of replacement can also be applied to entire lines. The rules of replacement are also bidirectional. Using Contraposition, I can not only go from
+\medskip
+
+\(A \lif C\)
+
+\medskip
+
+\noindent to
+
+\medskip
+\(\lneg C \lif \lneg A\)
+\medskip
+
+\noindent I can also go from
+
+\medskip
+\(\neg C \lif \lneg A\)
+\medskip
+
+\noindent to
+
+\medskip
+
+\(A \lif C\)
+
+\medskip
+
+Here are the rules of replacement of \emph{SD}+:
+
+\bigskip
+
+\emph{De Morgan's} (DM)
+
+\begin{itemize}
+\item [] $\lneg (\alpha \land \beta) \Leftrightarrow \lneg \alpha \vee \lneg \beta$
+\item [] $\lneg (\alpha \vee \beta) \Leftrightarrow \lneg \alpha \land \lneg \beta$
+\end{itemize}
+
+\bigskip
+
+
+
+\emph{Association} (Ass)
+
+\begin{itemize}
+\item [] $\alpha \vee (\beta \vee \gamma) \Leftrightarrow (\alpha \vee \beta) \vee \gamma$
+\item [] $\alpha \land (\beta \land \gamma) \Leftrightarrow (\alpha \land \beta) \land \gamma$
+\end{itemize}
+
+\bigskip
+
+
+\emph{Distribution} (Dis)
+
+\begin{itemize}
+\item [] $\alpha \land (\beta \vee \gamma) \Leftrightarrow (\alpha \land \beta) \vee (\alpha \land \gamma)$
+\item [] $\alpha \vee (\beta \land \gamma) \Leftrightarrow (\alpha \vee \beta) \land (\alpha \vee \gamma)$
+\end{itemize}
+
+\bigskip
+
+
+
+\emph{Commutativity} (Com)
+
+\begin{itemize}
+\item [] $\alpha \vee \beta \Leftrightarrow \beta \vee \alpha$
+\item [] $\alpha \land \beta \Leftrightarrow \beta \land \alpha$  
+\end{itemize}
+
+\bigskip
+
+
+
+
+\emph{Double Negation} (DN)
+
+\begin{itemize}
+\item [] $\alpha \Leftrightarrow \lneg \lneg \alpha$
+\end{itemize}
+
+\bigskip
+
+
+
+
+\emph{Contraposition} (Cont)
+
+\begin{itemize}
+\item [] $\alpha \lif \beta \Leftrightarrow \lneg \beta \lif \lneg \alpha$
+\end{itemize}
+
+\bigskip
+
+
+
+
+\emph{Material Implication} (Imp)
+
+\begin{itemize}
+\item [] $\alpha \lif \beta \Leftrightarrow \lneg \alpha \vee \beta$
+\end{itemize}
+
+\bigskip
+
+
+
+\emph{Material Equivalence} (ME)
+
+\begin{itemize}
+\item [] $\alpha \liff \beta \Leftrightarrow (\alpha \lif \beta) \land (\beta \lif \alpha)$
+\item [] $\alpha \liff \beta \Leftrightarrow (\alpha \land \beta) \vee (\lneg \alpha \land \lneg \beta) $
+\end{itemize}
+
+\bigskip
+
+
+
+
+\emph{Exportation} (Exp)
+
+\begin{itemize}
+\item [] $\alpha \lif (\beta \lif \gamma) \Leftrightarrow (\alpha \land \beta) \lif \gamma $
+\end{itemize}
+
+\bigskip
+
+
+
+\emph{Tautology} (Tau)
+
+\begin{itemize}
+\item [] $\alpha \Leftrightarrow \alpha \land \alpha$
+\item [] $\alpha \Leftrightarrow \alpha \vee \alpha$  
+\end{itemize}
+
+\bigskip
+
+
+
+
+\emph{Biconditional De Morgan's} (BDM)
+
+\begin{itemize}
+\item [] $\lneg ( \alpha \liff \beta) \Leftrightarrow \lneg \alpha \liff \beta$
+\end{itemize}
+
+\bigskip
+
+
+
+\emph{Biconditional Commutativity} (BCom)
+
+\begin{itemize}
+\item [] $\alpha \liff \beta \Leftrightarrow \beta \liff \alpha$
+\end{itemize}
+
+\bigskip
+
+
+
+
+\emph{Biconditional Inversion} (BI)
+
+\begin{itemize}
+\item [] $\alpha \liff \beta \Leftrightarrow \lneg \alpha \liff \lneg \beta$
+\end{itemize}
+
+\bigskip
+
+
+
+
+
+
+\emph{Biconditional Association} (BAss)
+
+\begin{itemize}
+\item [] $\alpha \liff (\beta \liff \gamma) \Leftrightarrow (\alpha \liff \beta) \liff \gamma$
+\end{itemize}
+
+\bigskip
+
+
+
+\(
+\begin{nd}
+  \hypo {1} {A \lif B}
+  \have {2} {B} \dm{1}
+
+\end{nd}
+\)
+
+
+
+
+
 
 \end{document}
+
+
+
