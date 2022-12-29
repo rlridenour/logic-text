@@ -1,4 +1,4 @@
-% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
 
 \documentclass[../logic-text.tex]{subfiles}
 
@@ -7,5 +7,39 @@
 \chapter{Predicate Logic: Syntax}
 \label{cha:pl-syntax}
 
+In the last few chapters we developed rules for the syntax and semantics of the language \emph{SL}. We learned how to use two powerful methods, truth-tables and truth-trees, for testing sentences and sets of sentences to analyze the logical properties that we defined for the language.  Finally, we developed a system that enables us to derive new sentences of \emph{SL} from given sentences of \emph{SL}.
+
+An important feature of \emph{SL} is that it is\emph{decidable}. Truth-tables and truth-trees are mechanical methods for verifying truth-functional properties like validity, consistency, etc., in the sense that each step of the method is determined by a rule and the previous steps. To say that \emph{SL} is decidable is to say that, for questions about truth-functional concepts, our methods will always give us a definite yes or no answer in a finite number of steps. So, we can, simply by following a set of rules, determine the validity of \emph{any} argument in sentential logic. There will never be an instance for which the validity of an argument in \emph{SL} cannot be determined.
+
+Sentential logic is a powerful tool, but there are times when it fails. Consider this argument:
+
+\begin{enumerate}
+  % \tightlist
+  \item All dogs are mammals.
+  \item All cats are mammals.
+  \item \underline{Either Lola is a dog or Lola is a cat.}
+  \item [$\therefore$] Lola is a mammal.
+\end{enumerate}
+
+
+\noindent Symbolizing this argument in \emph{SL} results in something like this:
+
+\begin{enumerate}
+  % \tightlist
+  \item D
+  \item C
+  \item \underline{E \(\lor\) F}
+  \item [$\therefore$] G
+\end{enumerate}
+
+The natural language argument above is obviously valid, but the corresponding argument in \emph{SL} is not. The problem is that \emph{SL} cannot capture the logical relations between \enquote{All dogs are mammals}, \enquote{Lola is a dog}, and \enquote{Lola is a mammal.} Those relations are determined by the internal structures of the sentences, and the internal structures of sentences are invisible to \emph{SL}, because the smallest logical unit in \emph{SL} is an entire sentence.
+
+In this chapter, we will begin to develop a new language, \emph{PL} (for predicate logic), that will allow us to express some of the internal structures of sentences. The argument above has a valid symbolization in \emph{PL}. Unfortunately, this power comes with a cost. \emph{PL} is not a decidable system. There is no method that we can use that is guaranteed to always tell us if an argument in \emph{PL} is valid or a set of sentences in \emph{PL} is consistent.
+
+
+\section{Singular Terms and Predicates}
+\label{sec:sing-terms-pred}
+
+Predicate logic identifies three important components of sentences in natural languages: individual constants, predicates, and quantity terms. Individual constants are a type of singular term. A singular term
 
 \end{document}

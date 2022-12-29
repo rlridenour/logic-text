@@ -9,17 +9,17 @@
 % URL: http://quasar.mathstat.uottawa.ca/~selinger/fitch/
 
 % License:
-%
+% 
 % This program is free software; you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation; either version 2, or (at your option)
 % any later version.
-%
+% 
 % This program is distributed in the hope that it will be useful, but
 % WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
 % General Public License for more details.
-%
+% 
 % You should have received a copy of the GNU General Public License
 % along with this program; if not, write to the Free Software Foundation, 
 % Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
@@ -31,26 +31,26 @@
 % the user guide, which can be found in the file fitchdoc.tex.
 % 
 % \[
-% \begin{nd}
-%   \hypo{1}  {P\vee Q}   
-%   \hypo{2}  {\neg Q}                         
-%   \open                              
-%   \hypo{3a} {P}
-%   \have{3b} {P}        \r{3a}
-%   \close                   
-%   \open
-%   \hypo{4a} {Q}
-%   \have{4b} {\neg Q}   \r{2}
-%   \have{4c} {\bot}     \ne{4a,4b}
-%   \have{4d} {P}        \be{4c}
-%   \close                             
-%   \have{5}  {P}        \oe{1,3a-3b,4a-4d}                 
-% \end{nd}
+%   \begin{nd}
+%     \hypo{1}  {P\vee Q}   
+%     \hypo{2}  {\neg Q}                         
+%     \open                              
+%     \hypo{3a} {P}
+%     \have{3b} {P}        \r{3a}
+%     \close                   
+%     \open
+%     \hypo{4a} {Q}
+%     \have{4b} {\neg Q}   \r{2}
+%     \have{4c} {\bot}     \ne{4a,4b}
+%     \have{4d} {P}        \be{4c}
+%     \close                             
+%     \have{5}  {P}        \oe{1,3a-3b,4a-4d}                 
+%   \end{nd}
 % \]
 
 {\chardef\x=\catcode`\*
-\catcode`\*=11
-\global\let\nd*astcode\x}
+  \catcode`\*=11
+  \global\let\nd*astcode\x}
 \catcode`\*=11
 
 % References
@@ -89,8 +89,8 @@
 \ndindent=1em
 % user command to redefine dimensions
 \def\nddim#1#2#3#4#5#6#7#8{\nd*depthdim=#3\relax\nd*hsep=#6\relax%
-\def\nd*height{#1}\def\nd*thickness{#8}\def\nd*initheight{#2}%
-\def\nd*indent{#5}\def\nd*labelsep{#4}\def\nd*justsep{#7}}
+  \def\nd*height{#1}\def\nd*thickness{#8}\def\nd*initheight{#2}%
+  \def\nd*indent{#5}\def\nd*labelsep{#4}\def\nd*justsep{#7}}
 % set initial dimensions
 \nddim{4.5ex}{3.5ex}{1.5ex}{1em}{1.6em}{.5em}{2.5em}{.2mm}
 
@@ -123,73 +123,73 @@
 \newcount\nd*n
 \def\nd*beginb{\begingroup\nd*reset\gdef\nd*stack{\nd*nil}\nd*push\nd*stack{\nd*t}%
   \begin{array}{l@{\hspace{\nd*labelsep}}l@{\hspace{\nd*justsep}}l}}
-\def\nd*resumeb{\begingroup\begin{array}{l@{\hspace{\nd*labelsep}}l@{\hspace{\nd*justsep}}l}}
-\def\nd*endb{\end{array}\endgroup}
-\def\nd*hypob#1#2{\nd*f{\nd*num{#1}}&\nd*iter\nd*stack\relax\nd*cont\nd*stack\nd*s\nd*u{#2}&}
-\def\nd*haveb#1#2{\nd*f{\nd*num{#1}}&\nd*iter\nd*stack\relax\nd*cont\nd*stack\nd*s\nd*f{#2}&}
-\def\nd*havecontb#1#2{&\nd*iter\nd*stack\relax\nd*cont\nd*stack\nd*s\nd*f{\hspace{\ndindent}#2}&}
-\def\nd*hypocontb#1#2{&\nd*iter\nd*stack\relax\nd*cont\nd*stack\nd*s\nd*u{\hspace{\ndindent}#2}&}
+    \def\nd*resumeb{\begingroup\begin{array}{l@{\hspace{\nd*labelsep}}l@{\hspace{\nd*justsep}}l}}
+                                 \def\nd*endb{\end{array}\endgroup}
+    \def\nd*hypob#1#2{\nd*f{\nd*num{#1}}&\nd*iter\nd*stack\relax\nd*cont\nd*stack\nd*s\nd*u{#2}&}
+                                                                                                 \def\nd*haveb#1#2{\nd*f{\nd*num{#1}}&\nd*iter\nd*stack\relax\nd*cont\nd*stack\nd*s\nd*f{#2}&}
+                                                                                                                                                                                              \def\nd*havecontb#1#2{&\nd*iter\nd*stack\relax\nd*cont\nd*stack\nd*s\nd*f{\hspace{\ndindent}#2}&}
+                                                                                                                                                                                                                                                                                               \def\nd*hypocontb#1#2{&\nd*iter\nd*stack\relax\nd*cont\nd*stack\nd*s\nd*u{\hspace{\ndindent}#2}&}
 
-\def\nd*openb{\nd*push\nd*stack{\nd*i}\nd*push\nd*stack{\nd*t}}
-\def\nd*closeb{\nd*pop\nd*stack\nd*pop\nd*stack}
-\def\nd*guardb#1#2{\nd*n=#1\multiply\nd*n by 2 \nd*modify\nd*stack\nd*n{\nd*g{#2}}}
+                                                                                                                                                                                                                                                                                                                                                                                                \def\nd*openb{\nd*push\nd*stack{\nd*i}\nd*push\nd*stack{\nd*t}}
+                                                                                                                                                                                                                                                                                                                                                                                                \def\nd*closeb{\nd*pop\nd*stack\nd*pop\nd*stack}
+                                                                                                                                                                                                                                                                                                                                                                                                \def\nd*guardb#1#2{\nd*n=#1\multiply\nd*n by 2 \nd*modify\nd*stack\nd*n{\nd*g{#2}}}
 
-% Layer C
+                                                                                                                                                                                                                                                                                                                                                                                                % Layer C
 
-\def\nd*clr{\gdef\nd*cmd{}\gdef\nd*typ{\relax}}
-\def\nd*sto#1#2#3{\gdef\nd*typ{#1}\gdef\nd*byt{}%
-  \gdef\nd*cmd{\nd*typ{#2}{#3}\nd*byt\\}}
-\def\nd*chtyp{\expandafter\ifx\nd*typ\nd*hypocontb\def\nd*typ{\nd*havecontb}\else\def\nd*typ{\nd*haveb}\fi}
-\def\nd*hypoc#1#2{\nd*chtyp\nd*cmd\nd*sto{\nd*hypob}{#1}{#2}}
-\def\nd*havec#1#2{\nd*cmd\nd*sto{\nd*haveb}{#1}{#2}}
-\def\nd*hypocontc#1{\nd*chtyp\nd*cmd\nd*sto{\nd*hypocontb}{}{#1}}
-\def\nd*havecontc#1{\nd*cmd\nd*sto{\nd*havecontb}{}{#1}}
-% \def\nd*by#1#2{\ifx\nd*x#2\nd*x\gdef\nd*byt{\mbox{#1}}\else\gdef\nd*byt{\mbox{#1, \ndref{#2}}}\fi}
-\def\nd*by#1#2{\ifx\nd*x#2\nd*x\gdef\nd*byt{\mbox{#1}}\else\gdef\nd*byt{\mbox{#1 \ndref{#2}}}\fi} % RR: Removed comma between rule and line in citations.
+                                                                                                                                                                                                                                                                                                                                                                                                \def\nd*clr{\gdef\nd*cmd{}\gdef\nd*typ{\relax}}
+                                                                                                                                                                                                                                                                                                                                                                                                \def\nd*sto#1#2#3{\gdef\nd*typ{#1}\gdef\nd*byt{}%
+                                                                                                                                                                                                                                                                                                                                                                                                \gdef\nd*cmd{\nd*typ{#2}{#3}\nd*byt\\}}
+    \def\nd*chtyp{\expandafter\ifx\nd*typ\nd*hypocontb\def\nd*typ{\nd*havecontb}\else\def\nd*typ{\nd*haveb}\fi}
+    \def\nd*hypoc#1#2{\nd*chtyp\nd*cmd\nd*sto{\nd*hypob}{#1}{#2}}
+    \def\nd*havec#1#2{\nd*cmd\nd*sto{\nd*haveb}{#1}{#2}}
+    \def\nd*hypocontc#1{\nd*chtyp\nd*cmd\nd*sto{\nd*hypocontb}{}{#1}}
+    \def\nd*havecontc#1{\nd*cmd\nd*sto{\nd*havecontb}{}{#1}}
+    % \def\nd*by#1#2{\ifx\nd*x#2\nd*x\gdef\nd*byt{\mbox{#1}}\else\gdef\nd*byt{\mbox{#1, \ndref{#2}}}\fi}
+    \def\nd*by#1#2{\ifx\nd*x#2\nd*x\gdef\nd*byt{\mbox{#1}}\else\gdef\nd*byt{\mbox{#1 \ndref{#2}}}\fi} % RR: Removed comma between rule and line in citations.
 
-% multi-line macros
-\def\nd*mhypoc#1#2{\nd*mhypocA{#1}#2\\\nd*stop\\}
-\def\nd*mhypocA#1#2\\{\nd*hypoc{#1}{#2}\nd*mhypocB}
-\def\nd*mhypocB#1\\{\ifx\nd*stop#1\else\nd*hypocontc{#1}\expandafter\nd*mhypocB\fi}
-\def\nd*mhavec#1#2{\nd*mhavecA{#1}#2\\\nd*stop\\}
-\def\nd*mhavecA#1#2\\{\nd*havec{#1}{#2}\nd*mhavecB}
-\def\nd*mhavecB#1\\{\ifx\nd*stop#1\else\nd*havecontc{#1}\expandafter\nd*mhavecB\fi}
-\def\nd*mhypocontc#1{\nd*mhypocB#1\\\nd*stop\\}
-\def\nd*mhavecontc#1{\nd*mhavecB#1\\\nd*stop\\}
+    % multi-line macros
+    \def\nd*mhypoc#1#2{\nd*mhypocA{#1}#2\\\nd*stop\\}
+    \def\nd*mhypocA#1#2\\{\nd*hypoc{#1}{#2}\nd*mhypocB}
+    \def\nd*mhypocB#1\\{\ifx\nd*stop#1\else\nd*hypocontc{#1}\expandafter\nd*mhypocB\fi}
+    \def\nd*mhavec#1#2{\nd*mhavecA{#1}#2\\\nd*stop\\}
+    \def\nd*mhavecA#1#2\\{\nd*havec{#1}{#2}\nd*mhavecB}
+    \def\nd*mhavecB#1\\{\ifx\nd*stop#1\else\nd*havecontc{#1}\expandafter\nd*mhavecB\fi}
+    \def\nd*mhypocontc#1{\nd*mhypocB#1\\\nd*stop\\}
+    \def\nd*mhavecontc#1{\nd*mhavecB#1\\\nd*stop\\}
 
-\def\nd*beginc{\nd*beginb\nd*clr}
-\def\nd*resumec{\nd*resumeb\nd*clr}
-\def\nd*endc{\nd*cmd\nd*endb}
-\def\nd*openc{\nd*cmd\nd*clr\nd*openb}
-\def\nd*closec{\nd*cmd\nd*clr\nd*closeb}
-\let\nd*guardc\nd*guardb
+    \def\nd*beginc{\nd*beginb\nd*clr}
+    \def\nd*resumec{\nd*resumeb\nd*clr}
+    \def\nd*endc{\nd*cmd\nd*endb}
+    \def\nd*openc{\nd*cmd\nd*clr\nd*openb}
+    \def\nd*closec{\nd*cmd\nd*clr\nd*closeb}
+    \let\nd*guardc\nd*guardb
 
-% Layer D
+    % Layer D
 
-% macros with optional arguments spelled-out
-\def\nd*hypod[#1][#2]#3[#4]#5{\ifx\relax#4\relax\else\nd*guardb{1}{#4}\fi\nd*mhypoc{#3}{#5}\nd*set{#1}{#2}}
-\def\nd*haved[#1][#2]#3[#4]#5{\ifx\relax#4\relax\else\nd*guardb{1}{#4}\fi\nd*mhavec{#3}{#5}\nd*set{#1}{#2}}
-\def\nd*havecont#1{\nd*mhavecontc{#1}}
-\def\nd*hypocont#1{\nd*mhypocontc{#1}}
-\def\nd*base{undefined}
-\def\nd*opend[#1]#2{\nd*cmd\nd*clr\nd*openb\nd*guard{#1}#2}
-\def\nd*close{\nd*cmd\nd*clr\nd*closeb}
-\def\nd*guardd[#1]#2{\nd*guardb{#1}{#2}}
+    % macros with optional arguments spelled-out
+    \def\nd*hypod[#1][#2]#3[#4]#5{\ifx\relax#4\relax\else\nd*guardb{1}{#4}\fi\nd*mhypoc{#3}{#5}\nd*set{#1}{#2}}
+    \def\nd*haved[#1][#2]#3[#4]#5{\ifx\relax#4\relax\else\nd*guardb{1}{#4}\fi\nd*mhavec{#3}{#5}\nd*set{#1}{#2}}
+    \def\nd*havecont#1{\nd*mhavecontc{#1}}
+    \def\nd*hypocont#1{\nd*mhypocontc{#1}}
+    \def\nd*base{undefined}
+    \def\nd*opend[#1]#2{\nd*cmd\nd*clr\nd*openb\nd*guard{#1}#2}
+    \def\nd*close{\nd*cmd\nd*clr\nd*closeb}
+    \def\nd*guardd[#1]#2{\nd*guardb{#1}{#2}}
 
-% Handling of optional arguments.
+    % Handling of optional arguments.
 
-\def\nd*optarg#1#2#3{\ifx[#3\def\nd*c{#2#3}\else\def\nd*c{#2[#1]{#3}}\fi\nd*c}
-\def\nd*optargg#1#2#3{\ifx[#3\def\nd*c{#1#3}\else\def\nd*c{#2{#3}}\fi\nd*c}
+    \def\nd*optarg#1#2#3{\ifx[#3\def\nd*c{#2#3}\else\def\nd*c{#2[#1]{#3}}\fi\nd*c}
+    \def\nd*optargg#1#2#3{\ifx[#3\def\nd*c{#1#3}\else\def\nd*c{#2{#3}}\fi\nd*c}
 
-\def\nd*five#1{\nd*optargg{\nd*four{#1}}{\nd*two{#1}}}
-\def\nd*four#1[#2]{\nd*optarg{0}{\nd*three{#1}[#2]}}
-\def\nd*three#1[#2][#3]#4{\nd*optarg{}{#1[#2][#3]{#4}}}
-\def\nd*two#1{\nd*three{#1}[\relax][]}
+    \def\nd*five#1{\nd*optargg{\nd*four{#1}}{\nd*two{#1}}}
+    \def\nd*four#1[#2]{\nd*optarg{0}{\nd*three{#1}[#2]}}
+    \def\nd*three#1[#2][#3]#4{\nd*optarg{}{#1[#2][#3]{#4}}}
+    \def\nd*two#1{\nd*three{#1}[\relax][]}
 
-\def\nd*have{\nd*five{\nd*haved}}
-\def\nd*hypo{\nd*five{\nd*hypod}}
-\def\nd*open{\nd*optarg{}{\nd*opend}}
-\def\nd*guard{\nd*optarg{1}{\nd*guardd}}
+    \def\nd*have{\nd*five{\nd*haved}}
+    \def\nd*hypo{\nd*five{\nd*hypod}}
+    \def\nd*open{\nd*optarg{}{\nd*opend}}
+    \def\nd*guard{\nd*optarg{1}{\nd*guardd}}
 
     \def\nd*init{%
     \let\open\nd*open%
@@ -219,13 +219,33 @@
     \def\bi{\by{$\liff$I}}%
     \def\nne{\by{$\lneg\lneg$E}}%
     \def\r{\by{R}}%
+    \def\ds{\by{DS}}
+    \def\hs{\by{HS}}
+    \def\mt{\by{MT}}
+    \def\cd{\by{CD}}
+    \def\dd{\by{DD}}
+    \def\bmt{\by{BMT}}
+    \def\bhs{\by{BHS}}
     \def\dm{\by{DM}}
+    \def\ass{\by{Ass}}
+    \def\dis{\by{Dis}}
+    \def\com{\by{Com}}
+    \def\dn{\by{DN}}
+    \def\cont{\by{Cont}}
+    \def\mi{\by{Impl}}
+    \def\me{\by{ME}}
+    \def\exp{\by{Exp}}
+    \def\tau{\by{Tau}}
+    \def\bdm{\by{BDM}}
+    \def\bcom{\by{Bcom}}
+    \def\bi{\by{BI}}
+    \def\bass{\by{BAss}}
     }
 
-\newenvironment{nd}{\begingroup\nd*init\nd*beginc}{\nd*endc\endgroup}
-\newenvironment{ndresume}{\begingroup\nd*init\nd*resumec}{\nd*endc\endgroup}
+    \newenvironment{nd}{\begingroup\nd*init\nd*beginc}{\nd*endc\endgroup}
+    \newenvironment{ndresume}{\begingroup\nd*init\nd*resumec}{\nd*endc\endgroup}
 
-\catcode`\*=\nd*astcode
+    \catcode`\*=\nd*astcode
 
-% End of file fitch.sty
+    % End of file fitch.sty
 

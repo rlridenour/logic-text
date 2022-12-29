@@ -1,10 +1,11 @@
 % arara: pdflatex: { interaction: nonstopmode, synctex: yes }
-% arara: biber
-% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
-% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
+% % arara: biber
+% % arara: pdflatex: { interaction: nonstopmode, synctex: yes }
+% % arara: pdflatex: { interaction: nonstopmode, synctex: yes }
 
 
-\documentclass[letterpaper,11pt,oneside,onecolumn]{memoir}
+\documentclass[letterpaper,12pt,oneside,onecolumn]{memoir}
+
 
 \usepackage{graphicx,epstopdf,amsmath,amssymb,url,booktabs,turnstile,multicol,pifont}
 \usepackage{prooftrees}
@@ -77,7 +78,7 @@
 \fi \raise\gnArgHgt\hbox{$\ulcorner$} \box\gnBoxA %
 \raise\gnArgHgt\hbox{$\urcorner$}}
 
-\title{Symbolic Logic: Theory and Applications}
+\title{Symbolic Logic\\Theory and Applications}
 \author{Randy Ridenour}
 % \date{}  % Activate to display a given date or no date
 
@@ -87,9 +88,23 @@
 \frontmatter
 
 \begin{titlingpage}
-  \maketitle
-\end{titlingpage}
+  \thispagestyle{empty}
+  % \maketitle
+  % \raggedleft % Right align the title page
   
+  \rule{1pt}{\textheight} % Vertical line
+  \hspace{0.05\textwidth} % Whitespace between the vertical line and title page text
+  \parbox[b]{0.75\textwidth}{ % Paragraph box for holding the title page text, adjust the width to move the title page left or right on the page
+    
+    {\Huge\bfseries Symbolic Logic}\\[2\baselineskip] % Title
+    
+    {\large\textit{Theory and Applications}}\\[4\baselineskip] % Subtitle or further description
+    {\Large\textsc{Randy Ridenour}} % Author name, lower case for consistent small caps
+    
+    \vspace{0.5\textheight} % Whitespace between the title block and the publisher
+  }
+\end{titlingpage}
+
 
 
 \tableofcontents*
@@ -102,6 +117,7 @@
 \subfile{sl-semantics/sl-semantics}
 \subfile{sl-trees/sl-trees}
 \subfile{sl-derivations/sl-derivations}
+\subfile{pl-syntax/pl-syntax}
 
 \printbibliography
 
