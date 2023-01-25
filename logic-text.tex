@@ -1,31 +1,46 @@
 % arara: pdflatex: { interaction: nonstopmode, synctex: yes }
-% % arara: biber
-% % arara: pdflatex: { interaction: nonstopmode, synctex: yes }
-% % arara: pdflatex: { interaction: nonstopmode, synctex: yes }
+% arara: biber
+% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
+% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
 
 
 \documentclass[letterpaper,12pt,oneside,onecolumn]{memoir}
 
 
-\usepackage{graphicx,epstopdf,amsmath,amssymb,url,booktabs,turnstile,multicol,pifont}
-\usepackage{prooftrees}
-\usepackage{fitch}
-\usepackage{microtype}
+\usepackage{
+  graphicx,
+  epstopdf,
+  amsmath,
+  amssymb,
+  url,
+  booktabs,
+  turnstile,
+  multicol,
+  pifont,
+  microtype,
+  prooftrees,
+  fitch
+}
 \usepackage[american]{babel}
 \usepackage[sf,sc]{titlesec}
+\usepackage[autostyle]{csquotes}
+
 \usepackage{tikz}
 \usetikzlibrary{shapes,backgrounds}
-\usepackage[autostyle]{csquotes}
-\clubpenalty = 10000 % Reduce orphans and widows
-\widowpenalty = 10000
+
 \usepackage{enumitem}
 \setlist[itemize]{noitemsep} % Comment out for wider separation in lists.
 \setlist[enumerate]{noitemsep}
 
+\usepackage[document]{ragged2e}
+\setlength{\RaggedRightParindent}{\parindent}
+
+\clubpenalty = 10000 % Reduce orphans and widows
+\widowpenalty = 10000
+
 \usepackage[authordate,url=false,isbn=false,backend=biber]{biblatex-chicago} %Change authordate to notes if desired.
 \addbibresource{/Users/rlridenour/Dropbox/bibtex/rlr.bib}
 
-\usepackage{todonotes}
 
 % \usepackage{lualatex-math,luatextra}
 % \usepackage{libertinus}
@@ -33,9 +48,9 @@
 
 
 \usepackage{libertinus-type1}
-\usepackage[frenchmath]{libertinust1math}
+% \usepackage[frenchmath]{libertinust1math}
 \usepackage[T1]{fontenc}
-
+% \usepackage{mathastext}
 
 \usepackage[unicode=true]{hyperref}
 
@@ -82,6 +97,10 @@
 \author{Randy Ridenour}
 % \date{}  % Activate to display a given date or no date
 
+% Make math mode use sans font.
+\renewcommand\familydefault\sfdefault
+\usepackage[LGRgreek]{mathastext}
+\renewcommand\familydefault\rmdefault
 \begin{document}
 
 

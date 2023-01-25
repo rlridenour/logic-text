@@ -1,0 +1,21 @@
+\message{ !name(pl-syntax.tex)}% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
+
+\documentclass[../logic-text.tex]{subfiles}
+
+\begin{document}
+
+\message{ !name(pl-syntax.tex) !offset(264) }
+Notice the difference between \enquote*{Bailey doesn't like everything} and \enquote*{Bailey doesn't like anything}, however. Those sentence don't mean the same thing, because they have different truth conditions. The first is false only if Bailey likes everything, while the second only requires that there be one thing that Bailey likes to be false. So, we can translate the first as a negated universal quantification and the second as a negated existential quantification.
+
+Actually, anything that we can translate with a existential quantifier could be translated with a universal quantifier, and vice versa. That is, we only really need one quantifier. Remember that we didn't really need both of \enquote*{\(\land\)} and \enquote*{\(\lor\)} because
+
+\begin{quote}
+  \(A \land B\)
+\end{quote}
+
+\noindent is equivalent to
+
+
+\message{ !name(pl-syntax.tex) !offset(282) }
+
+\end{document}

@@ -1,4 +1,4 @@
-% arara: pdflatex: { interaction: nonstopmode, synctex: yes }
+% arara: latexmk: { engine: pdflatex }
 
 \documentclass[../logic-text.tex]{subfiles}
 
@@ -7,11 +7,19 @@
 \chapter{Predicate Logic: Syntax}
 \label{cha:pl-syntax}
 
-In the last few chapters we developed rules for the syntax and semantics of the language \emph{SL}. We learned how to use two powerful methods, truth-tables and truth-trees, for testing sentences and sets of sentences to analyze the logical properties that we defined for the language.  Finally, we developed a system that enables us to derive new sentences of \emph{SL} from given sentences of \emph{SL}.
 
-An important feature of \emph{SL} is that it is\emph{decidable}. Truth-tables and truth-trees are mechanical methods for verifying truth-functional properties like validity, consistency, etc., in the sense that each step of the method is determined by a rule and the previous steps. To say that \emph{SL} is decidable is to say that, for questions about truth-functional concepts, our methods will always give us a definite yes or no answer in a finite number of steps. So, we can, simply by following a set of rules, determine the validity of \emph{any} argument in sentential logic. There will never be an instance for which the validity of an argument in \emph{SL} cannot be determined.
 
-Sentential logic is a powerful tool, but there are times when it fails. Consider this argument:
+In the last few chapters we developed rules for the syntax and semantics of the language \emph{SL}.
+We learned how to use two powerful methods, truth-tables and truth-trees, for testing sentences and sets of sentences to analyze the logical properties that we defined for the language.
+Finally, we developed a system that enables us to derive new sentences of \emph{SL} from given sentences of \emph{SL}.
+
+An important feature of \emph{SL} is that it is \emph{decidable}.
+Truth-tables and truth-trees are mechanical methods for verifying truth-functional properties like validity, consistency, etc., in the sense that each step of the method is determined by a rule and the previous steps.
+To say that \emph{SL} is decidable is to say that, for questions about truth-functional concepts, our methods will always give us a definite yes or no answer in a finite number of steps.
+So, we can, simply by following a set of rules, determine the validity of \emph{any} argument in sentential logic. There will never be an instance for which the validity of an argument in \emph{SL} cannot be determined.
+
+Sentential logic is a powerful tool, but there are times when it fails.
+Consider this argument:
 
 \begin{enumerate}
   % \tightlist
@@ -32,14 +40,627 @@ Sentential logic is a powerful tool, but there are times when it fails. Consider
   \item [$\therefore$] G
 \end{enumerate}
 
-The natural language argument above is obviously valid, but the corresponding argument in \emph{SL} is not. The problem is that \emph{SL} cannot capture the logical relations between \enquote{All dogs are mammals}, \enquote{Lola is a dog}, and \enquote{Lola is a mammal.} Those relations are determined by the internal structures of the sentences, and the internal structures of sentences are invisible to \emph{SL}, because the smallest logical unit in \emph{SL} is an entire sentence.
+The natural language argument above is obviously valid, but the corresponding argument in \emph{SL} is not.
+The problem is that \emph{SL} cannot capture the logical relations between \enquote{All dogs are mammals}, \enquote{Lola is a dog}, and \enquote{Lola is a mammal.}
+Those relations are determined by the internal structures of the sentences, and the internal structures of sentences are invisible to \emph{SL}, because the smallest logical unit in \emph{SL} is an entire sentence.
 
-In this chapter, we will begin to develop a new language, \emph{PL} (for predicate logic), that will allow us to express some of the internal structures of sentences. The argument above has a valid symbolization in \emph{PL}. Unfortunately, this power comes with a cost. \emph{PL} is not a decidable system. There is no method that we can use that is guaranteed to always tell us if an argument in \emph{PL} is valid or a set of sentences in \emph{PL} is consistent.
+In this chapter, we will begin to develop a new language, \emph{PL} (for predicate logic), that will allow us to express some of the internal structures of sentences.
+The argument above has a valid symbolization in \emph{PL}.
+Unfortunately, this power comes with a cost. \emph{PL} is not a decidable system. There is no method that we can use that is guaranteed to always tell us if an argument in \emph{PL} is valid or a set of sentences in \emph{PL} is consistent.
 
 
 \section{Singular Terms and Predicates}
 \label{sec:sing-terms-pred}
 
-Predicate logic identifies three important components of sentences in natural languages: individual constants, predicates, and quantity terms. Individual constants are a type of singular term. A singular term
+Predicate logic identifies three important components of sentences in natural languages: individual constants, predicates, and quantity terms.
+Individual constants are a type of singular term.
+A singular term is one that refers to (or designates or denotes), or purports to refer to, some particular object, called the referent of the term.
+There are two kinds of singular terms, proper names and definite descriptions.
+Examples of proper names are \enquote*{Aristotle} and \enquote*{Grace Hopper}.
+Examples of definite descriptions are \enquote*{the teacher of Alexander the Great} and \enquote*{the inventor of COBOL}.
+The referent is often determined by context.
+For example, there may be several people with the name \enquote*{Grace Hopper}, but in a conversation about the history of computing, it's clear that the intended referent is Grace Hopper, the inventor of COBOL.
+
+
+The referent of a pronoun is also determined by context.
+In the sentence, \enquote{Grace Hopper was a naval officer, and she invented COBOL}, \enquote*{Grace Hopper} and \enquote*{she} refer to the same person.
+In this case, \enquote*{she} is being used as a singular term.
+There are some tricky cases, though.
+In the sentence
+
+\begin{quote}
+If someone wins the lottery, then he will be very happy.
+\end{quote}
+
+Here, \enquote*{he} isn't used as a singular term. Substituting some name for \enquote*{he} results in a non-equivalent sentence:
+
+\begin{quote}
+If someone wins the lottery, then Joe Biden will be very happy.
+\end{quote}
+
+Some sentences can contain more than one singular term. For instance,
+
+\begin{quote}
+Oklahoma City is north of Dallas.
+\end{quote}
+
+We get predicates by deleting one or more singular terms from a sentence. Form this sentence, we can get the predicates
+
+\begin{quote}
+\underline{\phantom{XXXXX}} is north of Dallas
+\end{quote}
+
+and
+
+\begin{quote}
+\underline{\phantom{XXXXX}} is north of \underline{\phantom{XXXXX}}.
+\end{quote}
+
+So, think of predicates as strings of words with blanks such that when the blanks are filled in with singular terms, we a complete sentences.
+A predicate with just one blank is a one-place, or monadic, predicate.
+A predicate with two blanks is a two-place, or dyadic, predicate, and so on.
+Predicates with more than one place are collectively called polyadic predicates.
+Instead of using blanks, we'll use the lowercase letters \enquote*{w}, \enquote*{x},  \enquote*{y},  and \enquote*{z}.
+
+
+Singular terms and predicates allow us to say things like \enquote{Josh is present} and \enquote{Sarah doesn't like root canals.}
+With these alone, though, we can't say simple things like \enquote{everyone is present} and \enquote{no one likes root canals.}
+For statements like these, we also need quantity terms.
+These are terms like \enquote*{all}, \enquote*{some}, and \enquote*{none}.
+It should be clear that quantity terms are not singular terms.
+\enquote*{Everyone} does not refer to a particular thing.
+Instead, the sentence \enquote*{everyone is present} means that the predicate \enquote*{is present} is true of everyone, and what \enquote*{everyone} means will of course be determined by context.
+
+
+\section{PL: Singular Terms and Predicates}
+\label{sec:pl-s-terms-pred}
+
+The formal language \emph{PL} contains the sentential connectives of \emph{SL}, along with components that correspond to the singular terms, predicates, and quantity terms of English and other natural languages.
+For singular terms, \emph{PL} uses individual constants, which are lowercase letters of the Roman alphabet \enquote*{a} through \enquote*{v}, with subscripts if necessary.
+The predicates of \emph{PL} are uppercase letters of the Roman alphabet.
+As in English, predicates in \emph{PL} have blanks that are filled in with individual constants to form sentences.
+A sentence is formed by writing the predicate letter first, followed by the singular terms in the order given by the translation key.
+A translation key will specify a universe of discourse (UD), which is the set of things that we're talking about.
+It will also assign individual constants to some, or all, of the members of the universe of discourse.
+Finally, it will assign predicate letters to the relevant natural language predicates.
+Here is an example of a translation key:
+
+\begin{quote}
+  UD: The Smith family pets
+
+  Cx: x is a cat
+
+  Dx: x is a dog
+
+  Lxy: x likes y
+
+  a: Abby
+
+  b: Bailey
+
+  c: Cookie
+\end{quote}
+
+
+Using this translation key, we can translate these English sentences
+
+\begin{enumerate}
+  \item Abby is a cat.
+  \item Bailey and Cookie are dogs.
+  \item Bailey likes Abby.
+  \item If Abby is a cat, then Cookie doesn't like Abby.
+\end{enumerate}
+
+\noindent like this in \emph{PL}:
+
+\begin{enumerate}
+  \item \(Ca\)
+  \item \(Db \land  Da\)
+  \item \(Lba\)
+  \item \(Ca \lif \lneg Lca\) 
+\end{enumerate}
+
+We could also use the same translation key to go from \emph{PL} to English. Translating these sentences in \emph{PL} 
+
+\begin{enumerate}
+  \item \(Bc\)
+  \item \(Bd \lor \lneg  Lcb\)
+  \item \(Lab \land \lneg Laa\)
+  \item \((Lab \land Lac \lif) \lneg (Db \lor Dc)\)
+\end{enumerate}
+
+\noindent like this into English:
+
+\begin{enumerate}
+  \item Either Bailey is a dog or Cookie doesn't like Bailey.
+  \item Abby likes Bailey, but doesn't like herself.
+  \item Abby likes both Bailey and Cookie only if neither Bailey nor Cookie are dogs.
+\end{enumerate}
+
+\section{Quantifiers}
+\label{sec:quantifiers}
+
+When we establish a universe of discourse, we are essentially pretending, for the sake of discussion, that those are the only things that exist.
+Using the above translation key, we could translate
+
+\medskip
+
+Bailey likes everything
+
+\noindent as
+
+\((Lba \land Lbc) \land Lbb\)
+
+\medskip
+
+Note that since Bailey is one of the three things that are in the universe of discourse, then saying that Bailey likes everything is to imply that Bailey likes himself.
+Likewise, we could translate
+
+\medskip
+
+Bailey likes something
+
+\noindent as
+
+\((Lba \lor Lbc) \lor Lbb\)
+
+\medskip
+
+This is only practical, however, when the universe of discourse is {\em very} small.
+Even with a small universe of discourse, things can quickly get out of hand. For example, to translate
+
+\medskip
+
+Something likes something
+
+\medskip
+
+\noindent we would have to do something like this:
+
+\medskip
+
+\(\{[(Laa \lor Lab) \lor (Lac \lor Lba)] \lor [(Lbb \lor Lbc) \lor (Lca \lor Lcb)]\} \lor Lcc\)
+
+\medskip
+
+\noindent Imagine what translating \enquote*{Someone likes someone else} would require if the universe of discourse were all of the students at the university!
+
+This is why we need something analogous to the quantity terms that was discussed earlier.
+For this, we will use the quantifier symbols \enquote*{\(\forall\)}, usually read as \enquote{for all}, and \enquote*{\(\exists\)}, usually read as \enquote{there exists} or \enquote{there is}.
+A quantifier consists of one of these symbols followed by a variable, which in \emph{PL} are the lowercase Roman letters \enquote*{w} through \enquote*{z}.
+
+
+Let's us the same translation key that we used in the preceding section and look at a few examples.
+To say that everything in the universe of discourse is a dog, we simply write
+
+\begin{quote}
+  \(\forall x   Dx \)
+\end{quote}
+
+\noindent This is how we would symbolize \enquote*{There is at least one cat}:
+
+\begin{quote}
+  \(\exists xCx \)
+\end{quote}
+
+\noindent We can symbolize \enquote*{Bailey likes everything} as
+
+\begin{quote}
+  \(\forall x   Lbx \)
+\end{quote}
+
+\noindent and \enquote*{Bailey likes something} would be
+
+\begin{quote}
+  \(\exists x   Lbx \)
+\end{quote}
+
+We can think of quantifiers as providing a way of interpreting variables in formulas of \emph{PL}.
+In \enquote*{\(\forall  xDx \)}, the universal quantifier tells us that the variable in \enquote{Dx}  stands for every object in the universe of discourse, while an existential quantifier would tell us that the variable stands for at least one object in the universe of discourse.
+
+Quantifiers are like negations in two important senses.
+First, remember that a negation operates only on the sentence that immediately follows it.
+In \enquote*{\(\lneg P \lif Q\)}, the tilde negates only the sentence \enquote*{P}, while in \enquote*{\(\lneg (P \lif Q)\)}, the tilde negates the entire conditional \enquote*{\(P \lif Q\)}.
+In the same way, quantifiers interpret only the formulas that they immediately precede.
+In the sentence
+
+\begin{quote}
+  \(\forall  xDx  \land  Cx \)
+\end{quote}
+
+\noindent the universal quantifier only provides an interpretation of the formula \enquote*{Dx}, but in
+
+\begin{quote}
+  \(\forall  x(Dx  \land  Cx )\)
+\end{quote}
+
+\noindent it allows us to interpret both variables in the conjunction \enquote*{\(Dx  \land\,  Cx \)}.
+
+Second, just like \enquote*{\(\lneg (P \lor Q) \)} is a negation, while \enquote*{\(\lneg P \lor \lneg Q\)} is a disjunction of two negations, \enquote*{\(\forall  x(Dx  \lor  Cx)\)} is a universal quantification, while  \enquote*{\(\forall  xDx  \lor \forall  xCx \)} is a disjunction of two universal quantifications.
+
+
+We've reserved the letters \enquote*{w} through \enquote*{z} for variables.
+For the most part, which letter you choose to use does not matter.
+For example,
+
+\begin{quote}
+  \(\forall xLxb\)
+\end{quote}
+
+\noindent and
+
+\begin{quote}
+  \(\forall yLyb\)
+\end{quote}
+
+are the same sentence.
+They are both perfectly good symbolizations  of  \enquote*{Everything likes Bailey}.
+Although we used \enquote*{x} for the translation key, we don't have to use the same variable when doing the actual translations.
+Note that we do have to use the same variable for the quantifier and the quantified formula.
+For example, this isn't allowed:
+
+\begin{quote}
+  \(\forall xDy\)
+\end{quote}
+
+\noindent The \enquote*{y} isn't in the scope of any quantifier.
+There are times when it's helpful, although not necessary, to use different variables.
+For example, here's a translation of \enquote*{There is at least one dog, and there is at least one cat.}
+
+\begin{quote}
+  \(\exists xDx \land \exists xCx\)
+\end{quote}
+
+\noindent Although, this is a perfectly good translation, using different variables would help to prevent the sentence from being read as this:
+
+\begin{quote}
+   \(\exists x(Dx \land Cx)\) (Mistake!)
+\end{quote}
+
+\noindent I'll leave it up to you to decide what would be wrong with that. So, here's a good way to translate the sentence:
+
+\begin{quote}
+  \(\exists xDx \land \exists yCy\)
+\end{quote}
+
+Which quantifier needs to be used is usually fairly easy to determine.
+Words like \enquote*{some}, \enquote*{something}, or \enquote*{someone} will use the existential quantifier, while words like \enquote*{each}, \enquote*{every}, \enquote*{any}, and \enquote*{all} will ordinarily use the universal quantifier.
+There are times when this can get a bit tricky, however.
+For example, \enquote*{Bailey likes everything} and \enquote*{Bailey likes anything} mean the same thing, and are both translated this way.
+
+
+\begin{quote}
+\(\forall xLbx\)
+\end{quote}
+
+Notice the difference between \enquote*{Bailey doesn't like everything} and \enquote*{Bailey doesn't like anything}, however.
+Those sentence don't mean the same thing, because they have different truth conditions.
+The first is false only if Bailey likes everything, while the second only requires that there be one thing that Bailey likes to be false.
+So, we can translate the first as a negated universal quantification and the second as a negated existential quantification.
+
+Actually, anything that we can translate with a existential quantifier could be translated with a universal quantifier, and vice versa.
+That is, we only really need one quantifier.
+Remember that we didn't really need both of \enquote*{\(\land\)} and \enquote*{\(\lor\)} because
+
+\begin{quote}
+  \(A \land B\)
+\end{quote}
+
+\noindent is equivalent to
+
+\begin{quote}
+  \(\lneg ( \lneg A \lor \lneg B )\)
+\end{quote}
+
+In the same way, \enquote*{Everything is F} has exactly the same truth conditions as \enquote*{It's not the case that there is something that is not F.}
+So,
+
+\begin{quote}
+  \(\forall xFx\)
+\end{quote}
+
+\noindent is equivalent to
+
+\begin{quote}
+  \(\lneg \exists x \lneg Fx\)
+\end{quote}
+
+\noindent Just keep in mind that as a negation is moved across a quantifier, the quantifier changes.
+ 
+\section{Formal Syntax of PL}
+\label{sec:formal-syntax-pl}
+
+Now that we have a basic understanding of the features of \emph{PL}, we're in a better position to understand its syntax.
+The vocabulary of \emph{PL} consists of:
+
+\begin{description}
+  \item[Predicates:] Capital Roman letters with or without positive integer subscripts followed by zero or more primes.
+        (Exactly \emph{n} primes indicate an \emph{n}-place predicate.
+        A zero-place predicate is equivalent to a sentence letter of \emph{SL}.)
+  \item[Individual constants:] Lowercase Roman letters \enquote*{a} through \enquote*{v} with or without positive integer subscripts.
+  \item[Individual variables:] Lowercase Roman letters \enquote*{w} through \enquote*{z} with or without positive integer subscripts.
+  \item[Individual term:] An individual constant or individual variable.
+  \item[Truth-functional connectives:] \(\lneg \; \land \; \lor \; \lif \; \, \liff  \)
+  \item[Quantifier symbols:] \(\forall \; \exists\)
+  \item[Punctuation marks:] ( \; )
+\end{description}
+
+In practice, we will omit the primes from the predicate letters.
+Adding zero-place predicates means that every sentence that is symbolized in \emph{SL} can also count as a symbolization in \emph{PL}.\footnote{In this course, however, we won't be using sentence letters in \emph{PL}.}
+
+
+\begin{description}
+  \item[Expression of \emph{PL}:] a sequence of elements of the vocabulary of \emph{PL}. 
+  \item[Quantifier of \emph{PL}:] An expression of \emph{PL} of the form \(\forall x\) (a universal quantifier)  or \(\exists x\) (an existential quantifier).
+        A quantifier is said to \emph{contain} a variable.
+        For example, \enquote*{\(\forall x\)} contains the variable \enquote*{x} and \enquote*{\(\exists z\)} contains the variable \enquote*{z}.
+        We'll call a quantifier containing \enquote*{x} an \enquote*{x quantifier}, a  quantifier containing \enquote*{y} a \enquote*{y quantifier}, and so on. 
+  \item[Atomic formula of \emph{PL}:] An expression of \emph{PL} that is an \emph{n}-place predicate of \emph{PL} followed by \emph{n} individual terms of \emph{PL}.
+\end{description}
+
+Now, we can give a recursive definition of \enquote*{formula of \emph{PL}}, using \(\phi\), \(\psi\), and \(\chi\) as metavariables for expressions of \emph{PL} and \(\alpha\) as a metavariable for individual variables of \emph{PL}:
+
+
+\begin{enumerate}
+  \item Every atomic formula of \emph{PL} is a formula of \emph{PL}.
+  \item If \(\phi\) is a formula of \emph{PL}, then so is \(\lneg \phi\).
+  \item If \(\phi\) and \(\psi\) are formulas of \emph{PL}, then so are \((\phi \land  \psi)\), \((\phi \lor  \psi)\), \((\phi \lif  \psi)\), and \((\phi \liff  \psi)\).
+  \item If \(\phi\) is a formula of \emph{PL} that contains at least one occurrence of \(\alpha\) and no \(\alpha\)-quantifier, then \(\forall \alpha \phi\) and \(\exists \alpha \phi\) are both formulas or \emph{PL}.
+  \item Nothing is a formula of \emph{PL} unless it can be formed by repeated applications of 1--4.
+\end{enumerate}
+
+\begin{description}
+  \item[Logical operator of \emph{PL}:] An expression of \emph{PL} that is either a quantifier or a truth-functional connective. 
+\end{description}
+
+Now, we need the concept of a subformula and a main logical operator:
+
+\begin{enumerate}
+  \item If \(\phi\) is an atomic formula of \emph{PL}, then \(\phi\) contains no logical operator, and \(\phi\) is the only subformula of \(\phi\).
+  \item If \(\phi\) is a formula of \emph{PL} of the form \(\lneg \psi\), then \(\lneg\) is the main logical operator of \(\phi\) and \(\psi\) is the immediate subformula of \(\phi\).
+  \item If \(\phi\) is a formula of \emph{PL} of the form \((\psi \land \chi)\), \((\psi \lor \chi)\), \((\psi \lif \chi)\), or \((\psi \liff \chi)\) then the binary connective between \(\psi\) and \(\chi\) is the main logical operator of \(\phi\) and \(\psi\) and \(\chi\) are the immediate subformulas of \(\phi\).
+  \item If \(\phi\) is a formula of \emph{PL} of the form \(\forall \alpha \psi\) or \(\exists \alpha \psi\), then the quantifier that occurs before \(\psi\) is the main logical operator of \(\phi\) and \(\psi\) is the immediate subformula of \(\phi\).
+  \item If \(\phi\) is a formula of \emph{PL}, then every subformula of a subformula of \(\phi\) is a subformula of \(\phi\), and \(\phi\) is a subformula of itself.
+\end{enumerate}
+
+\begin{description}
+  \item[Scope of a quantifier:] The scope of a quantifier in a formula \(\phi\) of \emph{PL} is the subformula \(\psi\) of which that quantifier is the main logical operator.
+  \item[Bound variable:] An occurrence of a variable \(\alpha\) in a formula \(\phi\) of \emph{PL} is bound if and only if that occurrence is within the scope of an \(\alpha\)-variable.
+  \item[Free variable:] An occurrence of a variable \(\alpha\) in a formula \(\phi\) of \emph{PL} is free if and only if it is not bound.
+  \item[Sentence of \emph{PL}:] A formula \(\phi\) of \emph{PL}  is a sentence of \emph{PL} if and only if contains no free variables.
+\end{description}
+
+
+
+
+
+
+
+
+\section{PL: Translations}
+\label{sec:pl-translations}
+
+In \ref{chap:categorical}, we encountered the A, E, I, and O statements of categorical logic:
+
+\begin{description}
+\item[A:] All S are P.
+\item[E:] No S are P.
+\item[I:] Some S are P.
+\item[O:] Some S are not P.
+\end{description}
+
+\noindent We are able to express all of these claims, and more, in \emph{PL}.
+Let's look at some examples using this translations scheme:
+
+\begin{quote}
+  UD: living things
+
+  Sx: x is a snake.
+
+  Rx: x is a reptile.
+
+  Px: x is poisonous.
+
+  Wx: x is warm-blooded.
+\end{quote}
+
+Now, consider the sentence:
+
+\begin{quote}
+  All snakes are reptiles.
+\end{quote}
+
+\noindent How should we translate that in \emph{PL}? An initial inclination might be to translate it this way:
+
+\begin{quote}
+  \(\forall xSx \land \forall xRx\)
+\end{quote}
+
+This, though, is clearly wrong, since it means that everything in the universe of discourse is a snake \emph{and} everything in the universe of discourse is a reptile.
+That would be true only if every living thing were a snake.
+We can begin to translate it correctly by first paraphrasing it in a way that captures the truth conditions of the sentence.
+Basically, it is saying, for each living thing, if that thing is snake, then it is also a reptile.
+So, an equivalent sentence of \emph{PL} is
+
+\begin{quote}
+  \(\forall x(Sx \lif Rx)\)
+\end{quote}
+
+The sentence \enquote*{No snakes are warm-blooded} asserts that everything in the universe of discourse that is a snake is not warm-blooded, so this is an appropriate translation:
+
+
+\begin{quote}
+  \(\forall x(Sx \lif \lneg Wx)\)
+\end{quote}
+
+Of course, when one says that no snakes are warm-blooded, one is essentially denying that there are any warm-blooded snakes.
+So, another perfectly good translation would be this:
+
+\begin{quote}
+  \(\lneg \exists x( Sx \land Wx)\)
+\end{quote}
+
+The claim that some snakes are poisonous is not a claim about everything, so we shouldn't use the universal quantifier.
+\enquote*{Some snakes are poisonous} is true just in case there is at least one thing in the universe of discourse that is both a snake and is poisonous.
+So, this I sentence is naturally translated as:
+
+\begin{quote}
+  \(\exists x(Sx \land Px)\)
+\end{quote}
+
+\noindent O sentences are translated the same way, with the addition of a negation.
+\enquote*{Some snakes are not poisonous} is
+
+\begin{quote}
+  \(\exists x(Sx \land \lneg Px)\)
+\end{quote}
+
+Keep in mind that for sentences of more than the simplest degree of complexity, there will always be more than one acceptable translation.
+Any universal quantification can be rephrased as a negated existential quantification, every existential quantification is equivalent to a negated universal quantification, every conjunction can be expressed as the negation of a disjunction, and so on.
+Even so, there is a natural way to translate the categorical statements, using the universal quantifier for the universal A and E sentences, and an existential quantifier for the particular I and O sentences.
+If \(\phi\) and \(\psi\) are formulas with the variable x, then
+
+\begin{quote}
+  A: \(\forall x(\phi \lif \psi)\)
+
+  E: \(\forall x(\phi \lif \lneg \psi)\)
+
+  I: \(\exists x(\phi \land \psi)\)
+
+  O: \(\exists x(\phi \land \lneg \psi)\)
+\end{quote}
+
+% TODO Explain why the logical relations of the square of opposition don't necessarily hold in \emph{PL}.
+
+
+Let's practice with some sentences using this translation scheme:
+
+\begin{quote}
+  UD: All birds
+
+  Fx: x can fly
+
+  Rx: x is a raptor
+
+  Hx: x is a hawk
+
+  Px: x is a penguin
+
+  Sx: x can swim
+
+  Vx: x is a vertebrate
+
+  Wx: x is warm-blooded
+\end{quote}
+
+
+
+\begin{enumerate}
+  \item All raptors can fly.
+  \item No penguins can fly.
+  \item Some raptors are hawks.
+  \item Penguins can swim but can't fly.
+  \item If any penguin swims, then all raptors are warm-blooded.
+  \item If any penguin swims, then it is warm blooded.
+  \item All birds are vertebrates.
+\end{enumerate}
+
+The first three are simple:
+
+
+\begin{enumerate}
+  \item \(\forall x (Rx \lif Fx)\)
+  \item \(\forall x(Px \lif \lneg Fx)\)
+  \item \(\exists x(Rx \land Hx)\)
+\end{enumerate}
+
+One way to understand the fourth would be as a conjunction: \enquote*{All penguins swim and no penguins fly.}
+So, the translation could be
+
+\begin{enumerate}
+  \item[4.] \(\forall x (Px \lif Sx) \land \forall y(Py \lif \lneg Fy)\)
+\end{enumerate}
+
+Another way to paraphrase this would \enquote*{All penguins both swim and not fly}.  This means that the third sentence can also be translated this way:
+
+\begin{enumerate}
+  \item[4.] \(\forall x[Px \lif (Sx \land \lneg Fx)]\)
+\end{enumerate}
+
+\noindent This simpler translation should be preferred.
+
+The fifth sentence says that if there is a penguin that swims, then all raptors are warm-blooded. This is a conditional sentence that has a existential quantification for an antecedent and a universal quantification for a consequent.
+
+\begin{enumerate}
+  \item [5.] \(\exists x(Px \land Sx) \lif \forall y(Rx \lif Wx)\)
+\end{enumerate}
+
+The antecedent and the consequent of the sixth sentence share the same subject. It says that for any penguin, if that penguin swims then it is warm-blooded. This means the same as saying that all penguins that swim are warm blooded. So, we should translate it like this:
+
+\begin{enumerate}
+  \item [6.] \(\forall x [(Px \land Sx) \lif Wx]\)
+\end{enumerate}
+
+\noindent The key difference between the fifth and sixth sentences is that the fifth contains two quantity terms, \enquote*{any} and \enquote*{all}, and the sixth has only one quantity term.
+So, the fifth sentence should require two quantifiers, but only one quantifier for the sixth.
+
+Since the universe of discourse is all birds, the seventh simply says that everything is a vertebrate, or
+
+\begin{enumerate}
+  \item [7.] \(\forall xVx\)
+\end{enumerate}
+
+\noindent Had the universe of discourse been broader, then it would need to be translated something like
+
+\begin{quote}
+  \(\forall x(Bx \lif Vx)\)
+\end{quote}
+
+\noindent For the rest of the examples in this section, we will pick predicate letters and individual constants that make sense for the sentence to be translated.
+
+
+\emph{PL} can be used to translate much more complex sentences than just the four standard sentence types in categorical logic.
+
+
+Assuming a universe of discourse as all people, then
+
+\begin{quote}
+  Everyone who likes Alfred also likes Beth and Carlos.
+\end{quote}
+
+This is paraphrased as, \enquote*{For all people, if a person likes Alfred, then they also like Beth and like Carlos.}
+It's then translated as 
+
+\begin{quote}
+  \(\forall x[Lxa \lif (Lxb \land Lxc)]\)
+\end{quote}
+
+Now consider
+
+\begin{quote}
+  Beth likes anything that Alfred and Carlos like.
+\end{quote}
+
+This can be paraphrased as \enquote{Everything is such that, if both Alfred and Carlos like it, then Beth does too.}
+So, a natural translation would be
+
+\begin{quote}
+  \(\forall x[(Lax \land Lcx) \lif Lbx]\)
+\end{quote}
+
+% arara: biber
+% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+
+
+
+\section{Multiple Quantifiers}
+\label{sec:multiple-quantifiers}
+
+
+\section{Identity}
+\label{sec:identity}
+
+
 
 \end{document}
