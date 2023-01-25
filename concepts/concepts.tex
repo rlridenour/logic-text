@@ -1,4 +1,4 @@
-% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+% arara: latexmk: { engine: pdflatex }
 
 \documentclass[../logic-text.tex]{subfiles}
 
@@ -241,11 +241,9 @@ If we know that an argument is invalid, then we know that there is a special log
 
 Later chapters will cover inductive arguments. For now it is enough to say that inductive arguments are not intended to be deductive valid. That is, inductive arguments are those whose premises do not guarantee the truth of the conclusion. For inductive arguments, it is always possible that the premises be true and the conclusion false. Here is an example of an inductive argument:
 
-\begin{enumerate}
-  % \tightlist
-	\item A random sample of 100 students at the university unanimously reported \underline{preferring traditional classes to online instruction.} 
-	\item [$\therefore$] The majority of all students at the university prefer traditional classes to online instruction.
-\end{enumerate}
+\begin{quote}
+A random sample of 100 students at the university unanimously reported preferring traditional classes to online instruction. Therefore, the majority of all students at the university prefer traditional classes to online instruction.
+\end{quote}
 
 The truth of the premise does not guarantee the truth of the conclusion. It is certainly possible that the sample managed to include the only students that don't prefer online courses. Still, though, it seems that, if the premise is in fact true, then the conclusion should be highly likely to be true. So, this is a good inductive argument, one that we call inductively strong.
 
@@ -284,14 +282,15 @@ For the most part, logic alone is not enough to determine if a statement is true
 \begin{description}
   \item[Logical truth] A statement is logically true if and only if it is not possible for the statement to be false.
   \item[Logical falsity] A statement is logically false if and only if it is not possible for the statement to be true.
-  \item[Logical indeterminacy] A statement is logically indeterminate if and only if it is neither logicall true nor logically false.
+  \item[Logical indeterminacy] A statement is logically indeterminate if and only if it is neither logically true nor logically false.
 \end{description}
 
 Finally, there are sentences that are related in such a way so that, if one is true, the second must also be true, and vice versa. These sentences are called logically equivalent. Here is a simple example:
 
 \medskip
 
-\noindent Susan will pass.\\
+Susan will pass.\\
+
 Susan will not fail.
 
 \medskip

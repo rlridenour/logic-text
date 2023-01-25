@@ -648,9 +648,140 @@ So, a natural translation would be
   \(\forall x[(Lax \land Lcx) \lif Lbx]\)
 \end{quote}
 
-% arara: biber
-% arara: lualatex: { interaction: nonstopmode, synctex: yes }
-% arara: lualatex: { interaction: nonstopmode, synctex: yes }
+Here are some tips for translating some tricky sentences. We know how to translate a sentence like this:
+
+\begin{quote}
+  Some dogs are Labradors.
+\end{quote}
+
+In \emph{PL}, it is
+
+\begin{quote}
+  \(\exists x(Dx \land Lx)\)
+\end{quote}
+
+Sometimes, though, we will squeeze two predicates together so that one modifies the other. For example,
+
+\begin{quote}
+  Some black dogs are Labradors.
+\end{quote}
+
+The general rule is that, in cases like this, split the predicates to form two open sentences, like this:
+
+\begin{quote}
+  \(Bx \land Dx\)
+\end{quote}
+
+So, the correct translation of the sentence above is
+
+\begin{quote}
+  \(\exists x[(Bx \land Dx) \land Lx)]\)
+\end{quote}
+
+To translate
+
+\begin{quote}
+Some intelligent students are lazy  
+\end{quote}
+
+we would do this:
+
+\begin{quote}
+ \(\exists x [(Ix \land Sx) \land Lx]\)
+\end{quote}
+
+There are exceptions to the general rule, though. Don't split the predicates when doing so would result in a false sentence. Something can be a small elephant, but not be uncategorically small. So, treat phrases like \enquote*{short skyscraper}, and \enquote*{large mouse} like a single predicate.
+
+
+Unless otherwise stated, we will assume a domain of discourse that is the set of all existing things. So, when a sentence is making a claim only about certain kinds of things, we need to be careful to make that clear. Sometimes, we really are talking about anything:
+
+\begin{quote}
+Something here is not right: \(\exists x (Hx \land \lnot Rx)\)  
+\end{quote}
+
+Other times, we intend to be referring only to people. In those cases, simply add another conjunction.
+
+
+\begin{quote}
+Someone here is not right  
+\end{quote}
+
+\noindent is translated
+
+\begin{quote}
+\(\exists x[(Px \land Hx) \land \lnot Rx]\)  
+\end{quote}
+
+
+\enquote*{Only} always signifies a universal, but translating it can be tricky. As a general rule, the word \enquote*{only} introduces the consequent of a conditional. 
+
+\begin{quote}
+  All emeralds are green things.
+\end{quote}
+
+\noindent is
+
+\begin{quote}
+  \(\forall x(Ex \lif Gx)\)
+\end{quote}
+
+
+If we instead say
+
+\begin{quote}
+  Only green things are emeralds
+\end{quote}
+
+we would translate it the same way:
+
+\begin{quote}
+  \(\forall x(Ex \lif Gx)\)
+\end{quote}
+
+Here is the rule to remember:
+
+All A's are B's: \(\forall x (Ax \lif Bx)\)
+
+Only A's are B's: \(\forall x (Bx \lif Ax)\)
+
+That's simple enough. Be especially careful when more than one predicate follow the \enquote*{only}. 
+For example, 
+
+\begin{quote}
+Only intelligent students are good logicians.
+\end{quote}
+
+is \emph{not}
+
+\begin{quote}
+\(\forall x [Gx \lif (Ix \land Sx)]\) \textbf{NO!}   
+\end{quote}
+
+This would mean that if someone is a good logician, then they are both intelligent and a student. I may be willing to grant that they are intelligent, but surely there are some good logicians who are not students. Follow this as a general rule:
+
+\begin{quote}
+  \enquote*{Only PQ's are R} is equivalent to \enquote*{All RQ's are P.}
+\end{quote}
+
+So, \enquote*{Only intelligent students are good logicians.} is translated
+
+\begin{quote}
+\(\forall x [Gx \land Sx \lif Ix]\)  
+\end{quote}
+
+
+
+
+% \subsection{More than One Quantifier}
+% \label{sec:more-than-one}
+
+% If someone doesn't work, then everyone complains.
+
+% The main operator here is not the quantifiers, but the conditional.
+
+% \(\exists x(\lneg Wx) \lif \forall y (Cy)\)
+
+
 
 
 
