@@ -276,5 +276,5 @@ TSWLatexianTemp*
 *.lpz
 
 # Chapter PDF's
-/*.pdf
-
+/pl-syntax/pl-syntax.pdf
+/sl-semantics/sl-semantics.pdf
